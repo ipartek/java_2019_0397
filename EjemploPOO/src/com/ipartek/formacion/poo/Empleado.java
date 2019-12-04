@@ -9,6 +9,11 @@ public class Empleado extends Persona {
 		this(NOMBRE_POR_DEFECTO, APELLIDOS_POR_DEFECTO, new BigDecimal(0));	
 	}
 
+	@Override
+	public String toString() {
+		return "Empleado [sueldo=" + sueldo + ", toString()=" + super.toString() + "]";
+	}
+
 	public Empleado(String nombre, String apellidos, BigDecimal sueldo) {
 		super(nombre, apellidos);
 		setSueldo(sueldo);

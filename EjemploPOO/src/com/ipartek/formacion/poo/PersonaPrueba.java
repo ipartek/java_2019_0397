@@ -48,7 +48,11 @@ public class PersonaPrueba {
 		alPersonas.add(p);
 		
 		for(Persona persona: alPersonas) {
-			System.out.println(persona.getNombreCompleto());
+			if(persona != null) {
+				System.out.println(persona.getNombreCompleto());
+			} else {
+				System.out.println("La persona vale null");
+			}
 		}
 	}
 }
