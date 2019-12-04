@@ -35,7 +35,7 @@ public class Persona {
 		if(nombre.trim().length() == 0) {
 			throw new RuntimeException("No se aceptan nombres vacíos");
 		}
-		this.nombre = nombre;
+		this.nombre = nombre.trim();
 	}
 	
 	public String getApellidos() {
@@ -43,7 +43,11 @@ public class Persona {
 	}
 	
 	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
+		if(apellidos == null) {
+			throw new RuntimeException("No se aceptan apellidos nulos");
+		}
+		
+		this.apellidos = apellidos.trim();
 	}
 	
 	//EJEMPLO DE SOBRECARGAS DE MÉTODOS
