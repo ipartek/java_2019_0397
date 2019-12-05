@@ -3,21 +3,26 @@ package com.ipartek.formacion.poo;
 import java.math.BigDecimal;
 
 public class Empleado extends Persona {
+	private static final BigDecimal SUELDO_POR_DEFECTO = BigDecimal.ZERO;
 	private BigDecimal sueldo;
 	
-	public Empleado() {
-		this(NOMBRE_POR_DEFECTO, APELLIDOS_POR_DEFECTO, new BigDecimal(0));	
-	}
-
-	@Override
-	public String toString() {
-		return "Empleado [sueldo=" + sueldo + ", toString()=" + super.toString() + "]";
-	}
-
 	public Empleado(String nombre, String apellidos, BigDecimal sueldo) {
 		super(nombre, apellidos);
 		setSueldo(sueldo);
 	}
+
+	public Empleado(Persona p, BigDecimal sueldo) {
+		this(p.getNombre(), p.getApellidos(), sueldo);
+	}
+	
+	public Empleado(Persona p) {
+		this(p.getNombre(), p.getApellidos(), SUELDO_POR_DEFECTO);
+	}
+	
+	public Empleado() {
+		this(NOMBRE_POR_DEFECTO, APELLIDOS_POR_DEFECTO, SUELDO_POR_DEFECTO);	
+	}
+
 
 	public BigDecimal getSueldo() {
 		return sueldo;
@@ -32,5 +37,8 @@ public class Empleado extends Persona {
 		return super.getNombreCompleto() + ":" + getSueldo();
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Empleado [sueldo=" + sueldo + ", toString()=" + super.toString() + "]";
+	}
 }
