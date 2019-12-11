@@ -1,8 +1,11 @@
 package com.ipartek.formacion.poo;
 
+import java.io.Serializable;
+
 // POJO
 // Plain Old Java Objects
-public class Punto {
+public class Punto implements Serializable {
+	private static final long serialVersionUID = 1L;
 	// Constantes (pueden ser públicas)
 	private static final int X_POR_DEFECTO = 0;
 	private static final int Y_POR_DEFECTO = 0;
