@@ -7,6 +7,7 @@ import com.ipartek.formacion.ejemploaccesodatosformacion.utilidades.Biblioteca;
 
 public class PresentacionConsola {
 
+	// TODO Podría hacerse con enumeraciones
 	private static final int OPCION_AGREGAR = 2;
 
 	private static final int OPCION_LISTADO = 1;
@@ -40,21 +41,31 @@ public class PresentacionConsola {
 			break;
 		case OPCION_LISTADO:
 			mostrar("LISTADO");
-
 			listadoAlumnos();
-
 			break;
 		case OPCION_AGREGAR:
-			mostrar("PENDIENTE-------AÑADIR ALUMNO");
-			
+			mostrar("AÑADIR ALUMNO");
+			agregarAlumno();
 			break;
 		default:
 			mostrar("NO IMPLEMENTADO");
 		}
 	}
 
+	private static void agregarAlumno() {
+		Alumno alumno = new Alumno();
+		
+		alumno.setNombre(Biblioteca.leerLinea("Nombre: "));
+		alumno.setApellidos(Biblioteca.leerLinea("Apellidos: "));
+		alumno.setDni(Biblioteca.leerLinea("DNI: "));
+		alumno.setFechaNacimiento(Biblioteca.leerDate("Fecha de nacimiento: "));
+		
+		dao.agregar(alumno);
+	}
+
 	private static void listadoAlumnos() {
 		for (Alumno alumno : dao.obtenerTodos()) {
+			// TODO: Mejorar visualización de registros de alumnos
 			mostrar(alumno);
 		}
 	}
@@ -68,9 +79,9 @@ public class PresentacionConsola {
 	}
 
 	private static void mostrarOpciones() {
-		mostrar("1. Listado");
-		mostrar("2. Añadir alumno");
-		mostrar("0. Salir");
+		mostrar(OPCION_LISTADO + ". Listado");
+		mostrar(OPCION_AGREGAR + ". Añadir alumno");
+		mostrar(OPCION_SALIR + ". Salir");
 	}
 
 	private static void mostrar(Object o) {

@@ -22,6 +22,9 @@ public class Alumno {
 		setFechaNacimiento(fechaNacimiento);
 	}
 
+	public Alumno() {
+	}
+
 	public Long getId() {
 		return id;
 	}

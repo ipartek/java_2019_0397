@@ -1,5 +1,7 @@
 package com.ipartek.formacion.ejemploaccesodatosformacion.utilidades;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -48,6 +50,28 @@ public class Biblioteca {
 		} while (!correcto);
 		
 		return i;
+	}
+
+	public static String leerLinea(String mensaje) {
+		System.out.print(mensaje);
+		return s.nextLine();
+	}
+
+	public static Date leerDate(String mensaje) {
+		System.out.println(mensaje);
+		
+		// TODO: Comprobar que sea un día válido
+		int dia = leerEntero("Día: ");
+		// TODO: Comprobar que sea un mes válido
+		int mes = leerEntero("Mes (en número): ");
+		// TODO: Comprobar que sea un año válido
+		int anyo = leerEntero("Año (con cuatro dígitos): ");
+		
+		Calendar fecha = Calendar.getInstance();
+		
+		fecha.set(anyo, mes, dia);
+		
+		return fecha.getTime();
 	}
 
 }
