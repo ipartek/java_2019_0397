@@ -2,7 +2,6 @@ package com.ipartek.formacion.ejemploaccesodatosformacion.utilidades;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Biblioteca {
@@ -38,14 +37,12 @@ public class Biblioteca {
 			try {
 				correcto = true;
 				
-				i = s.nextInt();
-				s.nextLine();
+				i = Integer.parseInt(s.nextLine()); 
 				
-			} catch (InputMismatchException e) {
+			} catch (NumberFormatException e) {
 				correcto = false;
 				
 				System.out.println("El dato introducido no es un número entero");
-				s.nextLine();
 			}
 		} while (!correcto);
 		
