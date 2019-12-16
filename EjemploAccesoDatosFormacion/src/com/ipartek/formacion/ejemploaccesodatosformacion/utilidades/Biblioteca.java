@@ -2,6 +2,7 @@ package com.ipartek.formacion.ejemploaccesodatosformacion.utilidades;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class Biblioteca {
@@ -83,11 +84,8 @@ public class Biblioteca {
 		
 		anyo = leerEntero("Año: ");
 		
-		Calendar fecha = Calendar.getInstance();
-		
-		fecha.set(anyo, mes - 1, dia);
+		Calendar fecha = new GregorianCalendar(anyo, mes - 1, dia);
 		
 		return fecha.getTime();
 	}
-
 }
