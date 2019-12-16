@@ -12,11 +12,12 @@ public class EjemploIO {
 
 	private static final String FICHERO = "C:\\pruebas\\prueba.txt";
 
-	public static void main(String[] args) {
-		ficheros();
-		// entradaConsola();
+	public static void main(String[] args) throws Exception {
+		// ficheros();
+		entradaConsola();
 	}
 
+	@SuppressWarnings("unused")
 	private static void ficheros() {
 		FileWriter fw = null;
 		PrintWriter pw = null;
