@@ -57,16 +57,35 @@ public class Biblioteca {
 	public static Date leerDate(String mensaje) {
 		System.out.println(mensaje);
 		
-		// TODO: Comprobar que sea un día válido
-		int dia = leerEntero("Día: ");
-		// TODO: Comprobar que sea un mes válido
-		int mes = leerEntero("Mes (en número): ");
-		// TODO: Comprobar que sea un año válido
-		int anyo = leerEntero("Año (con cuatro dígitos): ");
+		boolean correcto;
+		
+		int dia, mes, anyo;
+		
+		do {
+			correcto = true;
+			dia = leerEntero("Día: ");
+			
+			if(dia < 1 || dia > 31) {
+				correcto = false;
+				System.out.println("El día debe estar entre 1 y 31");
+			}
+		} while(!correcto);
+
+		do {
+			correcto = true;
+			mes = leerEntero("Mes (en número): ");
+			
+			if(mes < 1 || mes > 12) {
+				correcto = false;
+				System.out.println("El mes debe ser entre 1 y 12");
+			}
+		} while(!correcto);
+		
+		anyo = leerEntero("Año: ");
 		
 		Calendar fecha = Calendar.getInstance();
 		
-		fecha.set(anyo, mes, dia);
+		fecha.set(anyo, mes - 1, dia);
 		
 		return fecha.getTime();
 	}
