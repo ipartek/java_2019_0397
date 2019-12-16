@@ -32,6 +32,8 @@ public class PresentacionConsola {
 			mostrar("Error no esperado");
 			// TODO Enviar los errores a fichero de log
 			e.printStackTrace();
+			
+			return;
 		}
 	}
 
