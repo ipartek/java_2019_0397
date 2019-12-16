@@ -3,6 +3,7 @@ package com.ipartek.formacion.ejemploaccesodatosformacion.presentacion;
 import com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos.AlumnoArrayList;
 import com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos.Dao;
 import com.ipartek.formacion.ejemploaccesodatosformacion.entidades.Alumno;
+import com.ipartek.formacion.ejemploaccesodatosformacion.entidades.EntidadesException;
 import com.ipartek.formacion.ejemploaccesodatosformacion.utilidades.Biblioteca;
 
 public class PresentacionConsola {
@@ -55,10 +56,38 @@ public class PresentacionConsola {
 	private static void agregarAlumno() {
 		Alumno alumno = new Alumno();
 		
-		alumno.setNombre(Biblioteca.leerLinea("Nombre: "));
-		alumno.setApellidos(Biblioteca.leerLinea("Apellidos: "));
-		alumno.setDni(Biblioteca.leerLinea("DNI: "));
-		alumno.setFechaNacimiento(Biblioteca.leerDate("Fecha de nacimiento: "));
+		final int NOMBRE = 0;
+		final int APELLIDOS = 1;
+		final int DNI = 2;
+		final int FECHA = 3;
+		
+		int campo = 0;
+		
+		while(campo <= FECHA) {
+			try {
+				switch(campo) {
+				case NOMBRE: 
+					alumno.setNombre(Biblioteca.leerLinea("Nombre: "));
+					break;
+				case APELLIDOS:
+					alumno.setApellidos(Biblioteca.leerLinea("Apellidos: "));
+					break;
+				case DNI:
+					alumno.setDni(Biblioteca.leerLinea("DNI: "));
+					break;
+				case FECHA:
+					alumno.setFechaNacimiento(Biblioteca.leerDate("Fecha de nacimiento: "));
+					break;
+				default:
+					throw new PresentacionException("CAMPO NO DEFINIDO");	
+				}
+				
+				campo++;
+				
+			} catch (EntidadesException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 		
 		dao.agregar(alumno);
 	}
