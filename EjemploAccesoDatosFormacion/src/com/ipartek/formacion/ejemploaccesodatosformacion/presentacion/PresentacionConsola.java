@@ -17,6 +17,12 @@ public class PresentacionConsola {
 
 	private static final Dao<Alumno> dao = AlumnoArrayList.getInstancia();
 
+	private static final int OPCION_MODIFICAR = 3;
+
+	private static final int OPCION_BORRAR = 4;
+
+	private static final int OPCION_BUSCAR = 5;
+
 	public static void main(String[] args) {
 		try {
 			int opcion = 0;
@@ -32,7 +38,7 @@ public class PresentacionConsola {
 			mostrar("Error no esperado");
 			// TODO Enviar los errores a fichero de log
 			e.printStackTrace();
-			
+
 			return;
 		}
 	}
@@ -50,25 +56,79 @@ public class PresentacionConsola {
 			mostrar("AÑADIR ALUMNO");
 			agregarAlumno();
 			break;
+		case OPCION_MODIFICAR:
+			mostrar("MODIFICAR ALUMNO");
+			modificarAlumno();
+			break;
+		case OPCION_BORRAR:
+			mostrar("BORRAR ALUMNO");
+			borrarAlumno();
+			break;
+		case OPCION_BUSCAR:
+			mostrar("BUSCAR");
+			buscarAlumno();
+			break;
 		default:
 			mostrar("NO IMPLEMENTADO");
 		}
 	}
 
-	private static void agregarAlumno() {
-		Alumno alumno = new Alumno();
+	private static void buscarAlumno() {
+		Long id = (long) Biblioteca.leerEntero("Dime el ID a borrar: ");
 		
+		mostrarAlumno(dao.obtenerPorId(id));
+	}
+
+	private static void mostrarAlumno(Alumno alumno) {
+		System.out.println("                 ID: " + alumno.getId());
+		System.out.println("             Nombre: " + alumno.getNombre());
+		System.out.println("          Apellidos: " + alumno.getApellidos());
+		System.out.println("                DNI: " + alumno.getDni());
+		System.out.println("Fecha de nacimiento: " + alumno.getFechaNacimiento());			
+	}
+
+	private static void borrarAlumno() {
+		listadoAlumnos();
+
+		// TODO: Hacer con long
+		Long id = (long) Biblioteca.leerEntero("Dime el ID a borrar: ");
+
+		dao.borrar(id);
+	}
+
+	private static void modificarAlumno() {
+		listadoAlumnos();
+
+		// TODO: Hacer con long
+		Long id = (long) Biblioteca.leerEntero("Dime el ID a modificar: ");
+		
+		Alumno alumno = pedirDatosAlumno();
+		
+		alumno.setId(id);
+		
+		dao.modificar(alumno);
+	}
+
+	private static void agregarAlumno() {
+		Alumno alumno = pedirDatosAlumno();
+
+		dao.agregar(alumno);
+	}
+
+	private static Alumno pedirDatosAlumno() {
+		Alumno alumno = new Alumno();
+
 		final int NOMBRE = 0;
 		final int APELLIDOS = 1;
 		final int DNI = 2;
 		final int FECHA = 3;
-		
+
 		int campo = 0;
-		
-		while(campo <= FECHA) {
+
+		while (campo <= FECHA) {
 			try {
-				switch(campo) {
-				case NOMBRE: 
+				switch (campo) {
+				case NOMBRE:
 					alumno.setNombre(Biblioteca.leerLinea("Nombre: "));
 					break;
 				case APELLIDOS:
@@ -81,17 +141,16 @@ public class PresentacionConsola {
 					alumno.setFechaNacimiento(Biblioteca.leerDate("Fecha de nacimiento: "));
 					break;
 				default:
-					throw new PresentacionException("CAMPO NO DEFINIDO");	
+					throw new PresentacionException("CAMPO NO DEFINIDO");
 				}
-				
+
 				campo++;
-				
+
 			} catch (EntidadesException e) {
 				System.out.println(e.getMessage());
 			}
 		}
-		
-		dao.agregar(alumno);
+		return alumno;
 	}
 
 	private static void listadoAlumnos() {
@@ -112,6 +171,9 @@ public class PresentacionConsola {
 	private static void mostrarOpciones() {
 		mostrar(OPCION_LISTADO + ". Listado");
 		mostrar(OPCION_AGREGAR + ". Añadir alumno");
+		mostrar(OPCION_MODIFICAR + ". Modificar alumno");
+		mostrar(OPCION_BORRAR + ". Borrar alumno");
+		mostrar(OPCION_BUSCAR + ". Buscar alumno");
 		mostrar(OPCION_SALIR + ". Salir");
 	}
 
