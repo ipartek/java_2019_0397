@@ -45,9 +45,7 @@ public class PresentacionConsola {
 
 			saludoFinal();
 		} catch (Exception e) {
-			mostrar("Error no esperado");
-			// TODO Enviar los errores a fichero de log
-			e.printStackTrace();
+			gestionErrores(e);
 
 			return;
 		}
@@ -125,9 +123,7 @@ public class PresentacionConsola {
 			
 			mostrar("Cargados los datos");
 		} catch (AccesoDatosException e) {
-			mostrar("Ha habido un error al cargar los datos");
-			// TODO Guardar en log
-			e.printStackTrace();
+			gestionErrores(e);
 		}
 	}
 
@@ -137,10 +133,19 @@ public class PresentacionConsola {
 			
 			mostrar("Guardado");
 		} catch (AccesoDatosException e) {
-			mostrar("ERROR: " + e.getMessage());
-			// TODO: Enviar a fichero de log
-			e.printStackTrace();
+			gestionErrores(e);
 		}
+	}
+
+	private static void gestionErrores(Exception e) {
+		mostrar("ERROR: " + e.getMessage());
+		
+		while(e.getCause() != null) {
+			e = (Exception) e.getCause();
+			mostrar("CAUSA: " + e.getMessage());
+		}
+		
+		//e.printStackTrace();
 	}
 
 	private static void cargarCSV() {
@@ -151,9 +156,7 @@ public class PresentacionConsola {
 
 			mostrar("Carga finalizada");
 		} catch (AccesoDatosException e) {
-			mostrar("Ha habido un error al cargar el CSV");
-			// TODO Guardar en log
-			e.printStackTrace();
+			gestionErrores(e);
 		}
 	}
 
@@ -163,9 +166,7 @@ public class PresentacionConsola {
 
 			mostrar("Datos guardados");
 		} catch (AccesoDatosException e) {
-			mostrar("ERROR: " + e.getMessage());
-			// TODO: Enviar a fichero de log
-			e.printStackTrace();
+			gestionErrores(e);
 		}
 	}
 
@@ -200,7 +201,7 @@ public class PresentacionConsola {
 
 			mostrar("Alumno borrado");
 		} catch (AccesoDatosException e) {
-			mostrar("ERROR: No se ha encontrado el alumno a borrar");
+			gestionErrores(e);
 		}
 	}
 
@@ -223,7 +224,7 @@ public class PresentacionConsola {
 			dao.modificar(alumno);
 			mostrar("Alumno modificado");
 		} catch (AccesoDatosException e) {
-			mostrar("ERROR: No se ha encontrado el alumno a modificar");
+			gestionErrores(e);
 		}
 	}
 
@@ -265,7 +266,7 @@ public class PresentacionConsola {
 				campo++;
 
 			} catch (EntidadesException e) {
-				System.out.println(e.getMessage());
+				gestionErrores(e);
 			}
 		}
 		return alumno;
