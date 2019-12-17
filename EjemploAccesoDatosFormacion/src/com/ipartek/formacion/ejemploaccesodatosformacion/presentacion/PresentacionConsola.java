@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 
 import com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos.AccesoDatosException;
 import com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos.AlumnoArrayList;
+import com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos.AlumnoFicheroCSV;
+import com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos.Backup;
 import com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos.Dao;
 import com.ipartek.formacion.ejemploaccesodatosformacion.entidades.Alumno;
 import com.ipartek.formacion.ejemploaccesodatosformacion.entidades.EntidadesException;
@@ -11,21 +13,18 @@ import com.ipartek.formacion.ejemploaccesodatosformacion.utilidades.Biblioteca;
 
 public class PresentacionConsola {
 
-	private static final SimpleDateFormat FECHA_CORTA = new SimpleDateFormat("dd-MM-yyyy");
-
-	private static final int OPCION_AGREGAR = 2;
-
-	private static final int OPCION_LISTADO = 1;
-
-	private static final int OPCION_SALIR = 0;
-
 	private static final Dao<Alumno> dao = AlumnoArrayList.getInstancia();
+	private static final Backup<Alumno> backup = AlumnoFicheroCSV.getInstancia();
 
+	private static final SimpleDateFormat FECHA_CORTA = new SimpleDateFormat("dd-MM-yyyy");
+	
+	private static final int OPCION_SALIR = 0;
+	private static final int OPCION_LISTADO = 1;
+	private static final int OPCION_AGREGAR = 2;
 	private static final int OPCION_MODIFICAR = 3;
-
 	private static final int OPCION_BORRAR = 4;
-
 	private static final int OPCION_BUSCAR = 5;
+	private static final int OPCION_GUARDAR_CSV = 6;
 
 	public static void main(String[] args) {
 		try {
@@ -47,6 +46,20 @@ public class PresentacionConsola {
 
 			return;
 		}
+	}
+
+	private static void mostrarOpciones() {
+		mostrar(OPCION_LISTADO + ". Listado");
+		mostrar(OPCION_AGREGAR + ". Añadir alumno");
+		mostrar(OPCION_MODIFICAR + ". Modificar alumno");
+		mostrar(OPCION_BORRAR + ". Borrar alumno");
+		mostrar(OPCION_BUSCAR + ". Buscar alumno");
+		mostrar(OPCION_GUARDAR_CSV + ". Guardar en CSV");
+		mostrar(OPCION_SALIR + ". Salir");
+	}
+	
+	private static int pedirOpcion() {
+		return Biblioteca.leerEntero("Dime la opción: ");
 	}
 
 	private static void procesarOpcion(int opcion) {
@@ -74,9 +87,17 @@ public class PresentacionConsola {
 			mostrar("BUSCAR");
 			buscarAlumno();
 			break;
+		case OPCION_GUARDAR_CSV:
+			mostrar("GUARDAR CSV");
+			guardarCSV();
+			break;
 		default:
 			mostrar("NO IMPLEMENTADO");
 		}
+	}
+
+	private static void guardarCSV() {
+		backup.guardar(dao.obtenerTodos());
 	}
 
 	private static void buscarAlumno() {
@@ -221,18 +242,8 @@ public class PresentacionConsola {
 		System.out.println("Gracias por usar nuestro programa");
 	}
 
-	private static int pedirOpcion() {
-		return Biblioteca.leerEntero("Dime la opción: ");
-	}
 
-	private static void mostrarOpciones() {
-		mostrar(OPCION_LISTADO + ". Listado");
-		mostrar(OPCION_AGREGAR + ". Añadir alumno");
-		mostrar(OPCION_MODIFICAR + ". Modificar alumno");
-		mostrar(OPCION_BORRAR + ". Borrar alumno");
-		mostrar(OPCION_BUSCAR + ". Buscar alumno");
-		mostrar(OPCION_SALIR + ". Salir");
-	}
+
 
 	private static void mostrar(Object o) {
 		System.out.println(o);
