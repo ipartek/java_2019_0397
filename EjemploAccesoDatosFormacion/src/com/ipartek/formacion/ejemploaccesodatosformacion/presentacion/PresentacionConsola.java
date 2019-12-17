@@ -97,7 +97,15 @@ public class PresentacionConsola {
 	}
 
 	private static void guardarCSV() {
-		backup.guardar(dao.obtenerTodos());
+		try {
+			backup.guardar(dao.obtenerTodos());
+			
+			mostrar("Datos guardados");
+		} catch (AccesoDatosException e) {
+			mostrar("ERROR: " + e.getMessage());
+			//TODO: Enviar a fichero de log
+			e.printStackTrace();
+		}
 	}
 
 	private static void buscarAlumno() {
