@@ -13,7 +13,6 @@ public class PresentacionConsola {
 
 	private static final SimpleDateFormat FECHA_CORTA = new SimpleDateFormat("dd-MM-yyyy");
 
-	// TODO Podría hacerse con enumeraciones
 	private static final int OPCION_AGREGAR = 2;
 
 	private static final int OPCION_LISTADO = 1;
@@ -184,6 +183,7 @@ public class PresentacionConsola {
 	}
 
 	private static void listadoAlumnos() {
+		// TODO: Usar columnas de tamaño fijo
 		mostrarCabeceraListado();
 		for (Alumno alumno : dao.obtenerTodos()) {
 			mostrarAlumnoFila(alumno);

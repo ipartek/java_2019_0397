@@ -1,7 +1,7 @@
 package com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 import com.ipartek.formacion.ejemploaccesodatosformacion.entidades.Alumno;
 
@@ -14,11 +14,11 @@ public class AlumnoArrayList implements Dao<Alumno> {
 	// SINGLETON
 	private static final AlumnoArrayList INSTANCIA = new AlumnoArrayList();
 
-	@SuppressWarnings("deprecation")
 	private AlumnoArrayList() {
-		// TODO eliminar obsoletos
-		agregar(new Alumno(null, "Javier", "Lete García", "12345678Z", new Date(1980 - 1900, 5 - 1, 5)));
-		agregar(new Alumno(null, "Pepe", "Pérez García", "84908444B", new Date(1982 - 1900, 1 - 1, 10)));
+		agregar(new Alumno(null, "Javier", "Lete García", "12345678Z",
+				new GregorianCalendar(1980, 5 - 1, 5).getTime()));
+		agregar(new Alumno(null, "Pepe", "Pérez García", "84908444B",
+				new GregorianCalendar(1982, 1 - 1, 10).getTime()));
 	}
 
 	public static AlumnoArrayList getInstancia() {
@@ -50,7 +50,7 @@ public class AlumnoArrayList implements Dao<Alumno> {
 		}
 
 		return alumnos.get(i);
-		
+
 //		for (int i = 0; i < alumnos.size(); i++) {
 //			if (alumnos.get(i).getId() == id) {
 //				return alumnos.get(i);
@@ -68,9 +68,12 @@ public class AlumnoArrayList implements Dao<Alumno> {
 
 		Long id = ++ultimoId;
 
-		// TODO Comprobar si se ha recibido ID y lanzar excepción
-		alumno.setId(id);
-
+		if (alumno.getId() == null) {
+			alumno.setId(id);
+		} else {
+			throw new AccesoDatosException("No debes pasar un ID");
+		}
+		
 		alumnos.add(alumno);
 
 		return alumno;
