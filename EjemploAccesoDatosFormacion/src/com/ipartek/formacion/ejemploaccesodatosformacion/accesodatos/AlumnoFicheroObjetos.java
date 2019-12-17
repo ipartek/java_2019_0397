@@ -36,9 +36,9 @@ public class AlumnoFicheroObjetos implements Backup<Alumno> {
 		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FICHERO))){
 			return (Iterable<Alumno>) ois.readObject();
 		} catch (FileNotFoundException e) {
-			throw new AccesoDatosException("No se ha podido escribir el fichero", e);
+			throw new AccesoDatosException("No se ha podido leer el fichero", e);
 		} catch (IOException e) {
-			throw new AccesoDatosException("Ha habido un error al escribir en el fichero", e);
+			throw new AccesoDatosException("Ha habido un error al leer el fichero", e);
 		} catch (ClassNotFoundException e) {
 			throw new AccesoDatosException("No se ha podido adaptar la información a la aplicación", e);
 		}
