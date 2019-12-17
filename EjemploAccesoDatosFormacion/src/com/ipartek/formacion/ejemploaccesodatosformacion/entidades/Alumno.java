@@ -1,10 +1,14 @@
 package com.ipartek.formacion.ejemploaccesodatosformacion.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.ipartek.formacion.ejemploaccesodatosformacion.utilidades.Biblioteca;
 
-public class Alumno {
+public class Alumno implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	private static final String REGEX_NOMBRE = "[\\p{L} ]+"; //"[a-zA-ZÁÉÍÓÚáéíóúÑñçÇàèìòùÀÈÌÒÙ' ]+";
 	private static final String REGEX_APELLIDOS = "[\\p{L} ']+";
 	private static final String REGEX_DNI = "[XYZ\\d]\\d{7}[A-Z]";
