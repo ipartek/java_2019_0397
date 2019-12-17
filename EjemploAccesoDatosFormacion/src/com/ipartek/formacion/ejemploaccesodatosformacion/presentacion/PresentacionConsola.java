@@ -1,5 +1,6 @@
 package com.ipartek.formacion.ejemploaccesodatosformacion.presentacion;
 
+import com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos.AccesoDatosException;
 import com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos.AlumnoArrayList;
 import com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos.Dao;
 import com.ipartek.formacion.ejemploaccesodatosformacion.entidades.Alumno;
@@ -74,9 +75,15 @@ public class PresentacionConsola {
 	}
 
 	private static void buscarAlumno() {
-		Long id = (long) Biblioteca.leerEntero("Dime el ID a borrar: ");
-		
-		mostrarAlumno(dao.obtenerPorId(id));
+		Long id = (long) Biblioteca.leerEntero("Dime el ID a buscar: ");
+
+		Alumno alumno = dao.obtenerPorId(id);
+
+		if (alumno != null) {
+			mostrarAlumno(alumno);
+		} else {
+			mostrar("No se ha encontrado el alumno");
+		}
 	}
 
 	private static void mostrarAlumno(Alumno alumno) {
@@ -84,7 +91,7 @@ public class PresentacionConsola {
 		System.out.println("             Nombre: " + alumno.getNombre());
 		System.out.println("          Apellidos: " + alumno.getApellidos());
 		System.out.println("                DNI: " + alumno.getDni());
-		System.out.println("Fecha de nacimiento: " + alumno.getFechaNacimiento());			
+		System.out.println("Fecha de nacimiento: " + alumno.getFechaNacimiento());
 	}
 
 	private static void borrarAlumno() {
@@ -93,7 +100,13 @@ public class PresentacionConsola {
 		// TODO: Hacer con long
 		Long id = (long) Biblioteca.leerEntero("Dime el ID a borrar: ");
 
-		dao.borrar(id);
+		try {
+			dao.borrar(id);
+
+			mostrar("Alumno borrado");
+		} catch (AccesoDatosException e) {
+			mostrar("ERROR: No se ha encontrado el alumno a borrar");
+		}
 	}
 
 	private static void modificarAlumno() {
@@ -101,12 +114,22 @@ public class PresentacionConsola {
 
 		// TODO: Hacer con long
 		Long id = (long) Biblioteca.leerEntero("Dime el ID a modificar: ");
+
+		if(dao.obtenerPorId(id) == null) {
+			mostrar("ERROR: No se ha encontrado el alumno a modificar");
+			return;
+		}
 		
 		Alumno alumno = pedirDatosAlumno();
-		
+
 		alumno.setId(id);
 		
-		dao.modificar(alumno);
+		try {
+			dao.modificar(alumno);
+			mostrar("Alumno modificado");
+		} catch (AccesoDatosException e) {
+			mostrar("ERROR: No se ha encontrado el alumno a modificar");
+		}
 	}
 
 	private static void agregarAlumno() {

@@ -64,7 +64,8 @@ public class Alumno {
 
 	public void setApellidos(String apellidos) {
 		if(apellidos != null && apellidos.trim().length() == 0) {
-			throw new EntidadesException("No se admiten apellidos consistentes sólo por espacios");
+			this.apellidos = null;
+			return;
 		}
 		
 		if(!apellidos.matches(REGEX_APELLIDOS)) {
