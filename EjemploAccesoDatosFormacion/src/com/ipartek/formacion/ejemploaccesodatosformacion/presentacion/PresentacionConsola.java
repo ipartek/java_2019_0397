@@ -25,6 +25,7 @@ public class PresentacionConsola {
 	private static final int OPCION_BORRAR = 4;
 	private static final int OPCION_BUSCAR = 5;
 	private static final int OPCION_GUARDAR_CSV = 6;
+	private static final int OPCION_CARGAR_CSV = 7;
 
 	public static void main(String[] args) {
 		try {
@@ -55,6 +56,7 @@ public class PresentacionConsola {
 		mostrar(OPCION_BORRAR + ". Borrar alumno");
 		mostrar(OPCION_BUSCAR + ". Buscar alumno");
 		mostrar(OPCION_GUARDAR_CSV + ". Guardar en CSV");
+		mostrar(OPCION_CARGAR_CSV + ". Cargar CSV");
 		mostrar(OPCION_SALIR + ". Salir");
 	}
 	
@@ -91,8 +93,26 @@ public class PresentacionConsola {
 			mostrar("GUARDAR CSV");
 			guardarCSV();
 			break;
+		case OPCION_CARGAR_CSV:
+			mostrar("CARGAR CSV");
+			cargarCSV();
+			break;
 		default:
 			mostrar("NO IMPLEMENTADO");
+		}
+	}
+
+	private static void cargarCSV() {
+		try {
+			for(Alumno alumno: backup.recuperar()) {
+				dao.agregar(alumno);
+			}
+			
+			mostrar("Carga finalizada");
+		} catch (AccesoDatosException e) {
+			mostrar("Ha habido un error al cargar el CSV");
+			// TODO Guardar en log
+			e.printStackTrace();
 		}
 	}
 
