@@ -1,5 +1,7 @@
 package com.ipartek.formacion.ejemploaccesodatosformacion.presentacion;
 
+import java.text.SimpleDateFormat;
+
 import com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos.AccesoDatosException;
 import com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos.AlumnoArrayList;
 import com.ipartek.formacion.ejemploaccesodatosformacion.accesodatos.Dao;
@@ -8,6 +10,8 @@ import com.ipartek.formacion.ejemploaccesodatosformacion.entidades.EntidadesExce
 import com.ipartek.formacion.ejemploaccesodatosformacion.utilidades.Biblioteca;
 
 public class PresentacionConsola {
+
+	private static final SimpleDateFormat FECHA_CORTA = new SimpleDateFormat("dd-MM-yyyy");
 
 	// TODO Podría hacerse con enumeraciones
 	private static final int OPCION_AGREGAR = 2;
@@ -29,6 +33,8 @@ public class PresentacionConsola {
 			int opcion = 0;
 
 			do {
+				//BORRAR CONSOLA DE MSDOS (Sólo funciona en el MSDOS, no en Eclipse)
+				//new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 				mostrarOpciones();
 				opcion = pedirOpcion();
 				procesarOpcion(opcion);
@@ -91,7 +97,8 @@ public class PresentacionConsola {
 		System.out.println("             Nombre: " + alumno.getNombre());
 		System.out.println("          Apellidos: " + alumno.getApellidos());
 		System.out.println("                DNI: " + alumno.getDni());
-		System.out.println("Fecha de nacimiento: " + alumno.getFechaNacimiento());
+		System.out.println("Fecha de nacimiento: " + 
+				FECHA_CORTA.format(alumno.getFechaNacimiento()));
 	}
 
 	private static void borrarAlumno() {
@@ -177,10 +184,37 @@ public class PresentacionConsola {
 	}
 
 	private static void listadoAlumnos() {
+		mostrarCabeceraListado();
 		for (Alumno alumno : dao.obtenerTodos()) {
-			// TODO: Mejorar visualización de registros de alumnos
-			mostrar(alumno);
+			mostrarAlumnoFila(alumno);
 		}
+	}
+
+	private static void mostrarCabeceraListado() {
+		System.out.print("ID");
+		System.out.print('\t');
+		System.out.print("NOMBRE");
+		System.out.print('\t');
+		System.out.print("APELLIDOS");
+		System.out.print('\t');
+		System.out.print("DNI");
+		System.out.print("\t\t");
+		System.out.print("FECHA DE NACIMIENTO");
+		System.out.println();
+	}
+
+	private static void mostrarAlumnoFila(Alumno alumno) {
+		System.out.print(alumno.getId());
+		System.out.print('\t');
+		System.out.print(alumno.getNombre());
+		System.out.print('\t');
+		System.out.print(alumno.getApellidos());
+		System.out.print('\t');
+		System.out.print(alumno.getDni());
+		System.out.print('\t');
+		System.out.print(
+				FECHA_CORTA.format(alumno.getFechaNacimiento()));
+		System.out.println();
 	}
 
 	private static void saludoFinal() {
