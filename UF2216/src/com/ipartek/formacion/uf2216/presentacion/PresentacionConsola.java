@@ -90,7 +90,7 @@ public class PresentacionConsola {
 		do {
 			//Introducción de formato
 			System.out.print("Formato (digital o papel): ");
-			stringFormato = scanner.nextLine();
+			stringFormato = scanner.nextLine().trim();
 			
 			if(stringFormato.equalsIgnoreCase("digital") || stringFormato.equalsIgnoreCase("papel")) {
 				esFormatoCorrecto = true;
@@ -153,11 +153,12 @@ public class PresentacionConsola {
 		do {
 			//Introducción de título
 			System.out.print("Título: ");
-			titulo = scanner.nextLine();
+			titulo = scanner.nextLine().trim();
 			
 			//Validación del título
-			if (titulo.length() >= 3 && titulo.length() <= 150) {
+			if (titulo.length() > 3 && titulo.length() <= 150) {
 				esTituloCorrecto = true;
+				
 			} else {
 				esTituloCorrecto = false;
 				System.out.println("El título debe tener un tamaño mínimo de 3 letras y máximo de 150");
