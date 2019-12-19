@@ -91,8 +91,14 @@ public class PresentacionConsola {
 			Libro libro = new Libro(ultimoId, titulo, isbn, numeroPaginas, formato);
 			
 			//Mostrar libro
-			System.out.println("¿Quieres guardar este libro? (S/n)");
-			System.out.println(libro);
+			System.out.println(
+					"Id: " + ultimoId + 
+					"\nTítulo: " + titulo + 
+					"\nISBN: " + isbn + 
+					"\nNúmero de páginas: " + numeroPaginas +
+					"\nFormato: " + (formato ? "Digital" : "Papel"));
+
+			System.out.print("¿Quieres guardar este libro? (S/n) ");
 			
 			//Si me dicen que sí, guardo el libro
 			if(!scanner.nextLine().equalsIgnoreCase("n")) {
@@ -102,8 +108,16 @@ public class PresentacionConsola {
 			
 			//Mostrar todos los libros
 			System.out.println("LISTADO DE LIBROS");
+			
+			System.out.println(
+					"Id\tISBN\t\tNúmero de páginas\tFormato\tTítulo");
 			for (Libro libroExtraido : libros.values()) {
-				System.out.println(libroExtraido);
+				System.out.println(
+						libroExtraido.getId() +
+						"\t" + libroExtraido.getIsbn() +
+						"\t" + libroExtraido.getNumeroPaginas() +
+						"\t\t\t" + (libroExtraido.isFormato() ? "Digital" : "Papel") +
+						"\t" + libroExtraido.getTitulo());
 			}
 			
 			//Preguntar si el usuario quiere introducir un nuevo registro
