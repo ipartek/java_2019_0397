@@ -90,11 +90,18 @@ public class PresentacionConsola {
 			//Creación de libro en base a los datos introducidos
 			Libro libro = new Libro(ultimoId, titulo, isbn, numeroPaginas, formato);
 			
-			//Añadir el libro a la colección de libros
+			//Mostrar libro
+			System.out.println("¿Quieres guardar este libro? (S/n)");
+			System.out.println(libro);
 			
-			libros.put(ultimoId++, libro);
+			//Si me dicen que sí, guardo el libro
+			if(!scanner.nextLine().equalsIgnoreCase("n")) {
+				//Añadir el libro a la colección de libros
+				libros.put(ultimoId++, libro);
+			}
 			
 			//Mostrar todos los libros
+			System.out.println("LISTADO DE LIBROS");
 			for (Libro libroExtraido : libros.values()) {
 				System.out.println(libroExtraido);
 			}
