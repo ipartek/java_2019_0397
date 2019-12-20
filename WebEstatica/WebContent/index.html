@@ -16,9 +16,10 @@
     </header>
     <main>
         <article id="htmlbasico">
+            <h2>HTML básico</h2>
             <section id="titulos">
                 <hgroup>
-                    <h3>Eñe</h3>
+                    <h3>Títulos</h3>
                     <h4>Título 4</h4>
                     <h5>Título 5</h5>
                     <h6>Título 6</h6>
@@ -35,13 +36,35 @@
                 </nav>
             </section>
             <section id="parrafos">
+                <h3>Párrafos</h3>
                 <p>
                     El resultado de <code>5 &lt; 3 6 &gt; 2</code> es <code>true</code>.
                 </p>
 
                 <p>
-                    ñalkhsg ñlkahjsd gñlh qwoepeiyr ñiq gopypoiy añlkshf ñliwahe gñlkahs gñlkha ñldifh aoieh gtñtljkhq4 ñltihg añlsidhfg ñliahs ñglih erñligh
+                    Lorem <em>ipsum</em> dolor sit amet, <mark>consectetur</mark> adipisicing elit. Nostrum <strong>libero</strong> animi, aperiam hic, neque vitae id eveniet <s>ipsum</s> laboriosam nihil <del>maxime</del> voluptate enim illum <ins>dolores</ins> <span class="referencia">cumque ea</span>. Minus, odit, repellat! </p>
+
+                <p>
+                    <abbr title="Hyper Text Markup Language">HTML</abbr>
+                    El atajo de tecla para ver el HTML es <kbd>Ctrl-U</kbd>
                 </p>
+
+                <hr />
+
+                <address>
+                    <p>
+                        Javier Lete<br />
+                        Mi casa
+                    </p>
+                </address>
+
+                <blockquote>Esto lo dijo vete a saber quién</blockquote>
+
+                <p>
+                    Pepe dijo <q>Hola</q>.
+                </p>
+                
+                <p>ñlaksdjdf ñlash gñlkjas Johnsons&nbsp;&amp;&nbsp;Peterson&nbsp;&amp;&nbsp;Lete</p>
 
                 <pre>
 public static void main(String[] args) {
@@ -50,6 +73,7 @@ public static void main(String[] args) {
         </pre>
             </section>
             <section id="listas">
+                <h3>Listas</h3>
                 <ol>
                     <li>Uno</li>
                     <li>Dos</li>
@@ -60,11 +84,53 @@ public static void main(String[] args) {
                         </ul>
                     </li>
                 </ol>
+                <dl>
+                    <dt>HTML</dt>
+                    <dd>Hyper Text Markup Language</dd>
+                    <dt>CSS</dt>
+                    <dd>Cascade Style Sheets</dd>
+                </dl>
+            </section>
+            <section id="menu">
+                <h3>Menú</h3>
+                <menu>
+                    <li><button>Uno</button></li>
+                    <li><button>Dos</button></li>
+                </menu>
+            </section>
+            <section id="imagenes">
+                <h3>Imágenes</h3>
+                <div class="galeria">
+                    <figure>
+                        <img src="https://via.placeholder.com/150" alt="Imágen de ejemplo" />
+                        <figcaption>Imágen de ejemplo</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="http://lorempixel.com/400/200/sports/1/Dummy-Text" alt="Imágen de ejemplo" />
+                        <figcaption>Bateador de cricket</figcaption>
+                    </figure>
+                </div>
+            </section>
+            <section id="media">
+                <h3>Media</h3>
+                <video src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" autoplay controls>
+                </video>
+                
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/SVGjOUnQZ58" allowfullscreen></iframe>
             </section>
         </article>
     </main>
     <aside>
-
+        <nav>
+            <ul>
+                <li>
+                    <a href="https://uniwebsidad.com">Uniwebsidad (antiguo librosweb.es)</a>
+                </li>
+                <li>
+                    <a href="https://uniwebsidad.com/libros/xhtml">Libro de HTML</a>
+                </li>
+            </ul>
+        </nav>
     </aside>
     <footer>
         <p>
