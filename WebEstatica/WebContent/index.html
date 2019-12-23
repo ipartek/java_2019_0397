@@ -7,6 +7,8 @@
     <meta charset="utf-8" />
     <meta name="author" content="Javier Lete" />
     <meta name="description" content="Página de demostración de HTML5" />
+
+    <link rel="stylesheet" href="css/index.css" />
 </head>
 
 <body>
@@ -14,6 +16,22 @@
         <h1>Formación Ipartek</h1>
         <h2>Ejemplos de HTML</h2>
         <p>Ejemplo de todo tipo de HTML5 y normal</p>
+        <nav>
+            <ul>
+                <li>
+                    <a href="https://www.google.com">Google</a>
+                </li>
+                <li>
+                    <a href="https://www.google.es">Google en español</a>
+                </li>
+                <li>
+                    <a href="mailto:miemail@midominio.com">miemail@midominio.com</a>
+                </li>
+                <li>
+                    <a href="tel:941231234">941231234</a>
+                </li>
+            </ul>
+        </nav>
     </header>
     <main>
         <article id="htmlbasico">
@@ -25,22 +43,6 @@
                     <h5>Título 5</h5>
                     <h6>Título 6</h6>
                 </hgroup>
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="https://www.google.com">Google</a>
-                        </li>
-                        <li>
-                            <a href="https://www.google.es">Google en español</a>
-                        </li>
-                        <li>
-                            <a href="mailto:miemail@midominio.com">miemail@midominio.com</a>
-                        </li>
-                        <li>
-                            <a href="tel:941231234">941231234</a>
-                        </li>
-                    </ul>
-                </nav>
             </section>
             <section id="parrafos">
                 <h3>Párrafos</h3>
@@ -113,17 +115,17 @@ public static void main(String[] args) {
                         <figcaption>Imágen de ejemplo</figcaption>
                     </figure>
                     <figure>
-                        <img src="http://lorempixel.com/400/200/sports/1/Dummy-Text" alt="Imágen de ejemplo" />
+                        <img src="http://lorempixel.com/400/200/sports/1/Dummy-Text" alt="Imágen de ejemplo" class="responsive" />
                         <figcaption>Bateador de cricket</figcaption>
                     </figure>
                 </div>
             </section>
             <section id="media">
                 <h3>Media</h3>
-                <video src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls>
+                <video src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls class="responsive">
                 </video>
 
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/SVGjOUnQZ58" allowfullscreen></iframe>
+                <iframe  class="responsive"  src="https://www.youtube.com/embed/SVGjOUnQZ58" allowfullscreen></iframe>
             </section>
             <section id="mapas">
                 <h2>Mapas</h2>
@@ -139,12 +141,12 @@ public static void main(String[] args) {
                     </map>
                 </p>
                 <p>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11621.667968166445!2d-2.9076192!3d43.26363915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1577087219007!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen=""></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11621.667968166445!2d-2.9076192!3d43.26363915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1577087219007!5m2!1ses!2ses"  class="responsive" style="border:0;" allowfullscreen=""></iframe>
                 </p>
             </section>
             <section id="tablas">
                 <h2>Tablas</h2>
-                
+
                 <!--table>thead>tr>th*3-->
                 <table>
                     <thead>
@@ -177,30 +179,30 @@ public static void main(String[] args) {
             </section>
             <section id="formularios">
                 <h2>Formularios</h2>
-                
+
                 <form action="#" method="get">
                     <fieldset>
                         <legend>Datos básicos</legend>
-                        
+
                         <div>
                             <label for="nombre">Nombre</label>
-                            <input id="nombre" />
+                            <input id="nombre" type="text" />
                         </div>
                         <div>
                             <label for="apellidos">Apellidos</label>
-                            <input id="apellidos" />
+                            <input id="apellidos" type="text" />
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend>Datos de login</legend>
-                        
+
                         <div>
                             <label for="usuario">Usuario</label>
-                            <input id="usuario" type="email" />
+                            <input id="usuario" type="email" required />
                         </div>
                         <div>
                             <label for="contra">Contraseña</label>
-                            <input id="contra" type="password" />
+                            <input id="contra" type="password" required />
                         </div>
                         <div>
                             <label for="notas">Notas</label>
@@ -209,12 +211,12 @@ public static void main(String[] args) {
                     </fieldset>
                     <fieldset>
                         <legend>Otros</legend>
-                        
+
                         <input type="checkbox" checked />
                         <label for="si">SI</label>
                         <input type="radio" name="opcion" id="si" value="SI" />
                         <label for="no">NO</label>
-                        <input type="radio" name="opcion" value="NO" id="no"/>
+                        <input type="radio" name="opcion" value="NO" id="no" />
                         <select>
                             <optgroup label="Grupo1">
                                 <option>Uno</option>
@@ -238,10 +240,10 @@ public static void main(String[] args) {
                     </fieldset>
                     <fieldset>
                         <legend>HTML5</legend>
-                        <input type="number" step=".01" placeholder="Euros"/>
-                        <input type="range" min="0" max="100" step="20" value="50"/>
+                        <input type="number" step=".01" placeholder="Euros" />
+                        <input type="range" min="0" max="100" step="20" value="50" />
                         <input type="color" />
-                        <input type="tel" placeholder="Teléfono"/>
+                        <input type="tel" placeholder="Teléfono" />
                         <input type="url" placeholder="URL" />
                         <input type="date" />
                         <input type="time" />

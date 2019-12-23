@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, Helvetica, Verdana, sans-serif;
+    
+    margin: 0;
+}
+
+
+a {
+    text-decoration: none;
+    color: cornflowerblue;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+header {
+    background: black;
+    color: white;
+    
+    padding-top: 1em; /* 1em; */
+    
+    text-align: center;
+    
+    border-radius: 0 0 5px 5px;
+    
+    margin-bottom: 1em;
+}
+
+header h1 {
+    margin-top: 0;
+}
+
+header nav {
+    background: darkgray;
+    color: black;
+    box-shadow: 0 0.5em 0.5em lightgray;
+}
+
+header nav ul {
+    padding-left: 0;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+header nav li {
+    border: 1px solid lightgray;
+        text-transform: uppercase;
+        background: white;
+        box-shadow: 0 0 0.4em;
+}
+
+header nav li:hover {
+    box-shadow: 0 0 0;
+    border: 1px solid black;
+}
+
+header a {
+    display: inline-block;
+    color: black;
+    padding: 1em;
+}
+
+header a:hover {
+    text-decoration: none;
+}
+
+article {
+    border: 5px solid lightgray;
+    
+    padding: 1em;
+    border-radius: 5px;
+}
+
+section {
+    background-color: #EEEEEE;
+    padding: 0.5em;
+    margin: 1em 0;
+    border-radius: 5px;
+}
+
+section h2 {
+    margin-top: 0;
+}
+
+.referencia {
+    font-weight: bold;
+    font-style: italic;
+    font-variant: small-caps;
+}
+
+#imagenes {
+    position: relative;
+    left: -0.5em;
+    width: 100%;
+    box-shadow: 1em 1em 1em lightgray;
+}
+
+button, input, textarea, select {
+    background: white;
+    border: 1px solid black;
+}
+
+section h2:after, section h2:before {
+    content: " * ";
+}
+
+label {
+    display: inline-block;
+    width: 5em;
+    text-align: right;
+    padding-right: 1em;
+}
+
+input[required] {
+    border: 2px solid yellow;
+    background-image: url(../imgs/sample-usemap.png);
+}
+
+.responsive {
+    width: 100%;
+}
+
+@media (min-width: 725px) {
+    header nav li {
+        display: inline-block;
+    }
+    
+    img {
+        width: inherit;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
