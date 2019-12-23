@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
+
+<head>
     <title>Prueba</title>
 
     <meta charset="utf-8" />
@@ -31,6 +32,12 @@
                         </li>
                         <li>
                             <a href="https://www.google.es">Google en español</a>
+                        </li>
+                        <li>
+                            <a href="mailto:miemail@midominio.com">miemail@midominio.com</a>
+                        </li>
+                        <li>
+                            <a href="tel:941231234">941231234</a>
                         </li>
                     </ul>
                 </nav>
@@ -63,7 +70,7 @@
                 <p>
                     Pepe dijo <q>Hola</q>.
                 </p>
-                
+
                 <p>ñlaksdjdf ñlash gñlkjas Johnsons&nbsp;&amp;&nbsp;Peterson&nbsp;&amp;&nbsp;Lete</p>
 
                 <pre>
@@ -113,10 +120,141 @@ public static void main(String[] args) {
             </section>
             <section id="media">
                 <h3>Media</h3>
-                <video src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" autoplay controls>
+                <video src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls>
                 </video>
-                
+
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/SVGjOUnQZ58" allowfullscreen></iframe>
+            </section>
+            <section id="mapas">
+                <h2>Mapas</h2>
+                <p>
+                    Please select a shape:
+                    <img src="imgs/sample-usemap.png" usemap="#shapes" alt="Four shapes are available: a red hollow box, a green circle, a blue triangle, and a yellow four-pointed star.">
+                    <map name="shapes">
+                        <area shape=rect coords="50,50,100,100"> <!-- the hole in the red box -->
+                        <area shape=rect coords="25,25,125,125" href="red.html" alt="Red box.">
+                        <area shape=circle coords="200,75,50" href="green.html" alt="Green circle.">
+                        <area shape=poly coords="325,25,262,125,388,125" href="blue.html" alt="Blue triangle.">
+                        <area shape=poly coords="450,25,435,60,400,75,435,90,450,125,465,90,500,75,465,60" href="yellow.html" alt="Yellow star.">
+                    </map>
+                </p>
+                <p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11621.667968166445!2d-2.9076192!3d43.26363915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1577087219007!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen=""></iframe>
+                </p>
+            </section>
+            <section id="tablas">
+                <h2>Tablas</h2>
+                
+                <!--table>thead>tr>th*3-->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>Javier</td>
+                            <td>Lete</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>Pepe</td>
+                            <td>Pérez</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+            <section id="formularios">
+                <h2>Formularios</h2>
+                
+                <form action="#" method="get">
+                    <fieldset>
+                        <legend>Datos básicos</legend>
+                        
+                        <div>
+                            <label for="nombre">Nombre</label>
+                            <input id="nombre" />
+                        </div>
+                        <div>
+                            <label for="apellidos">Apellidos</label>
+                            <input id="apellidos" />
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Datos de login</legend>
+                        
+                        <div>
+                            <label for="usuario">Usuario</label>
+                            <input id="usuario" type="email" />
+                        </div>
+                        <div>
+                            <label for="contra">Contraseña</label>
+                            <input id="contra" type="password" />
+                        </div>
+                        <div>
+                            <label for="notas">Notas</label>
+                            <textarea id="notas"></textarea>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Otros</legend>
+                        
+                        <input type="checkbox" checked />
+                        <label for="si">SI</label>
+                        <input type="radio" name="opcion" id="si" value="SI" />
+                        <label for="no">NO</label>
+                        <input type="radio" name="opcion" value="NO" id="no"/>
+                        <select>
+                            <optgroup label="Grupo1">
+                                <option>Uno</option>
+                                <option>One</option>
+                            </optgroup>
+                            <optgroup label="Grupo2">
+                                <option>Dos</option>
+                                <option>Two</option>
+                            </optgroup>
+                        </select>
+                        <select multiple>
+                            <optgroup label="Grupo1">
+                                <option>Uno</option>
+                                <option>One</option>
+                            </optgroup>
+                            <optgroup label="Grupo2">
+                                <option>Dos</option>
+                                <option>Two</option>
+                            </optgroup>
+                        </select>
+                    </fieldset>
+                    <fieldset>
+                        <legend>HTML5</legend>
+                        <input type="number" step=".01" placeholder="Euros"/>
+                        <input type="range" min="0" max="100" step="20" value="50"/>
+                        <input type="color" />
+                        <input type="tel" placeholder="Teléfono"/>
+                        <input type="url" placeholder="URL" />
+                        <input type="date" />
+                        <input type="time" />
+                        <input type="datetime-local" />
+                        <progress></progress>
+                        <progress max="100" value="40"></progress>
+                        <meter min="1" max="100" value="75"></meter>
+                    </fieldset>
+                    <fieldset>
+                        <input type="submit" value="Enviar" />
+                        <button>Enviar</button>
+                    </fieldset>
+                </form>
             </section>
         </article>
     </main>
