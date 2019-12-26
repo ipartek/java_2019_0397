@@ -5,6 +5,7 @@
     <title>Prueba</title>
 
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, , initial-scale=1" />
     <meta name="author" content="Javier Lete" />
     <meta name="description" content="Página de demostración de HTML5" />
 
@@ -16,23 +17,26 @@
         <h1>Formación Ipartek</h1>
         <h2>Ejemplos de HTML</h2>
         <p>Ejemplo de todo tipo de HTML5 y normal</p>
-        <nav>
-            <ul>
-                <li>
-                    <a href="https://www.google.com">Google</a>
-                </li>
-                <li>
-                    <a href="https://www.google.es">Google en español</a>
-                </li>
-                <li>
-                    <a href="mailto:miemail@midominio.com">miemail@midominio.com</a>
-                </li>
-                <li>
-                    <a href="tel:941231234">941231234</a>
-                </li>
-            </ul>
-        </nav>
     </header>
+    <nav id="menu">
+        <ul>
+            <li>
+                <a href="https://www.google.com">Google</a>
+            </li>
+            <li>
+                <a href="https://www.google.es">Google en español</a>
+            </li>
+            <li>
+                <a href="mailto:miemail@midominio.com">miemail@midominio.com</a>
+            </li>
+            <li>
+                <a href="tel:941231234">941231234</a>
+            </li>
+            <li>
+                <a href="#formularios">Formularios</a>
+            </li>
+        </ul>
+    </nav>
     <main>
         <article id="htmlbasico">
             <h2>HTML básico</h2>
@@ -100,7 +104,7 @@ public static void main(String[] args) {
                     <dd>Cascade Style Sheets</dd>
                 </dl>
             </section>
-            <section id="menu">
+            <section id="etiquetamenu">
                 <h3>Menú</h3>
                 <menu>
                     <li><button>Uno</button></li>
@@ -125,10 +129,12 @@ public static void main(String[] args) {
                 <video src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls class="responsive">
                 </video>
 
-                <iframe  class="responsive"  src="https://www.youtube.com/embed/SVGjOUnQZ58" allowfullscreen></iframe>
+                <div class="youtube">
+                    <iframe class="responsive" src="https://www.youtube.com/embed/SVGjOUnQZ58" allowfullscreen></iframe>
+                </div>
             </section>
             <section id="mapas">
-                <h2>Mapas</h2>
+                <h3>Mapas</h3>
                 <p>
                     Please select a shape:
                     <img src="imgs/sample-usemap.png" usemap="#shapes" alt="Four shapes are available: a red hollow box, a green circle, a blue triangle, and a yellow four-pointed star.">
@@ -141,11 +147,11 @@ public static void main(String[] args) {
                     </map>
                 </p>
                 <p>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11621.667968166445!2d-2.9076192!3d43.26363915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1577087219007!5m2!1ses!2ses"  class="responsive" style="border:0;" allowfullscreen=""></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11621.667968166445!2d-2.9076192!3d43.26363915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1577087219007!5m2!1ses!2ses" class="responsive" style="border:0;" allowfullscreen=""></iframe>
                 </p>
             </section>
             <section id="tablas">
-                <h2>Tablas</h2>
+                <h3>Tablas</h3>
 
                 <!--table>thead>tr>th*3-->
                 <table>
@@ -178,7 +184,7 @@ public static void main(String[] args) {
                 </table>
             </section>
             <section id="formularios">
-                <h2>Formularios</h2>
+                <h3>Formularios</h3>
 
                 <form action="#" method="get">
                     <fieldset>
@@ -268,6 +274,9 @@ public static void main(String[] args) {
                 </li>
                 <li>
                     <a href="https://uniwebsidad.com/libros/xhtml">Libro de HTML</a>
+                </li>
+                <li>
+                    <a href="https://uniwebsidad.com/libros/css">Libro de CSS</a>
                 </li>
             </ul>
         </nav>
