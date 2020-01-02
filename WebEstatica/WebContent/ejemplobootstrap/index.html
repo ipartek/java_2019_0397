@@ -11,347 +11,470 @@
     <title>Hello, world!</title>
 </head>
 
-<body class="container-fluid">
-    <header>
+<body data-spy="scroll" data-target="#menuprincipal" data-offset="60">
+    <header class="jumbotron">
         <h1 class="display-4">Formación Ipartek </h1>
         <h2>Ejemplos de HTML
             <small class="text-muted">Ejemplos varios</small></h2>
         <p class="lead">Ejemplos de todo tipo de HTML5 y normal</p>
     </header>
-    <nav id="menu">
-        <ul class="list-inline list-unstyled">
-            <li class="list-inline-item">
-                <a class="btn btn-dark" href="https://www.google.com">Google</a>
-            </li>
-            <li class="list-inline-item">
-                <a class="btn btn-dark" href="https://www.google.es">Google en español</a>
-            </li>
-            <li class="list-inline-item">
-                <a class="btn btn-dark" href="mailto:miemail@midominio.com">miemail@midominio.com</a>
-            </li>
-            <li class="list-inline-item">
-                <a class="btn btn-dark" href="tel:941231234">941231234</a>
-            </li>
-            <li class="list-inline-item">
-                <a class="btn btn-dark" href="#formularios">Formularios</a>
-            </li>
-        </ul>
-    </nav>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Página principal</a></li>
-            <li class="breadcrumb-item"><a href="#">Segundo nivel</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Tercer nivel</li>
-        </ol>
-    </nav>
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
-        Ejemplo de alerta de Bootstrap
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div id="menuprincipal" class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Ejemplos HTML/CSS/Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.google.es">Google</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Varias opciones
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#tabs">Tabs</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#formularios">Formularios</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Deshabilitado</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Texto a buscar" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </div>
+        </nav>
     </div>
-    <div class="row">
-        <main class="col-md-9 col-lg-10">
-            <article id="htmlbasico" class="row no-gutters">
-                <h2 class="col-12">HTML básico <span class="badge badge-secondary">9</span></h2>
-                <section id="titulos" class="col-sm-3 col-lg-2 card">
-                    <div class="card-body">
-                        <hgroup>
-                            <h3 class="card-title">Títulos</h3>
-                            <h4>Título 4</h4>
-                            <h5>Título 5</h5>
-                            <h6>Título 6</h6>
-                        </hgroup>
-                    </div>
-                </section>
-                <section id="parrafos" class="col-sm-9 col-lg-5 card">
-                    <div class="card-body">
-                        <h3 class="card-title">Párrafos</h3>
+    <div class="container-fluid">
+        <nav id="menu">
+            <ul class="list-inline list-unstyled">
+                <li class="list-inline-item">
+                    <a class="btn btn-dark" href="https://www.google.com">Google</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn btn-dark" href="https://www.google.es">Google en español</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn btn-dark" href="mailto:miemail@midominio.com">miemail@midominio.com</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn btn-dark" href="tel:941231234">941231234</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn btn-dark" href="#formularios">Formularios</a>
+                </li>
+            </ul>
+        </nav>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Página principal</a></li>
+                <li class="breadcrumb-item"><a href="#">Segundo nivel</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tercer nivel</li>
+            </ol>
+        </nav>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            Ejemplo de alerta de Bootstrap
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="row">
+            <main class="col-md-9 col-lg-10">
+                <article id="htmlbasico" class="row no-gutters">
+                    <h2 class="col-12">HTML básico <span class="badge badge-secondary">9</span></h2>
+                    <section id="titulos" class="col-sm-3 col-lg-2 card">
+                        <div class="card-body">
+                            <hgroup>
+                                <h3 class="card-title">Títulos</h3>
+                                <h4>Título 4</h4>
+                                <h5>Título 5</h5>
+                                <h6>Título 6</h6>
+                            </hgroup>
+                        </div>
+                    </section>
+                    <section id="parrafos" class="col-sm-9 col-lg-5 card">
+                        <div class="card-body">
+                            <h3 class="card-title">Párrafos</h3>
 
-                        <p class="card-text">
-                            El resultado de <code>5 &lt; 3 6 &gt; 2</code> es <code>true</code>.
-                        </p>
-
-                        <p class="card-text">
-                            Lorem <em>ipsum</em> dolor sit amet, <mark>consectetur</mark> adipisicing elit. Nostrum <strong>libero</strong> animi, aperiam hic, neque vitae id eveniet <s>ipsum</s> laboriosam nihil <del>maxime</del> voluptate enim illum <ins>dolores</ins> <span class="referencia">cumque ea</span>. Minus, odit, repellat! </p>
-
-                        <p class="card-text">
-                            <abbr title="Hyper Text Markup Language">HTML</abbr>
-                            El atajo de tecla para ver el HTML es <kbd>Ctrl-U</kbd> y la etiqueta <code>&lt;code></code> se ve curiosa con Bootstrap.
-                        </p>
-
-                        <hr />
-
-                        <address>
-                            <p>
-                                Javier Lete<br />
-                                Mi casa
+                            <p class="card-text">
+                                El resultado de <code>5 &lt; 3 6 &gt; 2</code> es <code>true</code>.
                             </p>
-                        </address>
 
-                        <blockquote>
-                            <p>Esto lo dijo vete a saber quién</p>
-                        </blockquote>
+                            <p class="card-text">
+                                Lorem <em>ipsum</em> dolor sit amet, <mark>consectetur</mark> adipisicing elit. Nostrum <strong>libero</strong> animi, aperiam hic, neque vitae id eveniet <s>ipsum</s> laboriosam nihil <del>maxime</del> voluptate enim illum <ins>dolores</ins> <span class="referencia">cumque ea</span>. Minus, odit, repellat! </p>
 
-                        <p>
-                            Pepe dijo <q>Hola</q>.
-                        </p>
+                            <p class="card-text">
+                                <abbr title="Hyper Text Markup Language">HTML</abbr>
+                                El atajo de tecla para ver el HTML es <kbd>Ctrl-U</kbd> y la etiqueta <code>&lt;code></code> se ve curiosa con Bootstrap.
+                            </p>
 
-                        <p>ñlaksdjdf ñlash gñlkjas Johnsons&nbsp;&amp;&nbsp;Peterson&nbsp;&amp;&nbsp;Lete</p>
+                            <hr />
 
-                        <pre>
+                            <address>
+                                <p>
+                                    Javier Lete<br />
+                                    Mi casa
+                                </p>
+                            </address>
+
+                            <blockquote>
+                                <p>Esto lo dijo vete a saber quién</p>
+                            </blockquote>
+
+                            <p>
+                                Pepe dijo <q>Hola</q>.
+                            </p>
+
+                            <p>ñlaksdjdf ñlash gñlkjas Johnsons&nbsp;&amp;&nbsp;Peterson&nbsp;&amp;&nbsp;Lete</p>
+
+                            <pre>
     public static void main(String[] args) {
         System.out.println("Hola");
     }
             </pre>
-                    </div>
-                </section>
-                <section id="listas" class="offset-sm-2 col-sm-4 offset-md-0 col-md-6 col-lg-3 card">
-                    <div class="card-body">
-                        <h3 class="card-title">Listas</h3>
-                        <ol>
-                            <li>Uno</li>
-                            <li>Dos</li>
-                            <li>Tres</li>
-                            <li>Cuatro
-                                <ul>
-                                    <li>Cuatro Uno</li>
+                        </div>
+                    </section>
+                    <section id="listas" class="offset-sm-2 col-sm-4 offset-md-0 col-md-6 col-lg-3 card">
+                        <div class="card-body">
+                            <h3 class="card-title">Listas</h3>
+                            <ol class="list-group">
+                                <li class="list-group-item">Uno</li>
+                                <li class="list-group-item disabled" aria-disabled="true">Dos</li>
+                                <li class="list-group-item active">Tres</li>
+                                <li class="list-group-item">Cuatro
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Cuatro Uno</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <dl>
+                                <dt>HTML</dt>
+                                <dd>Hyper Text Markup Language</dd>
+                                <dt>CSS</dt>
+                                <dd>Cascade Style Sheets</dd>
+                            </dl>
+                        </div>
+                    </section>
+                    <section id="etiquetamenu" class="offset-sm-1 col-sm-3 offset-md-0 col-md-6 col-lg-2 card">
+                        <div class="card-body">
+                            <h3>Menú</h3>
+                            <menu class="list-unstyled">
+                                <li class="list-unstyled"><button class="btn btn-dark btn-block">Uno</button></li>
+                                <li class="list-unstyled"><button class="btn btn-dark btn-block">Dos</button></li>
+                            </menu>
+                        </div>
+                    </section>
+                    <section id="imagenes" class="card col-12 col-lg-5">
+                        <img src="http://lorempixel.com/400/200/sports/1/Dummy-Text" alt="Imágen de ejemplo" class="card-img-top" />
+                        <div class="card-body">
+
+                            <h3 class="card-title">Imágenes</h3>
+                            <div class="galeria">
+                                <figure class="figure">
+                                    <img src="https://via.placeholder.com/150" alt="Imágen de ejemplo" class="figure-img img-fluid rounded" />
+                                    <figcaption class="figure-caption text-right">Imágen de ejemplo</figcaption>
+                                </figure>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                    <section id="media" class="col-12 col-lg-7 card">
+                        <video src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls class="card-img-top">
+                        </video>
+                        <div class="card-body">
+                            <h3 class="card-title">Media</h3>
+                        </div>
+                        <div class="embed-responsive embed-responsive-4by3">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/SVGjOUnQZ58" allowfullscreen></iframe>
+                        </div>
+
+                    </section>
+                    <section id="mapas" class="col-12 col-lg-9 col-xl-7 card">
+                        <div class="card-body">
+                            <h3 class="card-title">Mapas</h3>
+                            <p class="card-text">
+                                Please select a shape:
+                                <img src="imgs/sample-usemap.png" usemap="#shapes" alt="Four shapes are available: a red hollow box, a green circle, a blue triangle, and a yellow four-pointed star.">
+                                <map name="shapes">
+                                    <area shape=rect coords="50,50,100,100"> <!-- the hole in the red box -->
+                                    <area shape=rect coords="25,25,125,125" href="red.html" alt="Red box.">
+                                    <area shape=circle coords="200,75,50" href="green.html" alt="Green circle.">
+                                    <area shape=poly coords="325,25,262,125,388,125" href="blue.html" alt="Blue triangle.">
+                                    <area shape=poly coords="450,25,435,60,400,75,435,90,450,125,465,90,500,75,465,60" href="yellow.html" alt="Yellow star.">
+                                </map>
+                            </p>
+                        </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11621.667968166445!2d-2.9076192!3d43.26363915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1577087219007!5m2!1ses!2ses" style="border:0; width: 100%" allowfullscreen=""></iframe>
+                    </section>
+                    <section id="tablas" class="col card">
+                        <div class="card-body">
+                            <h3 class="card-title">Tablas</h3>
+
+                            <!--table>thead>tr>th*3-->
+                            <table class="table table-striped table-bordered table-hover table-sm table-responsive">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nombre</th>
+                                        <th>Apellidos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>1</th>
+                                        <td>Javier</td>
+                                        <td>Lete</td>
+                                    </tr>
+                                    <tr>
+                                        <th>2</th>
+                                        <td>Pepe</td>
+                                        <td>Pérez Arrigomulakoetxealarramendi</td>
+                                        <td>Pérez Arrigomulakoetxealarramendi</td>
+                                        <td>Pérez Arrigomulakoetxealarramendi</td>
+                                        <td>Pérez Arrigomulakoetxealarramendi</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class="thead-dark">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nombre</th>
+                                        <th>Apellidos</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-end">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
                                 </ul>
-                            </li>
-                        </ol>
-                        <dl>
-                            <dt>HTML</dt>
-                            <dd>Hyper Text Markup Language</dd>
-                            <dt>CSS</dt>
-                            <dd>Cascade Style Sheets</dd>
-                        </dl>
-                    </div>
-                </section>
-                <section id="etiquetamenu" class="offset-sm-1 col-sm-3 offset-md-0 col-md-6 col-lg-2 card">
-                    <div class="card-body">
-                        <h3>Menú</h3>
-                        <menu class="list-unstyled">
-                            <li class="list-unstyled"><button class="btn btn-dark btn-block">Uno</button></li>
-                            <li class="list-unstyled"><button class="btn btn-dark btn-block">Dos</button></li>
-                        </menu>
-                    </div>
-                </section>
-                <section id="imagenes" class="card col-12 col-lg-5">
-                    <img src="http://lorempixel.com/400/200/sports/1/Dummy-Text" alt="Imágen de ejemplo" class="card-img-top" />
-                    <div class="card-body">
+                            </nav>
+                        </div>
+                    </section>
+                    <section id="formularios" class="col-12 card">
+                        <div class="card-body">
+                            <h3 class="card-title">Formularios</h3>
 
-                        <h3 class="card-title">Imágenes</h3>
-                        <div class="galeria">
-                            <figure class="figure">
-                                <img src="https://via.placeholder.com/150" alt="Imágen de ejemplo" class="figure-img img-fluid rounded" />
-                                <figcaption class="figure-caption text-right">Imágen de ejemplo</figcaption>
-                            </figure>
+                            <form action="#" method="get" class="row">
+                                <fieldset class="col-sm-6 col-lg-5 col-xl-3">
+                                    <legend>Datos básicos</legend>
+
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-12 col-form-label">Nombre</label>
+                                        <div class="col-12">
+                                            <input id="nombre" type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="apellidos" class="col-12 col-form-label">Apellidos</label>
+                                        <div class="col-12">
+                                            <input id="apellidos" type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="col-sm-6 col-lg-5 col-xl-3">
+                                    <legend>Datos de login</legend>
+
+                                    <div class="form-group row">
+                                        <label for="usuario" class="col-12 col-form-label">Usuario</label>
+                                        <div class="col-12 input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                            </div>
+                                            <input id="usuario" type="email" required class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="contra" class="col-12 col-form-label">Contraseña</label>
+                                        <div class="col-12">
+                                            <input id="contra" type="password" required class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="notas" class="col-12 col-form-label">Notas</label>
+                                        <div class="col-12">
+                                            <textarea id="notas" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="col-sm-3 col-lg-2">
+                                    <legend>Otros</legend>
+
+                                    <div class="btn-group-toggle form-group" data-toggle="buttons">
+                                        <label class="btn btn-outline-secondary active">
+                                            <input type="checkbox"> Checked
+                                        </label>
+                                    </div>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                        <label class="custom-control-label" for="customSwitch1">Checkbox</label>
+                                    </div>
+                                    <div class="btn-group btn-group-toggle form-group" data-toggle="buttons">
+                                        <label class="btn btn-outline-secondary active">
+                                            <input type="radio" name="options" id="option1" checked> Sí
+                                        </label>
+                                        <label class="btn btn-outline-secondary">
+                                            <input type="radio" name="options" id="option2"> No
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <optgroup label="Grupo1">
+                                                <option>Uno</option>
+                                                <option>One</option>
+                                            </optgroup>
+                                            <optgroup label="Grupo2">
+                                                <option>Dos</option>
+                                                <option>Two</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select multiple class="form-control">
+                                            <optgroup label="Grupo1">
+                                                <option>Uno</option>
+                                                <option>One</option>
+                                            </optgroup>
+                                            <optgroup label="Grupo2">
+                                                <option>Dos</option>
+                                                <option>Two</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="col-sm-9 col-12 col-xl-4 form-group">
+                                    <legend>HTML5</legend>
+                                    <input type="number" step=".01" placeholder="Euros" class="form-control" />
+                                    <input type="range" min="0" max="100" step="20" value="50" class="custom-range" />
+                                    <input type="color" class="form-control" />
+                                    <input type="tel" placeholder="Teléfono" class="form-control" />
+                                    <input type="url" placeholder="URL" class="form-control" />
+                                    <input type="date" class="form-control" />
+                                    <input type="time" class="form-control" />
+                                    <input type="datetime-local" class="form-control" />
+                                    <progress class="progress"></progress>
+                                    <progress class="progress" max="100" value="40"></progress>
+                                    <meter min="1" max="100" value="75"></meter>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="offset-sm-3 col-sm-9 offset-xl-8 col-xl-4">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button class="btn btn-primary" type="submit"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviar</button>
+                                        <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" data-toggle="tooltip" data-placement="top" title="¿Segurísimo que quieres borrar?">Borrar</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </section>
+                    <section id="tabs" class="col-12 card">
+                        <div class="card-body">
+                            <h3 class="card-title">Tabs de Bootstrap</h3>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Home</div>
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Profile</div>
+                                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Contact</div>
+                            </div>
+                        </div>
+                    </section>
+                </article>
 
 
-
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">¿Estás seguro?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Estás seguro de que quieres borrar?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-danger">Sí</button>
+                            </div>
                         </div>
                     </div>
-                </section>
-                <section id="media" class="col-12 col-lg-7 card">
-                    <video src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls class="card-img-top">
-                    </video>
-                    <div class="card-body">
-                        <h3 class="card-title">Media</h3>
-                    </div>
-                    <iframe class="responsive" src="https://www.youtube.com/embed/SVGjOUnQZ58" allowfullscreen></iframe>
-
-                </section>
-                <section id="mapas" class="col-12 col-lg-9 col-xl-7 card">
-                    <div class="card-body">
-                        <h3 class="card-title">Mapas</h3>
-                        <p class="card-text">
-                            Please select a shape:
-                            <img src="imgs/sample-usemap.png" usemap="#shapes" alt="Four shapes are available: a red hollow box, a green circle, a blue triangle, and a yellow four-pointed star.">
-                            <map name="shapes">
-                                <area shape=rect coords="50,50,100,100"> <!-- the hole in the red box -->
-                                <area shape=rect coords="25,25,125,125" href="red.html" alt="Red box.">
-                                <area shape=circle coords="200,75,50" href="green.html" alt="Green circle.">
-                                <area shape=poly coords="325,25,262,125,388,125" href="blue.html" alt="Blue triangle.">
-                                <area shape=poly coords="450,25,435,60,400,75,435,90,450,125,465,90,500,75,465,60" href="yellow.html" alt="Yellow star.">
-                            </map>
-                        </p>
-                    </div>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11621.667968166445!2d-2.9076192!3d43.26363915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1577087219007!5m2!1ses!2ses" style="border:0; width: 100%" allowfullscreen=""></iframe>
-                </section>
-                <section id="tablas" class="col card">
-                    <div class="card-body">
-                        <h3 class="card-title">Tablas</h3>
-
-                        <!--table>thead>tr>th*3-->
-                        <table class="table table-striped table-bordered table-hover table-sm table-responsive">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Apellidos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>1</th>
-                                    <td>Javier</td>
-                                    <td>Lete</td>
-                                </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td>Pepe</td>
-                                    <td>Pérez Arrigomulakoetxealarramendi</td>
-                                    <td>Pérez Arrigomulakoetxealarramendi</td>
-                                    <td>Pérez Arrigomulakoetxealarramendi</td>
-                                    <td>Pérez Arrigomulakoetxealarramendi</td>
-                                </tr>
-                            </tbody>
-                            <tfoot class="thead-dark">
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Apellidos</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </section>
-                <section id="formularios" class="col-12 card">
-                    <div class="card-body">
-                        <h3 class="card-title">Formularios</h3>
-
-                        <form action="#" method="get" class="row">
-                            <fieldset class="col-sm-6 col-lg-5 col-xl-3">
-                                <legend>Datos básicos</legend>
-
-                                <div class="form-group row">
-                                    <label for="nombre" class="col-12 col-form-label">Nombre</label>
-                                    <div class="col-12">
-                                        <input id="nombre" type="text" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="apellidos" class="col-12 col-form-label">Apellidos</label>
-                                    <div class="col-12">
-                                        <input id="apellidos" type="text" class="form-control" />
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset class="col-sm-6 col-lg-5 col-xl-3">
-                                <legend>Datos de login</legend>
-
-                                <div class="form-group row">
-                                    <label for="usuario" class="col-12 col-form-label">Usuario</label>
-                                    <div class="col-12">
-                                        <input id="usuario" type="email" required class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="contra" class="col-12 col-form-label">Contraseña</label>
-                                    <div class="col-12">
-                                        <input id="contra" type="password" required class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="notas" class="col-12 col-form-label">Notas</label>
-                                    <div class="col-12">
-                                        <textarea id="notas" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset class="col-sm-3 col-lg-2">
-                                <legend>Otros</legend>
-
-                                <div class="btn-group-toggle form-group" data-toggle="buttons">
-                                    <label class="btn btn-outline-secondary active">
-                                        <input type="checkbox"> Checked
-                                    </label>
-                                </div>
-                                <div class="btn-group btn-group-toggle form-group" data-toggle="buttons">
-                                    <label class="btn btn-outline-secondary active">
-                                        <input type="radio" name="options" id="option1" checked> Sí
-                                    </label>
-                                    <label class="btn btn-outline-secondary">
-                                        <input type="radio" name="options" id="option2"> No
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-control">
-                                        <optgroup label="Grupo1">
-                                            <option>Uno</option>
-                                            <option>One</option>
-                                        </optgroup>
-                                        <optgroup label="Grupo2">
-                                            <option>Dos</option>
-                                            <option>Two</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <select multiple class="form-control">
-                                        <optgroup label="Grupo1">
-                                            <option>Uno</option>
-                                            <option>One</option>
-                                        </optgroup>
-                                        <optgroup label="Grupo2">
-                                            <option>Dos</option>
-                                            <option>Two</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-                            </fieldset>
-                            <fieldset class="col-sm-9 col-12 col-xl-4">
-                                <legend>HTML5</legend>
-                                <input type="number" step=".01" placeholder="Euros" class="form-control" />
-                                <input type="range" min="0" max="100" step="20" value="50" class="custom-range" />
-                                <input type="color" class="form-control" />
-                                <input type="tel" placeholder="Teléfono" class="form-control" />
-                                <input type="url" placeholder="URL" class="form-control" />
-                                <input type="date" class="form-control" />
-                                <input type="time" class="form-control" />
-                                <input type="datetime-local" class="form-control" />
-                                <progress class="progress"></progress>
-                                <progress class="progress" max="100" value="40"></progress>
-                                <meter min="1" max="100" value="75"></meter>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                                </div>
-                            </fieldset>
-                            <fieldset class="offset-sm-3 col-sm-9 offset-xl-8 col-xl-4">
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <input class="btn btn-primary" type="submit" value="Enviar" />
-                                    <button class="btn btn-danger">Borrar</button>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                </section>
-            </article>
-        </main>
-        <aside class="col-md-3 col-lg-2">
-            <nav>
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="https://uniwebsidad.com">Uniwebsidad (antiguo librosweb.es)</a>
-                    </li>
-                    <li>
-                        <a href="https://uniwebsidad.com/libros/xhtml">Libro de HTML</a>
-                    </li>
-                    <li>
-                        <a href="https://uniwebsidad.com/libros/css">Libro de CSS</a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
+                </div>
+            </main>
+            <aside class="col-md-3 col-lg-2">
+                <nav>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="https://uniwebsidad.com">Uniwebsidad (antiguo librosweb.es)</a>
+                        </li>
+                        <li>
+                            <a href="https://uniwebsidad.com/libros/xhtml">Libro de HTML</a>
+                        </li>
+                        <li>
+                            <a href="https://uniwebsidad.com/libros/css">Libro de CSS</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+        </div>
     </div>
     <footer>
         <p>
             &copy; 2019 Javier Lete
         </p>
     </footer>
+
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="..." class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Hello, world! This is a toast message.
+        </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('.toast').toast('show');
+        })
+    </script>
 </body></html>
