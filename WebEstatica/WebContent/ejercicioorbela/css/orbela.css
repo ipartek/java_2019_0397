@@ -1,0 +1,138 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+h1, h2, h3 {
+    display: none;
+}
+
+header {
+    background: url(../imgs/fondo_encabezado.png);
+    background-position: right 3em top;
+    height: 104px;
+}
+
+#menuprincipal li, #paginacion, header li, footer li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#idiomas {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 1em;
+    margin: 0;
+}
+
+#idiomas li {
+    display: inline-block;
+}
+
+#idiomas abbr {
+    text-decoration: none;
+}
+
+#idiomas a {
+    color: #9EA123;
+    background: #E4E682;
+    padding: 0.5em;
+    font-size: 0.75em;
+    font-weight: bold;
+}
+
+#idiomas a:hover {
+    color: #E4E682;
+    background: #9EA123;
+    text-decoration: none;
+}
+
+#menuprincipal {
+    background: #7C7C1D;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+#menuprincipal ul {
+    display: inline-block;
+    width: 100%;
+    padding: 5px;
+}
+
+#menuprincipal a {
+    padding: 1em;
+}
+
+#menuprincipal li {
+    display: inline-block;
+}
+
+#menuprincipal li:last-child {
+    /* float: right;
+    margin-right: 1em; */
+    position: absolute;
+    right: 1em;
+}
+
+#menuprincipal a {
+    color: #E4E682;
+    font-weight: bold;
+}
+
+#menuprincipal a:hover {
+    color: #7C7C1D;
+    background: #E4E682;
+    text-decoration: none;
+}
+
+#imagenes figure {
+    margin-top: 0;
+}
+
+#imagenes img {
+    width: 100%;
+    max-width: 1000px;
+    max-height: 416px;
+}
+
+#imagenes figcaption {
+    width: 462px;
+    height: 95px;
+    background: rgba(246, 247, 213, 0.65);
+    /* opacity: 0.65; */
+    color: #35360B;
+    font-size: 18px;
+}
+
+#paginacion {
+    width: 1000px;
+    height: 25px;
+    background: #9EA123;
+    font-size: 18px;
+    margin-left: 21px;
+}
+
+#paginacion li {
+    display: inline;
+}
+
+#paginacion a {
+    color: #E4E682;
+}
+
+#paginacion a.activo {
+    color: #35360B;
+}
+
+#texto {
+    font-size: 21px;
+    color: #35360B;
+}
