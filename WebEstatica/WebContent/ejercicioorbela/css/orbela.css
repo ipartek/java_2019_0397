@@ -95,6 +95,8 @@ a:hover {
 
 #imagenes figure {
     margin-top: 0;
+    text-align: center;
+    position: relative;
 }
 
 #imagenes img {
@@ -110,6 +112,10 @@ a:hover {
     /* opacity: 0.65; */
     color: #35360B;
     font-size: 18px;
+    
+    position: absolute;
+    bottom: 5em;
+    right: 1em;
 }
 
 #paginacion {
