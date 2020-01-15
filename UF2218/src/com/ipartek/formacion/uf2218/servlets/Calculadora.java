@@ -14,13 +14,16 @@ public class Calculadora extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
+		PrintWriter out;
+		String resultado, op1 = null , op2 = null, op = null;
 		
 		try {
-			String op1 = request.getParameter("op1");
-			String op2 = request.getParameter("op2");
+			out = response.getWriter();
 			
-			String op = request.getParameter("op");
+			op1 = request.getParameter("op1");
+			op2 = request.getParameter("op2");
+			
+			op = request.getParameter("op");
 			
 			System.out.println("[" + op1 + "]");
 			System.out.println("[" + op2 + "]");
@@ -28,9 +31,6 @@ public class Calculadora extends HttpServlet {
 			
 			if(op1 == null || op2 == null || op == null) {
 				throw new RuntimeException("Me falta op1, op2 u op");
-				
-				/*out.println("Me falta op1, op2 u op");
-				return;*/
 			}
 			
 			double num1 = Double.parseDouble(op1);
@@ -46,22 +46,26 @@ public class Calculadora extends HttpServlet {
 			default: out.println("Operación no reconocida"); return;
 			}
 			
-			out.print("Resultado: ");
-			
 			if(Double.isNaN(res)) {
-				out.println("No es un número");
+				resultado = "No es un número";
 			} else if (Double.isInfinite(res)) {
-				out.print("Infinito ");
-				out.println(res >= 0 ? "positivo" : "negativo");
+				resultado = res >= 0 ? "Infinito positivo" : "Infinito negativo";
 			} else {
-				out.println(res);
+				resultado = String.valueOf(res);
 			}
 		} catch (NumberFormatException e) {
-			out.println("Tienes que introducir números");
+			resultado = "Tienes que introducir números";
 		} catch(Exception e) {
-			out.println("Error no esperado");
+			resultado = "Error no esperado";
 			e.printStackTrace();
 		}
+		
+		request.setAttribute("resultado", resultado);
+		request.setAttribute("op1", op1);
+		request.setAttribute("op2", op2);
+		request.setAttribute("op", op);
+		
+		request.getRequestDispatcher("calculadora.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
