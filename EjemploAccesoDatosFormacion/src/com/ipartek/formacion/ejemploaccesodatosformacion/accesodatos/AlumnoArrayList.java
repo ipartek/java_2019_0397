@@ -15,9 +15,9 @@ public class AlumnoArrayList implements Dao<Alumno> {
 	private static final AlumnoArrayList INSTANCIA = new AlumnoArrayList();
 
 	private AlumnoArrayList() {
-		agregar(new Alumno(null, "Javier", "Lete García", "12345678Z",
+		agregar(new Alumno(null, "Javier", "Lete GarcÃ­a", "12345678Z",
 				new GregorianCalendar(1980, 5 - 1, 5).getTime()));
-		agregar(new Alumno(null, "Pepe", "Pérez García", "84908444B",
+		agregar(new Alumno(null, "Pepe", "PÃ©rez GarcÃ­a", "84908444B",
 				new GregorianCalendar(1982, 1 - 1, 10).getTime()));
 	}
 

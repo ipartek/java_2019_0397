@@ -25,6 +25,7 @@
 				<th>Apellidos</th>
 				<th>DNI</th>
 				<th>Fecha de nacimiento</th>
+				<th>Opciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -47,10 +48,16 @@
 					<td>${alumno.dni}</td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd"
 							value="${alumno.fechaNacimiento}" /></td>
+					<td>
+						<a href="alumnos?id=${alumno.id}&op=modificar">Modificar</a>
+						<a href="alumnos?id=${alumno.id}&op=borrar">Borrar</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<a href="alumnos?op=agregar">Añadir</a>
 
 </body>
 </html>
