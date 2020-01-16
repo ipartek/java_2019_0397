@@ -61,12 +61,19 @@
 			</form>
 		</div>
 	</nav>
-	<div class="alert alert-primary alert-dismissible fade show"
-		role="alert">
-		Texto
-		<button type="button" class="close" data-dismiss="alert"
-			aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
+	<c:if test="${alertatexto != null}">
+		<div class="alert alert-${alertanivel} alert-dismissible fade show"
+			role="alert">
+			${alertatexto}
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		
+		<% 
+		session.removeAttribute("alertatexto"); 
+		session.removeAttribute("alertanivel");
+		%>
+	</c:if>
 	<main class="container-fluid">
