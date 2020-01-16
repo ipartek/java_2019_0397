@@ -45,6 +45,6 @@ public class VideoTreeMap implements Dao<Video> {
 
 	@Override
 	public void borrar(Long id) {
-		throw new UnsupportedOperationException("NO ESTÁ IMPLEMENTADO");	
+		videos.remove(id);
 	}
 }

@@ -60,7 +60,12 @@ public class AdminVideoController extends HttpServlet {
 		
 		//response.getWriter().println(video);
 		
-		request.getRequestDispatcher("/admin/index").forward(request, response);
+		//request.getRequestDispatcher("/admin/index").forward(request, response);
+		
+		// A diferencia del requestDispatcher, el response.sendRedirect lo que hace
+		// es pedir al navegador que cargue la URL que le enviamos
+		// SE PIERDEN TODAS LAS VARIABLES DE REQUEST
+		response.sendRedirect(request.getContextPath() + "/admin/index");
 	}
 
 }

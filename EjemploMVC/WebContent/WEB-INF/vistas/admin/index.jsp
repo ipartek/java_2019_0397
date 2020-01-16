@@ -23,7 +23,7 @@
 					<td><a href="${video.url}">${video.url}</a></td>
 					<td><img class="img-thumbnail" style="height: 4rem;" src="imgs/${video.id}.jpg" /></td>
 					<td><a class="btn btn-warning" href="admin/video?id=${video.id}&op=modificar">Modificar</a> <a
-						class="btn btn-danger" href="admin/videos?id=${video.id}&op=borrar">Borrar</a></td>
+						class="btn btn-danger" href="admin/borrar?id=${video.id}">Borrar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
