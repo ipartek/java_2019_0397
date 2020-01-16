@@ -30,19 +30,6 @@
 	</table>
 
 	<a class="btn btn-primary" href="#">Añadir</a>
-	<!-- ID: ${video.id} -->
-	<%--
-			<c:forEach items="${videos}" var="video">
-			<div class="card-body">
-				<img src="imgs/${video.id}.jpg" class="card-img-top" alt="">
-				<h3 class="card-title">${video.nombre}</h3>
-				<p class="card-text">
-					<a href="${video.url}">${video.url}</a>
-				</p>
-			</div>
-			
-	</article>
-	</c:forEach>
-	 --%>
+
 </section>
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>
