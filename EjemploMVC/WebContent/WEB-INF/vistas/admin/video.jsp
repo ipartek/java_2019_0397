@@ -3,15 +3,18 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
 <div class="row">
-	<form
+	<form action="admin/video" method="post"
 		class="offset-xl-3 offset-md-2 offset-sm-1 col-sm-10 col-md-8 col-xl-6">
 		<fieldset>
 			<legend>Video</legend>
+
+			<input type="hidden" id="op" name="op" value="${op}">
+
 			<div class="form-group row">
 				<label for="id" class="col-sm-2 col-form-label">Id</label>
 				<div class="col-sm-10">
-					<input type="number" class="form-control" id="id" value="${video.id}"
-						disabled>
+					<input type="number" class="form-control" id="id"
+						value="${video.id}" readonly>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -23,7 +26,8 @@
 			<div class="form-group row">
 				<label for="url" class="col-sm-2 col-form-label">URL</label>
 				<div class="col-sm-10">
-					<input type="url" class="form-control" id="url" value="${video.url}">
+					<input type="url" class="form-control" id="url"
+						value="${video.url}">
 				</div>
 			</div>
 			<div class="form-group row">

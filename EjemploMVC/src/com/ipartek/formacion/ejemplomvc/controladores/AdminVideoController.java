@@ -17,18 +17,21 @@ public class AdminVideoController extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
+		String op = request.getParameter("op");
 		
 		if(id != null) {
 			Video video = VideoTreeMap.getInstancia().obtenerPorId(Long.parseLong(id));
 			request.setAttribute("video", video);
 		}
 		
+		request.setAttribute("op", op);
+		
 		request.getRequestDispatcher("/WEB-INF/vistas/admin/video.jsp").forward(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		System.out.println(request.getParameter("op"));
 	}
 
 }
