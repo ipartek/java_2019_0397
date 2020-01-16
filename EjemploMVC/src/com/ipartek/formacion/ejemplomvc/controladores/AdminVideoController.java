@@ -14,6 +14,7 @@ import com.ipartek.formacion.ejemplomvc.repositorios.VideoTreeMap;
 
 @WebServlet("/admin/video")
 public class AdminVideoController extends HttpServlet {
+	private static final String VIDEO_JSP = "/WEB-INF/vistas/admin/video.jsp";
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +28,7 @@ public class AdminVideoController extends HttpServlet {
 		
 		request.setAttribute("op", op);
 		
-		request.getRequestDispatcher("/WEB-INF/vistas/admin/video.jsp").forward(request, response);
+		request.getRequestDispatcher(VIDEO_JSP).forward(request, response);
 	}
 
 
@@ -62,10 +63,16 @@ public class AdminVideoController extends HttpServlet {
 		
 		//request.getRequestDispatcher("/admin/index").forward(request, response);
 		
-		// A diferencia del requestDispatcher, el response.sendRedirect lo que hace
-		// es pedir al navegador que cargue la URL que le enviamos
-		// SE PIERDEN TODAS LAS VARIABLES DE REQUEST
-		response.sendRedirect(request.getContextPath() + "/admin/index");
+		if(video.isCorrecto()) {
+			// A diferencia del requestDispatcher, el response.sendRedirect lo que hace
+			// es pedir al navegador que cargue la URL que le enviamos
+			// SE PIERDEN TODAS LAS VARIABLES DE REQUEST
+			response.sendRedirect(request.getContextPath() + "/admin/index");
+		} else {
+			request.setAttribute("op", op);
+			request.setAttribute("video", video);
+			request.getRequestDispatcher(VIDEO_JSP).forward(request, response);
+		}
 	}
 
 }

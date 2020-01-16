@@ -20,15 +20,20 @@
 			<div class="form-group row">
 				<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
 				<div class="col-sm-10">
-					<input class="form-control" id="nombre" name="nombre" value="${video.nombre}">
+					<input class="form-control ${video.correcto ? '' : (video.errorNombre == null ? 'is-valid' : 'is-invalid') }" id="nombre" name="nombre"
+						value="${video.nombre}">
+					<div class="invalid-feedback">${video.errorNombre}</div>
 				</div>
+
 			</div>
 			<div class="form-group row">
 				<label for="url" class="col-sm-2 col-form-label">URL</label>
 				<div class="col-sm-10">
-					<input type="url" class="form-control" id="url" name="url"
+					<input type="url" class="form-control ${video.correcto ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') }" id="url" name="url"
 						value="${video.url}">
+					<div class="invalid-feedback">${video.errorUrl}</div>
 				</div>
+
 			</div>
 			<div class="form-group row">
 				<div class="offset-sm-2 col-sm-10">
