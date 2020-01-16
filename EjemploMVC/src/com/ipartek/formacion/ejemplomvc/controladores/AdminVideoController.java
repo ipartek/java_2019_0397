@@ -60,7 +60,7 @@ public class AdminVideoController extends HttpServlet {
 		
 		//response.getWriter().println(video);
 		
-		request.getRequestDispatcher("admin").forward(request, response);
+		request.getRequestDispatcher("/admin").forward(request, response);
 	}
 
 }
