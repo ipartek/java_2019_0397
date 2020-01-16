@@ -25,7 +25,7 @@ public class VideoTreeMap implements Dao<Video> {
 
 	@Override
 	public Video obtenerPorId(Long id) {
-		throw new UnsupportedOperationException("NO ESTÁ IMPLEMENTADO");
+		return videos.get(id);
 	}
 
 	@Override

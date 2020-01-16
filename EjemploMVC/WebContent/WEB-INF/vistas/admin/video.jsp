@@ -10,19 +10,20 @@
 			<div class="form-group row">
 				<label for="id" class="col-sm-2 col-form-label">Id</label>
 				<div class="col-sm-10">
-					<input type="number" class="form-control" id="id">
+					<input type="number" class="form-control" id="id" value="${video.id}"
+						disabled>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
 				<div class="col-sm-10">
-					<input class="form-control" id="nombre">
+					<input class="form-control" id="nombre" value="${video.nombre}">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="url" class="col-sm-2 col-form-label">URL</label>
 				<div class="col-sm-10">
-					<input type="url" class="form-control" id="url">
+					<input type="url" class="form-control" id="url" value="${video.url}">
 				</div>
 			</div>
 			<div class="form-group row">
