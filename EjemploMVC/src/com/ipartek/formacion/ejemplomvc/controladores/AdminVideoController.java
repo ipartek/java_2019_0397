@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.ejemplomvc.modelos.Video;
+import com.ipartek.formacion.ejemplomvc.repositorios.Dao;
 import com.ipartek.formacion.ejemplomvc.repositorios.VideoTreeMap;
 
 @WebServlet("/admin/video")
@@ -31,7 +32,35 @@ public class AdminVideoController extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("op"));
+		Dao<Video> dao = VideoTreeMap.getInstancia();
+		
+		String op = request.getParameter("op");
+		String id = request.getParameter("id");
+		String nombre = request.getParameter("nombre");
+		String url = request.getParameter("url");
+		
+		Video video = null;
+		
+		switch(op){
+		case "agregar":
+			video = new Video(nombre, url);
+			
+			dao.agregar(video);
+			
+			break;
+		case "modificar":
+			video = new Video(Long.parseLong(id), nombre, url);
+			
+			dao.modificar(video);
+			
+			break;
+		default:
+			throw new RuntimeException("Operación no reconocida");
+		}
+		
+		//response.getWriter().println(video);
+		
+		request.getRequestDispatcher("admin").forward(request, response);
 	}
 
 }

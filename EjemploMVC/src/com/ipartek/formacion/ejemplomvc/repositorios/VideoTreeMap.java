@@ -38,8 +38,9 @@ public class VideoTreeMap implements Dao<Video> {
 	}
 
 	@Override
-	public void modificar(Video objeto) {
-		throw new UnsupportedOperationException("NO ESTÁ IMPLEMENTADO");
+	public void modificar(Video video) {
+		//throw new UnsupportedOperationException("NO ESTÁ IMPLEMENTADO");
+		videos.put(video.getId(), video);
 	}
 
 	@Override
