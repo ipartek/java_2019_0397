@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ipartek.formacion.ejemplomvc.repositorios.VideoTreeMap;
+
 @WebServlet("/index")
 public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("videos", VideoTreeMap.getInstancia().obtenerTodos());
 		request.getRequestDispatcher("/WEB-INF/vistas/index.jsp").forward(request, response);
 	}
 
