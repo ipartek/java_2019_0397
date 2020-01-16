@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ipartek.formacion.ejemplomvc.repositorios.VideoTreeMap;
 
 @WebServlet("/index")
-public class Index extends HttpServlet {
+public class IndexController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("videos", VideoTreeMap.getInstancia().obtenerTodos());

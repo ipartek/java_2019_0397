@@ -30,7 +30,7 @@
 
 <script>
 	$(document).ready(function() {
-		$('.tabla').DataTable();
+		$('.table').DataTable();
 	});
 </script>
 
