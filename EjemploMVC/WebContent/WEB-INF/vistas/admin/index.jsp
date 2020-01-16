@@ -22,14 +22,14 @@
 					<td>${video.nombre}</td>
 					<td><a href="${video.url}">${video.url}</a></td>
 					<td><img class="img-thumbnail" style="height: 4rem;" src="imgs/${video.id}.jpg" /></td>
-					<td><a class="btn btn-warning" href="#">Modificar</a> <a
-						class="btn btn-danger" href="#">Borrar</a></td>
+					<td><a class="btn btn-warning" href="admin/video">Modificar</a> <a
+						class="btn btn-danger" href="admin/video">Borrar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 
-	<a class="btn btn-primary" href="#">Añadir</a>
+	<a class="btn btn-primary" href="admin/video">Añadir</a>
 
 </section>
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>
