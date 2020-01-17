@@ -59,6 +59,23 @@
 					placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 			</form>
+
+			<c:choose>
+				<c:when test="${sessionScope.email != null}">
+					<span class="navbar-text ml-3"> ${sessionScope.email} </span>
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link" href="logout">Logout</a>
+						</li>
+					</ul>
+				</c:when>
+				<c:otherwise>
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link" href="login">Login</a>
+						</li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
+
 		</div>
 	</nav>
 	<c:if test="${alertatexto != null}">
@@ -70,10 +87,10 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-		
-		<% 
-		session.removeAttribute("alertatexto"); 
-		session.removeAttribute("alertanivel");
+
+		<%
+			session.removeAttribute("alertatexto");
+				session.removeAttribute("alertanivel");
 		%>
 	</c:if>
 	<main class="container-fluid">

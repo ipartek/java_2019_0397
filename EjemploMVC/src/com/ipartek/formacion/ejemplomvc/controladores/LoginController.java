@@ -10,16 +10,30 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
+	private static final String LOGIN_JSP = "/WEB-INF/vistas/login.jsp";
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
+		request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		// 
+		if("javierlete@email.net".equals(email) && "contra".equals(password)) {
+			request.getSession().setAttribute("email", email);
+			response.sendRedirect("admin/index");
+		} else {
+			request.setAttribute("alertatexto", "El login no es correcto");
+			request.setAttribute("alertanivel", "danger");
+			request.setAttribute("email", email);
+			
+			request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
+		}
 	}
 	
 }

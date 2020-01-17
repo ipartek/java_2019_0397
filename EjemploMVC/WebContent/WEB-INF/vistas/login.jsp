@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 
 <div class="row">
-	<form action="admin/video" method="post"
+	<form action="login" method="post"
 		class="offset-xl-3 offset-md-2 offset-sm-1 col-sm-10 col-md-8 col-xl-6">
 		<fieldset>
 			<legend>Login</legend>
