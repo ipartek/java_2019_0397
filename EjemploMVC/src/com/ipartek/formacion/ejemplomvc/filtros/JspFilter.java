@@ -26,7 +26,8 @@ public class JspFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// place your code here
-		request.getRequestDispatcher("/WEB-INF/" + ((HttpServletRequest)request).getRequestURI().replace("/EjemploMVC/",  "")).forward(request, response);
+		HttpServletRequest req = (HttpServletRequest)request;
+		request.getRequestDispatcher(req.getRequestURI().replace(req.getContextPath(),  "/WEB-INF")).forward(request, response);
 		// pass the request along the filter chain
 		// chain.doFilter(request, response);
 	}
