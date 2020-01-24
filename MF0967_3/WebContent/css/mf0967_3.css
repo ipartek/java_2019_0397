@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.redes-sociales {
+	font-size: 2em;
+}
+
+.libro img {
+	width: 100%;
+	padding: 1em 2em;
+}
+
+.libro .descripcion {
+	margin-bottom: 4px;
+}
+
+.libro .autor {
+	margin-bottom: 1em;
+}
+
+.libro p {
+	font-size: 0.75em;
+}
+
+.libro .autor {
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 0.60em;
+}
+
+.precio {
+	position: relative;
+}
+
+.precio:before {
+	position: absolute;
+	content: '';
+	left: 0;
+	top: 45%;
+	right: 0;
+	border-top: 1px solid;
+	border-color: inherit;
+	-webkit-transform: skewY(-10deg);
+	-moz-transform: skewY(-10deg);
+	transform: skewY(-10deg);
+}
+
+.descuento {
+	background: red;
+	color: white;
+	padding: 1px 5px;
+	display: inline-block;
+}
