@@ -1,14 +1,23 @@
 package com.ipartek.formacion.ejemploaccesodatos.presentacionconsola;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 import com.ipartek.formacion.ejemploaccesodatos.accesodatos.Crudable;
-import com.ipartek.formacion.ejemploaccesodatos.accesodatos.PersonaMemoria;
+import com.ipartek.formacion.ejemploaccesodatos.accesodatos.FabricaCrudable;
 import com.ipartek.formacion.ejemploaccesodatos.entidades.Persona;
 
 public class PresentacionConsola {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+		Properties configuracion = new Properties();
+		configuracion.load(new FileInputStream("crudable.properties"));
+		
 		//DAO: Data Access Object
-		Crudable<Persona> dao = PersonaMemoria.getInstancia();
+		Crudable<Persona> dao = FabricaCrudable.getInstancia(
+				configuracion.getProperty("crudable"));
 		
 		System.out.println(dao.insert(new Persona(3L, "Nuevo", "Nuevez")));
 		
@@ -16,8 +25,8 @@ public class PresentacionConsola {
 			System.out.println(persona);
 		}
 		
-		// TODO Menú con opciones numéricas (1. Listado, 2. Crear ... 0. Salir)
-		// TODO Exportación/Importación Excel
+		// TODO Menï¿½ con opciones numï¿½ricas (1. Listado, 2. Crear ... 0. Salir)
+		// TODO Exportaciï¿½n/Importaciï¿½n Excel
 		// TODO Guardar/Cargar
 	}
 
