@@ -19,15 +19,29 @@ public class PresentacionConsola {
 		Crudable<Persona> dao = FabricaCrudable.getInstancia(
 				configuracion.getProperty("crudable"));
 		
-		System.out.println(dao.insert(new Persona(3L, "Nuevo", "Nuevez")));
+		System.out.println(dao.insert(new Persona(null, "Creado", "Ahora")));
 		
+		mostrarPersonas(dao);
+		
+		System.out.println(dao.getById(1L));
+		
+		mostrarPersonas(dao);
+		
+		System.out.println(dao.update(new Persona(1L, "Pepito", "de los Palotes")));
+		
+		mostrarPersonas(dao);
+		
+		System.out.println(dao.delete(1L));
+		
+		mostrarPersonas(dao);
+	}
+
+	private static void mostrarPersonas(Crudable<Persona> dao) {
+		System.out.println("------------");
 		for(Persona persona: dao.getAll()) {
 			System.out.println(persona);
 		}
-		
-		// TODO Men� con opciones num�ricas (1. Listado, 2. Crear ... 0. Salir)
-		// TODO Exportaci�n/Importaci�n Excel
-		// TODO Guardar/Cargar
+		System.out.println("------------");
 	}
 
 }

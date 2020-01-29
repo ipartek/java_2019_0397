@@ -14,8 +14,12 @@ import java.util.Properties;
 import com.ipartek.formacion.ejemploaccesodatos.entidades.Persona;
 
 public class PersonaMySQL implements Crudable<Persona> {
-	private String sqlSelect = "SELECT * FROM personas";
-	private String sqlInsert = "INSERT INTO personas (nombre, apellidos) VALUES (?,?)";
+	private final String sqlSelect = "SELECT * FROM personas";
+	private final String sqlSelectById = "SELECT * FROM personas WHERE id=?";
+
+	private final String sqlInsert = "INSERT INTO personas (nombre, apellidos) VALUES (?,?)";
+	private final String sqlUpdate = "UPDATE personas SET nombre=?, apellidos=? WHERE id=?";
+	private final String sqlDelete = "DELETE FROM personas WHERE id=?";
 
 	private String url;
 	private String usuario;
@@ -56,7 +60,7 @@ public class PersonaMySQL implements Crudable<Persona> {
 	@Override
 	public Iterable<Persona> getAll() {
 		ArrayList<Persona> personas = new ArrayList<>();
-		
+
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(sqlSelect)) {
 				try (ResultSet rs = ps.executeQuery()) {
@@ -73,7 +77,21 @@ public class PersonaMySQL implements Crudable<Persona> {
 
 	@Override
 	public Persona getById(Long id) {
-		throw new UnsupportedOperationException("NO ESTÁ IMPLEMENTADO");
+		try (Connection con = getConexion()) {
+			try (PreparedStatement ps = con.prepareStatement(sqlSelectById)) {
+				ps.setLong(1, id);
+				
+				try (ResultSet rs = ps.executeQuery()) {
+					if (rs.next()) {
+						return new Persona(rs.getLong("id"), rs.getString("nombre"), rs.getString("apellidos"));
+					} else {
+						return null;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error al obtener el registro por su id", e);
+		}
 	}
 
 	@Override
@@ -82,36 +100,65 @@ public class PersonaMySQL implements Crudable<Persona> {
 			try (PreparedStatement ps = con.prepareStatement(sqlInsert)) {
 				ps.setString(1, persona.getNombre());
 				ps.setString(2, persona.getApellidos());
-				
+
 				int numeroRegistrosModificados = ps.executeUpdate();
-				
-				if(numeroRegistrosModificados != 1) {
-					throw new AccesoDatosException("Resultado no esperado en la INSERT: " +
-							numeroRegistrosModificados);
+
+				if (numeroRegistrosModificados != 1) {
+					throw new AccesoDatosException("Resultado no esperado en la INSERT: " + numeroRegistrosModificados);
 				}
-				
+
 				persona.setId(null);
-				
+
 				return persona;
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Error al obtener todos los registros", e);
+			throw new AccesoDatosException("Error al hacer la INSERT", e);
 		}
 	}
 
 	@Override
-	public Persona update(Persona t) {
-		throw new UnsupportedOperationException("NO ESTÁ IMPLEMENTADO");
+	public Persona update(Persona persona) {
+		try (Connection con = getConexion()) {
+			try (PreparedStatement ps = con.prepareStatement(sqlUpdate)) {
+				ps.setString(1, persona.getNombre());
+				ps.setString(2, persona.getApellidos());
+				ps.setLong(3, persona.getId());
+
+				int numeroRegistrosModificados = ps.executeUpdate();
+
+				if (numeroRegistrosModificados != 1) {
+					throw new AccesoDatosException("Resultado no esperado en la UPDATE: " + numeroRegistrosModificados);
+				}
+
+				return persona;
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error al hacer la UPDATE", e);
+		}
 	}
 
 	@Override
-	public Persona delete(Persona t) {
-		throw new UnsupportedOperationException("NO ESTÁ IMPLEMENTADO");
+	public Persona delete(Persona persona) {
+		return delete(persona.getId());
 	}
 
 	@Override
 	public Persona delete(Long id) {
-		throw new UnsupportedOperationException("NO ESTÁ IMPLEMENTADO");
+		try (Connection con = getConexion()) {
+			try (PreparedStatement ps = con.prepareStatement(sqlDelete)) {
+				ps.setLong(1, id);
+
+				int numeroRegistrosModificados = ps.executeUpdate();
+
+				if (numeroRegistrosModificados != 1) {
+					throw new AccesoDatosException("Resultado no esperado en la DELETE: " + numeroRegistrosModificados);
+				}
+
+				return null;
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error al hacer DELETE", e);
+		}
 	}
 
 }
