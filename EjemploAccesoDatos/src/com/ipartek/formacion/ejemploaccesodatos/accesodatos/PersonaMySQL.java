@@ -30,6 +30,12 @@ public class PersonaMySQL implements Crudable<Persona> {
 		this.url = url;
 		this.usuario = usuario;
 		this.password = password;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new AccesoDatosException("No se ha encontrado el driver de MySQL");
+		}
 	}
 
 	private static PersonaMySQL INSTANCIA = null;
