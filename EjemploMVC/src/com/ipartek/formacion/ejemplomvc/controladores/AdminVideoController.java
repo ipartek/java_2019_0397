@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import com.ipartek.formacion.ejemplomvc.modelos.Video;
 import com.ipartek.formacion.ejemplomvc.repositorios.Dao;
-import com.ipartek.formacion.ejemplomvc.repositorios.VideoTreeMap;
 
 @WebServlet("/admin/video")
 public class AdminVideoController extends HttpServlet {
@@ -24,7 +23,9 @@ public class AdminVideoController extends HttpServlet {
 		String op = request.getParameter("op");
 
 		if (id != null) {
-			Video video = VideoTreeMap.getInstancia().obtenerPorId(Long.parseLong(id));
+			@SuppressWarnings("unchecked")
+			Dao<Video> dao = (Dao<Video>) getServletContext().getAttribute("dao");
+			Video video = dao.obtenerPorId(Long.parseLong(id));
 			request.setAttribute("video", video);
 		}
 
@@ -40,7 +41,8 @@ public class AdminVideoController extends HttpServlet {
 		// Ññá...
 		request.setCharacterEncoding("UTF-8");
 		
-		Dao<Video> dao = VideoTreeMap.getInstancia();
+		@SuppressWarnings("unchecked")
+		Dao<Video> dao = (Dao<Video>) getServletContext().getAttribute("dao");
 
 		String op = request.getParameter("op");
 		String id = request.getParameter("id");

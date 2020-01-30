@@ -4,7 +4,7 @@ import java.util.TreeMap;
 
 import com.ipartek.formacion.ejemplomvc.modelos.Video;
 
-public class VideoTreeMap implements Dao<Video> {
+class VideoTreeMap implements Dao<Video> {
 	private TreeMap<Long, Video> videos = new TreeMap<>();
 
 	// SINGLETON
