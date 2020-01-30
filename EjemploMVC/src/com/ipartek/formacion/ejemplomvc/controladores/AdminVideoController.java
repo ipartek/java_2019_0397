@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ipartek.formacion.ejemplomvc.modelos.Video;
-import com.ipartek.formacion.ejemplomvc.repositorios.Dao;
 
 @WebServlet("/admin/video")
 public class AdminVideoController extends HttpServlet {
@@ -23,9 +22,7 @@ public class AdminVideoController extends HttpServlet {
 		String op = request.getParameter("op");
 
 		if (id != null) {
-			@SuppressWarnings("unchecked")
-			Dao<Video> dao = (Dao<Video>) getServletContext().getAttribute("dao");
-			Video video = dao.obtenerPorId(Long.parseLong(id));
+			Video video = Globales.dao.obtenerPorId(Long.parseLong(id));
 			request.setAttribute("video", video);
 		}
 
@@ -40,9 +37,6 @@ public class AdminVideoController extends HttpServlet {
 		// SI QUEREMOS QUE SE GUARDEN CORRECTAMENTE LOS CARACTERES
 		// Ññá...
 		request.setCharacterEncoding("UTF-8");
-		
-		@SuppressWarnings("unchecked")
-		Dao<Video> dao = (Dao<Video>) getServletContext().getAttribute("dao");
 
 		String op = request.getParameter("op");
 		String id = request.getParameter("id");
@@ -55,14 +49,14 @@ public class AdminVideoController extends HttpServlet {
 		case "agregar":
 			video = new Video(nombre, url);
 			if (video.isCorrecto()) {
-				dao.agregar(video);
+				Globales.dao.agregar(video);
 			}
 
 			break;
 		case "modificar":
 			video = new Video(Long.parseLong(id), nombre, url);
 			if (video.isCorrecto()) {
-				dao.modificar(video);
+				Globales.dao.modificar(video);
 			}
 
 			break;

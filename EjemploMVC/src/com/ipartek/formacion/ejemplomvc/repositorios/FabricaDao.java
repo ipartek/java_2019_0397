@@ -7,8 +7,8 @@ import java.util.Properties;
 import com.ipartek.formacion.ejemplomvc.modelos.Video;
 
 public class FabricaDao {
-	public String pathConfiguracion;
-	public String tipo;
+	private String pathConfiguracion;
+	private String tipo;
 	
 	// SINGLETON
 	private static FabricaDao instancia;
