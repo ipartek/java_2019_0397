@@ -72,6 +72,7 @@ class SesionMySQL implements Dao<Sesion> {
 
 	private Connection getConexion() {
 		try {
+			new com.mysql.cj.jdbc.Driver();
 			return DriverManager.getConnection(url, usuario, password);
 		} catch (SQLException e) {
 			throw new RepositoriosException(

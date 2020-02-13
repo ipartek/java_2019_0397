@@ -20,7 +20,7 @@ public class FabricaDaoProperties implements FabricaDao {
 	 * Recoger instancia existente
 	 * @return (puede valer null)
 	 */
-	public FabricaDaoProperties getInstancia() {
+	public static FabricaDaoProperties getInstancia() {
 		return instancia;
 	}
 	
@@ -29,7 +29,7 @@ public class FabricaDaoProperties implements FabricaDao {
 	 * @param pathProperties
 	 * @return
 	 */
-	public FabricaDaoProperties getInstancia(String pathProperties) {
+	public static FabricaDaoProperties getInstancia(String pathProperties) {
 		if(instancia == null) {
 			instancia = new FabricaDaoProperties(pathProperties);
 		}
@@ -44,9 +44,9 @@ public class FabricaDaoProperties implements FabricaDao {
 			props.load(new FileReader(pathProperties));
 
 			tipo = props.getProperty("tipo");
-			url = props.getProperty("url");
-			usuario = props.getProperty("usuario");
-			password = props.getProperty("password");
+			url = props.getProperty(tipo + ".url");
+			usuario = props.getProperty(tipo + ".usuario");
+			password = props.getProperty(tipo + ".password");
 		} catch (IOException e) {
 			throw new RepositoriosException("No se ha podido leer el fichero de properties: " + pathProperties, e);
 		}
