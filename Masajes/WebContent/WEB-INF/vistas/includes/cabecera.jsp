@@ -38,7 +38,7 @@
 
 </head>
 <body>
-	<header>
+	<header class="d-none">
 		<h1>Masajes</h1>
 	</header>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -51,10 +51,10 @@
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
+			<!-- <ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="admin/index">Administración</a></li>
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
+			</ul> -->
+			<form class="ml-auto form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="Búsqueda" aria-label="Search">
 				<button class="btn btn-outline-light my-2 mr-4 my-sm-0" type="submit">Búsqueda</button>
