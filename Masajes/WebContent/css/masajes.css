@@ -8,9 +8,14 @@
 	width: 5em;
 }
 
+#sesiones tbody td:nth-child(6) {
+	text-overflow: ellipsis;
+}
+
 #servicios tbody td:last-child {
 	text-align: right;
 }
+
 
 @media (min-width: 1200px) {
 	:not(#sesiones) div.dataTables_wrapper div.dataTables_filter input {

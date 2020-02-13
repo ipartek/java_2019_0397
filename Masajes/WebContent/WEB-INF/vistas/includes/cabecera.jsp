@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,21 +58,22 @@
 			<form class="ml-auto form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="Búsqueda" aria-label="Search">
-				<button class="btn btn-outline-light my-2 mr-4 my-sm-0" type="submit">Búsqueda</button>
+				<button class="btn btn-outline-light my-2 mr-4 my-sm-0"
+					type="submit">Búsqueda</button>
 			</form>
 
 			<c:choose>
 				<c:when test="${sessionScope.email != null}">
 					<span class="navbar-text ml-3"> ${sessionScope.email} </span>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="btn btn-outline-light" href="logout">Logout</a>
-						</li>
+						<li class="nav-item"><a class="btn btn-outline-light"
+							href="logout">Logout</a></li>
 					</ul>
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="btn btn-outline-light" href="login">Login</a>
-						</li>
+						<li class="nav-item"><a class="btn btn-outline-light"
+							href="login">Login</a></li>
 					</ul>
 				</c:otherwise>
 			</c:choose>

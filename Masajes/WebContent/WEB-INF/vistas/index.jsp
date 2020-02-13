@@ -21,28 +21,20 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Id1</td>
-					<td>Cliente1</td>
-					<td>Trabajador1</td>
-					<td>Servicio1</td>
-					<td>31-12-2020</td>
-					<td>Reseña1</td>
-					<td>Calificación1</td>
-					<td><a href="vistas/sesion.jsp" class="btn btn-primary">Editar</a>
-						<a href="#" class="btn btn-danger">Borrar</a></td>
-				</tr>
-				<tr>
-					<td>Id2</td>
-					<td>Cliente2</td>
-					<td>Trabajador2</td>
-					<td>Servicio2</td>
-					<td>02-02-2020</td>
-					<td>Reseña2</td>
-					<td>Calificación2</td>
-					<td><a href="vistas/sesion.jsp" class="btn btn-primary">Editar</a>
-						<a href="#" class="btn btn-danger">Borrar</a></td>
-				</tr>
+				<c:forEach items="${sesiones}" var="s">
+					<tr>
+						<td>${s.id}</td>
+						<td>${s.cliente.nombre}${s.cliente.apellidos}</td>
+						<td>${s.trabajador.nombre}${s.trabajador.apellidos}</td>
+						<td>${s.servicio.nombre}</td>
+						<td><fmt:formatDate value="${s.fecha}" pattern="dd-MM-yyyy" /></td>
+						<td><a href="javascript:alert('${s.resena}')">${fn:substring(s.resena, 0, 20)}...</a></td>
+						<td>${s.calificacion}</td>
+						<td><a href="vistas/sesion.jsp"
+							class="btn btn-primary btn-sm">Editar</a> <a href="#"
+							class="btn btn-danger btn-sm">Borrar</a></td>
+					</tr>
+				</c:forEach>
 			</tbody>
 			<tfoot class="thead-dark">
 				<tr>
@@ -53,12 +45,11 @@
 					<th>Fecha</th>
 					<th>Reseña</th>
 					<th>Calificación</th>
-					<th>Opciones</th>
+					<th><a href="vistas/sesion.jsp" class="btn btn-primary btn-sm">Añadir</a>
+					</th>
 				</tr>
 			</tfoot>
 		</table>
-
-		<a href="vistas/sesion.jsp" class="btn btn-primary">Añadir</a>
 	</section>
 	<section id="clientes" class="p-lg-4 col-lg-6 col-xl-4">
 		<h3>Clientes</h3>
