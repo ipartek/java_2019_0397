@@ -9,9 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.masajes.modelos.Sesion;
-import com.ipartek.formacion.masajes.repositorios.Dao;
-import com.ipartek.formacion.masajes.repositorios.FabricaDao;
-import com.ipartek.formacion.masajes.repositorios.FabricaDaoProperties;
 
 @WebServlet("/index")
 public class IndexController extends HttpServlet {
@@ -20,13 +17,7 @@ public class IndexController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String pathConfiguracion = getServletContext().getRealPath("/WEB-INF/") + "dao.properties";
-
-		FabricaDao fabricaDao = FabricaDaoProperties.getInstancia(pathConfiguracion);
-		
-		Dao<Sesion> daoSesion = fabricaDao.getSesionDao();
-		
-		Iterable<Sesion> sesiones = daoSesion.getAll();
+		Iterable<Sesion> sesiones = Globales.daoSesion.getAll();
 		
 		request.setAttribute("sesiones", sesiones);
 		

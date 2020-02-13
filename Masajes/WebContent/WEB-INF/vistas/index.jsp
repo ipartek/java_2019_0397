@@ -27,10 +27,10 @@
 						<td>${s.cliente.nombre}${s.cliente.apellidos}</td>
 						<td>${s.trabajador.nombre}${s.trabajador.apellidos}</td>
 						<td>${s.servicio.nombre}</td>
-						<td><fmt:formatDate value="${s.fecha}" pattern="dd-MM-yyyy" /></td>
+						<td><fmt:formatDate value="${s.fecha}" pattern="dd-MM-yyyy HH:mm" /></td>
 						<td><a href="javascript:alert('${s.resena}')">${fn:substring(s.resena, 0, 20)}...</a></td>
 						<td>${s.calificacion}</td>
-						<td><a href="vistas/sesion.jsp"
+						<td><a href="sesion?id=${s.id}"
 							class="btn btn-primary btn-sm">Editar</a> <a href="#"
 							class="btn btn-danger btn-sm">Borrar</a></td>
 					</tr>
@@ -45,7 +45,7 @@
 					<th>Fecha</th>
 					<th>Reseña</th>
 					<th>Calificación</th>
-					<th><a href="vistas/sesion.jsp" class="btn btn-primary btn-sm">Añadir</a>
+					<th><a href="sesion" class="btn btn-primary btn-sm">Añadir</a>
 					</th>
 				</tr>
 			</tfoot>

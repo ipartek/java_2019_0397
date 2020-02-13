@@ -2,6 +2,7 @@ package com.ipartek.formacion.masajes.repositorios;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,6 +18,9 @@ class SesionMySQL implements Dao<Sesion> {
 			+ "JOIN clientes c ON c.idclientes = ses.clientes_idclientes\r\n"
 			+ "JOIN trabajadores t ON t.idtrabajadores = ses.trabajadores_idtrabajadores\r\n"
 			+ "JOIN servicios s ON s.idservicios = ses.servicios_idservicios;";
+	
+	private static final String SQL_GET_ID = "SELECT * FROM sesiones WHERE id=?";
+	
 	private final String url, usuario, password;
 
 	// "SINGLETON"
@@ -125,7 +129,41 @@ class SesionMySQL implements Dao<Sesion> {
 
 	@Override
 	public Sesion getById(Integer id) {
-		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
+		try (Connection con = getConexion()) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_GET_ID)) {
+				ps.setInt(1, id);
+				
+				try (ResultSet rs = ps.executeQuery()) {
+					Cliente cliente;
+					Trabajador trabajador;
+					Servicio servicio;
+					
+					Sesion sesion = null;
+
+					if (rs.next()) {
+						//Partes
+						cliente = new Cliente(rs.getInt("clientes_idclientes"), null, null, null);
+
+						trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"), null, null, null);
+
+						servicio = new Servicio(rs.getInt("servicios_idservicios"), null, null);
+
+						//Completo
+						sesion = new Sesion(rs.getInt("id"), cliente, trabajador, servicio,
+								rs.getTimestamp("fecha"), rs.getString("resena"), rs.getString("calificacion"));
+					}
+					
+					return sesion;
+				} catch (SQLException e) {
+					throw new RepositoriosException("Error al acceder a los registros", e);
+				}
+			} catch (SQLException e) {
+				throw new RepositoriosException("Error al crear la sentencia", e);
+			}
+		} catch (SQLException e) {
+			throw new RepositoriosException("Error al conectar", e);
+		}
+		
 	}
 
 	@Override

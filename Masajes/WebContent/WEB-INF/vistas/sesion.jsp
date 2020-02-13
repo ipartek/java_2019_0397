@@ -3,18 +3,16 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 
 <div class="row">
-	<form action="vistas/index.jsp" method="post"
+	<form action="sesion" method="post"
 		class="offset-xl-3 offset-md-2 offset-sm-1 col-sm-10 col-md-8 col-xl-6">
 		<fieldset>
 			<legend>Sesión</legend>
-
-			<input type="hidden" id="op" name="op" value="${op}">
 
 			<div class="form-group row">
 				<label for="id" class="col-sm-2 col-form-label">Id</label>
 				<div class="col-sm-10">
 					<input type="number" class="form-control" id="id" name="id"
-						value="2" readonly>
+						value="${sesion.id}" readonly>
 				</div>
 			</div>
 
@@ -52,8 +50,8 @@
 			<div class="form-group row">
 				<label for="nombre" class="col-sm-2 col-form-label">Fecha</label>
 				<div class="col-sm-10">
-					<input type="date" class="form-control is-invalid <%-- ${primeravez ? '' : (video.errorNombre == null ? 'is-valid' : 'is-invalid') } --%>" id="nombre" name="nombre"
-						value="2020-03-04">
+					<input type="datetime-local" class="form-control is-invalid <%-- ${primeravez ? '' : (video.errorNombre == null ? 'is-valid' : 'is-invalid') } --%>" id="nombre" name="nombre"
+						value="<fmt:formatDate value="${sesion.fecha}" pattern="yyyy-MM-dd'T'HH:mm" />" />
 					<div class="invalid-feedback">Fecha no válida</div>
 				</div>
 			</div>
@@ -61,7 +59,7 @@
 				<label for="resena" class="col-sm-2 col-form-label">Reseña</label>
 				<div class="col-sm-10">
 					<textarea class="form-control is-invalid <%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>" id="resena" name="resena"
-					>Bah</textarea>
+					>${sesion.resena}</textarea>
 					<div class="invalid-feedback">¿Puedes escribir un poco más?</div>
 				</div>
 			</div>
@@ -70,9 +68,9 @@
 				<div class="col-sm-10">
 					<select class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>" id="calificacion" name="calificacion">
 						<option></option>
-						<option>No recomendable</option>
-						<option>Aceptable</option>
-						<option selected>Para repetir</option>
+						<option ${sesion.calificacion == 'No recomendable' ? 'selected': '' }>No recomendable</option>
+						<option ${sesion.calificacion == 'Aceptable' ? 'selected': '' }>Aceptable</option>
+						<option ${sesion.calificacion == 'Para repetir' ? 'selected': '' }>Para repetir</option>
 					</select>
 				</div>
 			</div>
