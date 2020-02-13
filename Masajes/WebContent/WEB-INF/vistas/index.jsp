@@ -3,7 +3,9 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
 <article class="row">
+	<h2 class="d-none">Listados</h2>
 	<section id="sesiones" class="p-lg-4 col-lg-6 col-xl-12">
+		<h3>Sesiones</h3>
 		<table
 			class="table table-striped table-bordered table-hover table-sm table-responsive-xl">
 			<thead class="thead-dark">
@@ -27,10 +29,8 @@
 					<td>31-12-2020</td>
 					<td>Reseña1</td>
 					<td>Calificación1</td>
-					<td>
-						<a href="vistas/sesion.jsp" class="btn btn-primary">Editar</a>
-						<a href="#" class="btn btn-danger">Borrar</a>
-					</td>
+					<td><a href="vistas/sesion.jsp" class="btn btn-primary">Editar</a>
+						<a href="#" class="btn btn-danger">Borrar</a></td>
 				</tr>
 				<tr>
 					<td>Id2</td>
@@ -40,10 +40,8 @@
 					<td>02-02-2020</td>
 					<td>Reseña2</td>
 					<td>Calificación2</td>
-					<td>
-						<a href="vistas/sesion.jsp" class="btn btn-primary">Editar</a>
-						<a href="#" class="btn btn-danger">Borrar</a>
-					</td>
+					<td><a href="vistas/sesion.jsp" class="btn btn-primary">Editar</a>
+						<a href="#" class="btn btn-danger">Borrar</a></td>
 				</tr>
 			</tbody>
 			<tfoot class="thead-dark">
@@ -59,10 +57,11 @@
 				</tr>
 			</tfoot>
 		</table>
-		
+
 		<a href="vistas/sesion.jsp" class="btn btn-primary">Añadir</a>
 	</section>
 	<section id="clientes" class="p-lg-4 col-lg-6 col-xl-4">
+		<h3>Clientes</h3>
 		<table
 			class="table table-striped table-bordered table-hover table-sm table-responsive-xl">
 			<thead class="thead-dark">
@@ -98,6 +97,7 @@
 		</table>
 	</section>
 	<section id="trabajadores" class="p-lg-4 col-lg-6 col-xl-4">
+		<h3>Trabajadores</h3>
 		<table
 			class="table table-striped table-bordered table-hover table-sm table-responsive-xl">
 			<thead class="thead-dark">
@@ -133,6 +133,7 @@
 		</table>
 	</section>
 	<section id="servicios" class="p-lg-4 col-lg-6 col-xl-4">
+		<h3>Servicios</h3>
 		<table
 			class="table table-striped table-bordered table-hover table-sm table-responsive-xl">
 			<thead class="thead-dark">
