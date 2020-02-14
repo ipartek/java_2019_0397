@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ipartek.formacion.masajes.modelos.Cliente;
+import com.ipartek.formacion.masajes.modelos.Servicio;
 import com.ipartek.formacion.masajes.modelos.Sesion;
+import com.ipartek.formacion.masajes.modelos.Trabajador;
 
 @WebServlet("/sesion")
 public class SesionController extends HttpServlet {
@@ -24,6 +27,14 @@ public class SesionController extends HttpServlet {
 			
 			request.setAttribute("sesion", sesion);
 		}
+		
+		Iterable<Cliente> clientes = Globales.daoClientes.getAll();
+		Iterable<Trabajador> trabajadores = Globales.daoTrabajadores.getAll();
+		Iterable<Servicio> servicios = Globales.daoServicios.getAll();
+		
+		request.setAttribute("clientes", clientes);
+		request.setAttribute("trabajadores", trabajadores);
+		request.setAttribute("servicios", servicios);
 		
 		request.getRequestDispatcher("/WEB-INF/vistas/sesion.jsp").forward(request, response);
 	}

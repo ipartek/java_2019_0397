@@ -67,16 +67,40 @@ public class FabricaDaoProperties implements FabricaDao {
 
 	@Override
 	public Dao<Cliente> getClienteDao() {
-		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
+		if(tipo == null) {
+			throw new RepositoriosException("No se ha recibido ningún tipo");
+		}
+		
+		switch (tipo) {
+		case "mysql": return ClienteMySQL.getInstancia(url, usuario, password);
+		default:
+			throw new RepositoriosException("No reconozco el tipo " + tipo);
+		}
 	}
 
 	@Override
 	public Dao<Trabajador> getTrabajadorDao() {
-		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
+		if(tipo == null) {
+			throw new RepositoriosException("No se ha recibido ningún tipo");
+		}
+		
+		switch (tipo) {
+		case "mysql": return TrabajadorMySQL.getInstancia(url, usuario, password);
+		default:
+			throw new RepositoriosException("No reconozco el tipo " + tipo);
+		}
 	}
 
 	@Override
 	public Dao<Servicio> getServicioDao() {
-		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
+		if(tipo == null) {
+			throw new RepositoriosException("No se ha recibido ningún tipo");
+		}
+		
+		switch (tipo) {
+		case "mysql": return ServicioMySQL.getInstancia(url, usuario, password);
+		default:
+			throw new RepositoriosException("No reconozco el tipo " + tipo);
+		}
 	}
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
 <div class="row">
 	<form action="sesion" method="post"
@@ -19,30 +19,38 @@
 			<div class="form-group row">
 				<label for="cliente" class="col-sm-2 col-form-label">Cliente</label>
 				<div class="col-sm-10">
-					<select class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>" id="cliente" name="cliente">
-						<option>Cliente Clientez</option>
-						<option>Pepe Pérez</option>
-						<option>Yepa Yepez</option>
+					<select
+						class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>"
+						id="cliente" name="cliente">
+						<c:forEach items="${clientes}" var="cliente">
+							<option value="${cliente.id}">${cliente.nombre} ${cliente.apellidos}</option>
+						</c:forEach>
 					</select>
 				</div>
 			</div>
-			
+
 			<div class="form-group row">
 				<label for="trabajador" class="col-sm-2 col-form-label">Trabajador</label>
 				<div class="col-sm-10">
-					<select class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>" id="trabajador" name="trabajador">
-						<option>Trabajador Trabajadorez</option>
-						<option>Juan Juanez</option>
+					<select
+						class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>"
+						id="trabajador" name="trabajador">
+						<c:forEach items="${trabajadores}" var="trabajador">
+							<option value="${trabajador.id}">${trabajador.nombre} ${trabajador.apellidos}</option>
+						</c:forEach>
 					</select>
 				</div>
 			</div>
-			
+
 			<div class="form-group row">
 				<label for="servicio" class="col-sm-2 col-form-label">Calificación</label>
 				<div class="col-sm-10">
-					<select class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>" id="servicio" name="servicio">
-						<option>Masaje de espalda</option>
-						<option>Descongestionante</option>
+					<select
+						class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>"
+						id="servicio" name="servicio">
+						<c:forEach items="${servicios}" var="servicio">
+							<option value="${servicio.id}">${servicio.nombre}</option>
+						</c:forEach>
 					</select>
 				</div>
 			</div>
@@ -50,7 +58,9 @@
 			<div class="form-group row">
 				<label for="nombre" class="col-sm-2 col-form-label">Fecha</label>
 				<div class="col-sm-10">
-					<input type="datetime-local" class="form-control is-invalid <%-- ${primeravez ? '' : (video.errorNombre == null ? 'is-valid' : 'is-invalid') } --%>" id="nombre" name="nombre"
+					<input type="datetime-local"
+						class="form-control is-invalid <%-- ${primeravez ? '' : (video.errorNombre == null ? 'is-valid' : 'is-invalid') } --%>"
+						id="nombre" name="nombre"
 						value="<fmt:formatDate value="${sesion.fecha}" pattern="yyyy-MM-dd'T'HH:mm" />" />
 					<div class="invalid-feedback">Fecha no válida</div>
 				</div>
@@ -58,19 +68,25 @@
 			<div class="form-group row">
 				<label for="resena" class="col-sm-2 col-form-label">Reseña</label>
 				<div class="col-sm-10">
-					<textarea class="form-control is-invalid <%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>" id="resena" name="resena"
-					>${sesion.resena}</textarea>
+					<textarea
+						class="form-control is-invalid <%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>"
+						id="resena" name="resena">${sesion.resena}</textarea>
 					<div class="invalid-feedback">¿Puedes escribir un poco más?</div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="calificacion" class="col-sm-2 col-form-label">Calificación</label>
 				<div class="col-sm-10">
-					<select class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>" id="calificacion" name="calificacion">
+					<select
+						class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>"
+						id="calificacion" name="calificacion">
 						<option></option>
-						<option ${sesion.calificacion == 'No recomendable' ? 'selected': '' }>No recomendable</option>
+						<option
+							${sesion.calificacion == 'No recomendable' ? 'selected': '' }>No
+							recomendable</option>
 						<option ${sesion.calificacion == 'Aceptable' ? 'selected': '' }>Aceptable</option>
-						<option ${sesion.calificacion == 'Para repetir' ? 'selected': '' }>Para repetir</option>
+						<option ${sesion.calificacion == 'Para repetir' ? 'selected': '' }>Para
+							repetir</option>
 					</select>
 				</div>
 			</div>
@@ -83,4 +99,4 @@
 	</form>
 </div>
 
-<%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>
+<%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>
