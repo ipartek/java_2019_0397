@@ -23,7 +23,7 @@
 						class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>"
 						id="cliente" name="cliente">
 						<c:forEach items="${clientes}" var="cliente">
-							<option value="${cliente.id}">${cliente.nombre} ${cliente.apellidos}</option>
+							<option ${cliente.id == sesion.cliente.id ? 'selected': '' } value="${cliente.id}">${cliente.nombre} ${cliente.apellidos}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -36,7 +36,7 @@
 						class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>"
 						id="trabajador" name="trabajador">
 						<c:forEach items="${trabajadores}" var="trabajador">
-							<option value="${trabajador.id}">${trabajador.nombre} ${trabajador.apellidos}</option>
+							<option ${trabajador.id == sesion.trabajador.id ? 'selected': '' } value="${trabajador.id}">${trabajador.nombre} ${trabajador.apellidos}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -49,7 +49,7 @@
 						class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>"
 						id="servicio" name="servicio">
 						<c:forEach items="${servicios}" var="servicio">
-							<option value="${servicio.id}">${servicio.nombre}</option>
+							<option ${servicio.id == sesion.servicio.id ? 'selected': '' } value="${servicio.id}">${servicio.nombre}</option>
 						</c:forEach>
 					</select>
 				</div>
