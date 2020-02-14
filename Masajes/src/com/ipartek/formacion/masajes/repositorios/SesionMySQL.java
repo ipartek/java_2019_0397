@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.ipartek.formacion.masajes.modelos.Cliente;
@@ -18,9 +19,17 @@ class SesionMySQL implements Dao<Sesion> {
 			+ "JOIN clientes c ON c.idclientes = ses.clientes_idclientes\r\n"
 			+ "JOIN trabajadores t ON t.idtrabajadores = ses.trabajadores_idtrabajadores\r\n"
 			+ "JOIN servicios s ON s.idservicios = ses.servicios_idservicios;";
-	
+
 	private static final String SQL_GET_ID = "SELECT * FROM sesiones WHERE id=?";
-	
+
+	private static final String SQL_INSERT = "INSERT INTO sesiones "
+			+ "(clientes_idclientes, trabajadores_idtrabajadores, servicios_idservicios, "
+			+ "fecha, resena, calificacion) VALUES (?, ?, ?, ?, ?, ?)";
+
+	private static final String SQL_UPDATE = "UPDATE sesiones SET " +
+	"clientes_idclientes=?, trabajadores_idtrabajadores=?, servicios_idservicios=?, " +
+	"fecha=?, resena=?, calificacion=? WHERE id=?";
+
 	private final String url, usuario, password;
 
 	// "SINGLETON"
@@ -97,7 +106,7 @@ class SesionMySQL implements Dao<Sesion> {
 					Sesion sesion;
 
 					while (rs.next()) {
-						//Partes
+						// Partes
 						cliente = new Cliente(rs.getInt("clientes_idclientes"), rs.getString("c.nombre"),
 								rs.getString("c.apellidos"), rs.getString("c.dni"));
 
@@ -107,14 +116,14 @@ class SesionMySQL implements Dao<Sesion> {
 						servicio = new Servicio(rs.getInt("servicios_idservicios"), rs.getString("s.nombre"),
 								rs.getBigDecimal("s.precio"));
 
-						//Completo
-						sesion = new Sesion(rs.getInt("id"), cliente, trabajador, servicio,
-								rs.getTimestamp("fecha"), rs.getString("resena"), rs.getString("calificacion"));
-						
-						//Agregar
+						// Completo
+						sesion = new Sesion(rs.getInt("id"), cliente, trabajador, servicio, rs.getTimestamp("fecha"),
+								rs.getString("resena"), rs.getString("calificacion"));
+
+						// Agregar
 						sesiones.add(sesion);
 					}
-					
+
 					return sesiones;
 				} catch (SQLException e) {
 					throw new RepositoriosException("Error al acceder a los registros", e);
@@ -132,27 +141,27 @@ class SesionMySQL implements Dao<Sesion> {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_GET_ID)) {
 				ps.setInt(1, id);
-				
+
 				try (ResultSet rs = ps.executeQuery()) {
 					Cliente cliente;
 					Trabajador trabajador;
 					Servicio servicio;
-					
+
 					Sesion sesion = null;
 
 					if (rs.next()) {
-						//Partes
+						// Partes
 						cliente = new Cliente(rs.getInt("clientes_idclientes"), null, null, null);
 
 						trabajador = new Trabajador(rs.getInt("trabajadores_idtrabajadores"), null, null, null);
 
 						servicio = new Servicio(rs.getInt("servicios_idservicios"), null, null);
 
-						//Completo
-						sesion = new Sesion(rs.getInt("id"), cliente, trabajador, servicio,
-								rs.getTimestamp("fecha"), rs.getString("resena"), rs.getString("calificacion"));
+						// Completo
+						sesion = new Sesion(rs.getInt("id"), cliente, trabajador, servicio, rs.getTimestamp("fecha"),
+								rs.getString("resena"), rs.getString("calificacion"));
 					}
-					
+
 					return sesion;
 				} catch (SQLException e) {
 					throw new RepositoriosException("Error al acceder a los registros", e);
@@ -163,17 +172,58 @@ class SesionMySQL implements Dao<Sesion> {
 		} catch (SQLException e) {
 			throw new RepositoriosException("Error al conectar", e);
 		}
-		
+
 	}
 
 	@Override
-	public void insert(Sesion objeto) {
-		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
+	public void insert(Sesion sesion) {
+		try (Connection con = getConexion()) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
+
+				ps.setInt(1, sesion.getCliente().getId());
+				ps.setInt(2, sesion.getTrabajador().getId());
+				ps.setInt(3, sesion.getServicio().getId());
+				ps.setTimestamp(4, new Timestamp(sesion.getFecha().getTime()));
+				ps.setString(5, sesion.getResena());
+				ps.setString(6, sesion.getCalificacion());
+
+				int numeroRegistrosModificados = ps.executeUpdate();
+
+				if (numeroRegistrosModificados != 1) {
+					throw new RepositoriosException("Número de registros modificados: " + numeroRegistrosModificados);
+				}
+			} catch (SQLException e) {
+				throw new RepositoriosException("Error al crear la sentencia", e);
+			}
+		} catch (SQLException e) {
+			throw new RepositoriosException("Error al conectar", e);
+		}
 	}
 
 	@Override
-	public void update(Sesion objeto) {
-		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
+	public void update(Sesion sesion) {
+		try (Connection con = getConexion()) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
+
+				ps.setInt(1, sesion.getCliente().getId());
+				ps.setInt(2, sesion.getTrabajador().getId());
+				ps.setInt(3, sesion.getServicio().getId());
+				ps.setTimestamp(4, new Timestamp(sesion.getFecha().getTime()));
+				ps.setString(5, sesion.getResena());
+				ps.setString(6, sesion.getCalificacion());
+				ps.setInt(7, sesion.getId());
+				
+				int numeroRegistrosModificados = ps.executeUpdate();
+
+				if (numeroRegistrosModificados != 1) {
+					throw new RepositoriosException("Número de registros modificados: " + numeroRegistrosModificados);
+				}
+			} catch (SQLException e) {
+				throw new RepositoriosException("Error al crear la sentencia", e);
+			}
+		} catch (SQLException e) {
+			throw new RepositoriosException("Error al conectar", e);
+		}
 	}
 
 	@Override

@@ -56,11 +56,11 @@
 			</div>
 
 			<div class="form-group row">
-				<label for="nombre" class="col-sm-2 col-form-label">Fecha</label>
+				<label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
 				<div class="col-sm-10">
 					<input type="datetime-local"
 						class="form-control is-invalid <%-- ${primeravez ? '' : (video.errorNombre == null ? 'is-valid' : 'is-invalid') } --%>"
-						id="nombre" name="nombre"
+						id="fecha" name="fecha"
 						value="<fmt:formatDate value="${sesion.fecha}" pattern="yyyy-MM-dd'T'HH:mm" />" />
 					<div class="invalid-feedback">Fecha no válida</div>
 				</div>
