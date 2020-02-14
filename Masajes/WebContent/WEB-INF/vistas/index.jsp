@@ -31,7 +31,7 @@
 						<td><a href="javascript:alert('${s.resena}')">${fn:substring(s.resena, 0, 20)}...</a></td>
 						<td>${s.calificacion}</td>
 						<td><a href="sesion?id=${s.id}"
-							class="btn btn-primary btn-sm">Editar</a> <a href="#"
+							class="btn btn-primary btn-sm">Editar</a> <a onclick="return confirm('¿Estás seguro?')" href="borrarsesion?id=${s.id}"
 							class="btn btn-danger btn-sm">Borrar</a></td>
 					</tr>
 				</c:forEach>

@@ -30,6 +30,8 @@ class SesionMySQL implements Dao<Sesion> {
 	"clientes_idclientes=?, trabajadores_idtrabajadores=?, servicios_idservicios=?, " +
 	"fecha=?, resena=?, calificacion=? WHERE id=?";
 
+	private static final String SQL_DELETE = "DELETE FROM sesiones WHERE id=?";
+
 	private final String url, usuario, password;
 
 	// "SINGLETON"
@@ -228,7 +230,22 @@ class SesionMySQL implements Dao<Sesion> {
 
 	@Override
 	public void delete(Integer id) {
-		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
+		try (Connection con = getConexion()) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
+
+				ps.setInt(1, id);
+				
+				int numeroRegistrosModificados = ps.executeUpdate();
+
+				if (numeroRegistrosModificados != 1) {
+					throw new RepositoriosException("Número de registros modificados: " + numeroRegistrosModificados);
+				}
+			} catch (SQLException e) {
+				throw new RepositoriosException("Error al crear la sentencia", e);
+			}
+		} catch (SQLException e) {
+			throw new RepositoriosException("Error al conectar", e);
+		}
 	}
 
 }
