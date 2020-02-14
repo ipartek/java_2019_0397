@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ipartek.formacion.masajes.modelos.Cliente;
 import com.ipartek.formacion.masajes.modelos.Servicio;
@@ -21,29 +22,40 @@ public class SesionController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = request.getParameter("id");
+		try {
+			String id = request.getParameter("id");
 
-		if (id != null) {
-			Integer idInteger = new Integer(id);
+			if (id != null) {
+				Integer idInteger = new Integer(id);
 
-			Sesion sesion = Globales.daoSesion.getById(idInteger);
+				Sesion sesion = Globales.daoSesion.getById(idInteger);
 
-			request.setAttribute("sesion", sesion);
+				request.setAttribute("sesion", sesion);
+			}
+
+			Iterable<Cliente> clientes = Globales.daoClientes.getAll();
+			Iterable<Trabajador> trabajadores = Globales.daoTrabajadores.getAll();
+			Iterable<Servicio> servicios = Globales.daoServicios.getAll();
+
+			request.setAttribute("clientes", clientes);
+			request.setAttribute("trabajadores", trabajadores);
+			request.setAttribute("servicios", servicios);
+
+			request.getRequestDispatcher("/WEB-INF/vistas/sesion.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.setAttribute("alertatexto", e.getMessage());
+			request.setAttribute("alertanivel", "danger");
+
+			e.printStackTrace();
+
+			request.getRequestDispatcher("/WEB-INF/vistas/sesion.jsp").forward(request, response);
 		}
-
-		Iterable<Cliente> clientes = Globales.daoClientes.getAll();
-		Iterable<Trabajador> trabajadores = Globales.daoTrabajadores.getAll();
-		Iterable<Servicio> servicios = Globales.daoServicios.getAll();
-
-		request.setAttribute("clientes", clientes);
-		request.setAttribute("trabajadores", trabajadores);
-		request.setAttribute("servicios", servicios);
-
-		request.getRequestDispatcher("/WEB-INF/vistas/sesion.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+
 		String id = request.getParameter("id");
 		String idCliente = request.getParameter("cliente");
 		String idTrabajador = request.getParameter("trabajador");
@@ -56,7 +68,7 @@ public class SesionController extends HttpServlet {
 		Trabajador trabajador;
 		Servicio servicio;
 		Sesion sesion;
-		
+
 		try {
 			// Partes
 			cliente = new Cliente(Integer.parseInt(idCliente), null, null, null);
@@ -69,7 +81,7 @@ public class SesionController extends HttpServlet {
 
 			sesion = new Sesion(null, cliente, trabajador, servicio,
 					new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(fecha), resena, calificacion);
-			
+
 			if (id == null || id.trim().length() == 0) {
 				Globales.daoSesion.insert(sesion);
 			} else {
@@ -77,12 +89,21 @@ public class SesionController extends HttpServlet {
 				Globales.daoSesion.update(sesion);
 			}
 
-		} catch (NumberFormatException | ParseException e) {
-			throw new ServletException("Formato de ids o fecha incorrectos", e);
-		}
+			response.sendRedirect(request.getContextPath() + "/");
 
-		
-		response.sendRedirect(request.getContextPath() + "/");
+		} catch (NumberFormatException | ParseException e) {
+			session.setAttribute("alertatexto", "Formato de ids o fecha incorrectos");
+			session.setAttribute("alertanivel", "danger");
+
+			response.sendRedirect("#");
+		} catch (Exception e) {
+			session.setAttribute("alertatexto", e.getMessage());
+			session.setAttribute("alertanivel", "danger");
+
+			e.printStackTrace();
+
+			response.sendRedirect("#");
+		}
 	}
 
 }
