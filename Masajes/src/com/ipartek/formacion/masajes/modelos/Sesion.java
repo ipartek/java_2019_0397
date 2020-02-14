@@ -6,21 +6,22 @@ import java.util.Date;
 
 public class Sesion {
 	private Integer id;
-	
-	//En lugar de ids, colocamos directamente las entidades relacionadas
-	
-	//En una relación de varios a uno en orientación a objetos
-	//ponemos la referencia a las clases relacionadas directamente como tipos de dichas clases
+
+	// En lugar de ids, colocamos directamente las entidades relacionadas
+
+	// En una relación de varios a uno en orientación a objetos
+	// ponemos la referencia a las clases relacionadas directamente como tipos de
+	// dichas clases
 	private Cliente cliente;
 	private Trabajador trabajador;
 	private Servicio servicio;
-	
+
 	private Date fecha;
 	private String resena, calificacion;
-	
+
 	private boolean correcto = true;
-	private String errorId, errorCliente, errorTrabajador, errorServicio, errorFecha;
-	
+	private String errorId, errorCliente, errorTrabajador, errorServicio, errorFecha, errorCalificacion, errorResena;
+
 	public Sesion(String id, String cliente, String trabajador, String servicio, String fecha, String resena,
 			String calificacion) {
 		setId(id);
@@ -31,7 +32,7 @@ public class Sesion {
 		setResena(resena);
 		setCalificacion(calificacion);
 	}
-	
+
 	private void setFecha(String fecha) {
 		try {
 			setFecha(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(fecha));
@@ -41,39 +42,51 @@ public class Sesion {
 	}
 
 	private void setServicio(String servicio) {
-		try {
-			setServicio(new Servicio(Integer.parseInt(servicio), null, null));
-		} catch (NumberFormatException e) {
-			setErrorServicio("El id de servicio debe ser numérico");
-		}		
+		if (servicio == null) {
+			setErrorServicio("Debes seleccionar un servicio");
+		} else {
+			try {
+				setServicio(new Servicio(Integer.parseInt(servicio), null, null));
+			} catch (NumberFormatException e) {
+				setErrorServicio("El id de servicio debe ser numérico");
+			}
+		}
 	}
 
 	private void setTrabajador(String trabajador) {
-		try {
-			setTrabajador(new Trabajador(Integer.parseInt(trabajador), null, null, null));
-		} catch (NumberFormatException e) {
-			setErrorTrabajador("El id de trabajador debe ser numérico");
-		}	
+		if (trabajador == null) {
+			setErrorTrabajador("Debes seleccionar un trabajador");
+		} else {
+			try {
+				setTrabajador(new Trabajador(Integer.parseInt(trabajador), null, null, null));
+			} catch (NumberFormatException e) {
+				setErrorTrabajador("El id de trabajador debe ser numérico");
+			}
+		}
 	}
 
 	private void setCliente(String cliente) {
-		try {
-			setCliente(new Cliente(Integer.parseInt(cliente), null, null, null));
-		} catch (NumberFormatException e) {
-			setErrorCliente("El id de cliente debe ser numérico");
-		}	
+		if (cliente == null) {
+			setErrorCliente("Debes seleccionar un cliente");
+		} else {
+			try {
+				setCliente(new Cliente(Integer.parseInt(cliente), null, null, null));
+			} catch (NumberFormatException e) {
+				setErrorCliente("El id de cliente debe ser numérico");
+			}
+		}
 	}
 
 	private void setId(String id) {
 		try {
-			if(id == null || id.trim().length() == 0) {
-				setId((Integer)null);
+			if (id == null || id.trim().length() == 0) {
+				setId((Integer) null);
 			} else {
 				setId(Integer.parseInt(id));
 			}
 		} catch (NumberFormatException e) {
 			setErrorId("El id de sesión debe ser numérico");
-		}	
+		}
 	}
 
 	public Sesion(Integer id, Cliente cliente, Trabajador trabajador, Servicio servicio, Date fecha, String resena,
@@ -86,55 +99,86 @@ public class Sesion {
 		setResena(resena);
 		setCalificacion(calificacion);
 	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public Cliente getCliente() {
 		return cliente;
 	}
+
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
 	public Trabajador getTrabajador() {
 		return trabajador;
 	}
+
 	public void setTrabajador(Trabajador trabajador) {
 		this.trabajador = trabajador;
 	}
+
 	public Servicio getServicio() {
 		return servicio;
 	}
+
 	public void setServicio(Servicio servicio) {
 		this.servicio = servicio;
 	}
+
 	public Date getFecha() {
 		return fecha;
 	}
+
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+
 	public String getResena() {
 		return resena;
 	}
+
 	public void setResena(String resena) {
 		this.resena = resena;
 	}
+
 	public String getCalificacion() {
 		return calificacion;
 	}
+
 	public void setCalificacion(String calificacion) {
+		if (calificacion == null) {
+			setErrorCalificacion("Calificación incorrecta");
+		} else {
+			switch (calificacion) {
+			case "":
+			case "No recomendable":
+			case "Aceptable":
+			case "Para repetir":
+				break;
+			default:
+				setErrorCalificacion("Calificación incorrecta");
+			}
+		}
+
 		this.calificacion = calificacion;
 	}
+
 	public String getErrorFecha() {
 		return errorFecha;
 	}
+
 	public void setErrorFecha(String errorFecha) {
 		setCorrecto(false);
 		this.errorFecha = errorFecha;
 	}
+
 	public String getErrorId() {
 		return errorId;
 	}
@@ -171,12 +215,32 @@ public class Sesion {
 		this.errorServicio = errorServicio;
 	}
 
+	public String getErrorResena() {
+		return errorResena;
+	}
+
+	public void setErrorResena(String errorResena) {
+		setCorrecto(false);
+		this.errorResena = errorResena;
+	}
+
+	public String getErrorCalificacion() {
+		return errorCalificacion;
+	}
+
+	public void setErrorCalificacion(String errorCalificacion) {
+		setCorrecto(false);
+		this.errorCalificacion = errorCalificacion;
+	}
+
 	public boolean isCorrecto() {
 		return correcto;
 	}
+
 	public void setCorrecto(boolean correcto) {
 		this.correcto = correcto;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -190,6 +254,7 @@ public class Sesion {
 		result = prime * result + ((trabajador == null) ? 0 : trabajador.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -236,6 +301,7 @@ public class Sesion {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Sesion [id=" + id + ", cliente=" + cliente + ", trabajador=" + trabajador + ", servicio=" + servicio

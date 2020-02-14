@@ -20,12 +20,14 @@
 				<label for="cliente" class="col-sm-2 col-form-label">Cliente</label>
 				<div class="col-sm-10">
 					<select
-						class="form-control"
+						class="form-control ${sesion != null ? (sesion.errorCliente == null ? 'is-valid' : 'is-invalid') : '' }"
 						id="cliente" name="cliente">
+						<option disabled selected value="">Selecciona un cliente</option>
 						<c:forEach items="${clientes}" var="cliente">
 							<option ${cliente.id == sesion.cliente.id ? 'selected': '' } value="${cliente.id}">${cliente.nombre} ${cliente.apellidos}</option>
 						</c:forEach>
 					</select>
+					<div class="invalid-feedback">${sesion.errorCliente}</div>
 				</div>
 			</div>
 
@@ -33,25 +35,29 @@
 				<label for="trabajador" class="col-sm-2 col-form-label">Trabajador</label>
 				<div class="col-sm-10">
 					<select
-						class="form-control"
+						class="form-control ${sesion != null ? (sesion.errorTrabajador == null ? 'is-valid' : 'is-invalid') : '' }"
 						id="trabajador" name="trabajador">
+						<option disabled selected value="">Selecciona un trabajador</option>
 						<c:forEach items="${trabajadores}" var="trabajador">
 							<option ${trabajador.id == sesion.trabajador.id ? 'selected': '' } value="${trabajador.id}">${trabajador.nombre} ${trabajador.apellidos}</option>
 						</c:forEach>
 					</select>
+					<div class="invalid-feedback">${sesion.errorTrabajador}</div>
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label for="servicio" class="col-sm-2 col-form-label">Calificación</label>
+				<label for="servicio" class="col-sm-2 col-form-label">Servicio</label>
 				<div class="col-sm-10">
 					<select
-						class="form-control"
+						class="form-control ${sesion != null ? (sesion.errorServicio == null ? 'is-valid' : 'is-invalid') : '' }"
 						id="servicio" name="servicio">
+						<option disabled selected value="">Selecciona un servicio</option>
 						<c:forEach items="${servicios}" var="servicio">
 							<option ${servicio.id == sesion.servicio.id ? 'selected': '' } value="${servicio.id}">${servicio.nombre}</option>
 						</c:forEach>
 					</select>
+					<div class="invalid-feedback">${sesion.errorServicio}</div>
 				</div>
 			</div>
 
@@ -69,7 +75,7 @@
 				<label for="resena" class="col-sm-2 col-form-label">Reseña</label>
 				<div class="col-sm-10">
 					<textarea
-						class="form-control"
+						class="form-control ${sesion != null ? 'is-valid' : '' }"
 						id="resena" name="resena">${sesion.resena}</textarea>
 					<div class="invalid-feedback">¿Puedes escribir un poco más?</div>
 				</div>
@@ -78,9 +84,9 @@
 				<label for="calificacion" class="col-sm-2 col-form-label">Calificación</label>
 				<div class="col-sm-10">
 					<select
-						class="form-control"
+						class="form-control ${sesion != null ? (sesion.errorCalificacion == null ? 'is-valid' : 'is-invalid') : '' }"
 						id="calificacion" name="calificacion">
-						<option></option>
+						<option selected value="">No ha calificado</option>
 						<option
 							${sesion.calificacion == 'No recomendable' ? 'selected': '' }>No
 							recomendable</option>
@@ -88,6 +94,7 @@
 						<option ${sesion.calificacion == 'Para repetir' ? 'selected': '' }>Para
 							repetir</option>
 					</select>
+					<div class="invalid-feedback">${sesion.errorCalificacion}</div>
 				</div>
 			</div>
 			<div class="form-group row">
