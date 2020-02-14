@@ -20,7 +20,7 @@
 				<label for="cliente" class="col-sm-2 col-form-label">Cliente</label>
 				<div class="col-sm-10">
 					<select
-						class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>"
+						class="form-control"
 						id="cliente" name="cliente">
 						<c:forEach items="${clientes}" var="cliente">
 							<option ${cliente.id == sesion.cliente.id ? 'selected': '' } value="${cliente.id}">${cliente.nombre} ${cliente.apellidos}</option>
@@ -33,7 +33,7 @@
 				<label for="trabajador" class="col-sm-2 col-form-label">Trabajador</label>
 				<div class="col-sm-10">
 					<select
-						class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>"
+						class="form-control"
 						id="trabajador" name="trabajador">
 						<c:forEach items="${trabajadores}" var="trabajador">
 							<option ${trabajador.id == sesion.trabajador.id ? 'selected': '' } value="${trabajador.id}">${trabajador.nombre} ${trabajador.apellidos}</option>
@@ -46,7 +46,7 @@
 				<label for="servicio" class="col-sm-2 col-form-label">Calificación</label>
 				<div class="col-sm-10">
 					<select
-						class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>"
+						class="form-control"
 						id="servicio" name="servicio">
 						<c:forEach items="${servicios}" var="servicio">
 							<option ${servicio.id == sesion.servicio.id ? 'selected': '' } value="${servicio.id}">${servicio.nombre}</option>
@@ -59,17 +59,17 @@
 				<label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
 				<div class="col-sm-10">
 					<input type="datetime-local"
-						class="form-control is-invalid <%-- ${primeravez ? '' : (video.errorNombre == null ? 'is-valid' : 'is-invalid') } --%>"
+						class="form-control ${sesion != null ? (sesion.errorFecha == null ? 'is-valid' : 'is-invalid') : '' }"
 						id="fecha" name="fecha"
 						value="<fmt:formatDate value="${sesion.fecha}" pattern="yyyy-MM-dd'T'HH:mm" />" />
-					<div class="invalid-feedback">Fecha no válida</div>
+					<div class="invalid-feedback">${sesion.errorFecha}</div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="resena" class="col-sm-2 col-form-label">Reseña</label>
 				<div class="col-sm-10">
 					<textarea
-						class="form-control is-invalid <%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>"
+						class="form-control"
 						id="resena" name="resena">${sesion.resena}</textarea>
 					<div class="invalid-feedback">¿Puedes escribir un poco más?</div>
 				</div>
@@ -78,7 +78,7 @@
 				<label for="calificacion" class="col-sm-2 col-form-label">Calificación</label>
 				<div class="col-sm-10">
 					<select
-						class="form-control<%-- ${primeravez ? '' : (video.errorUrl == null ? 'is-valid' : 'is-invalid') } --%>"
+						class="form-control"
 						id="calificacion" name="calificacion">
 						<option></option>
 						<option

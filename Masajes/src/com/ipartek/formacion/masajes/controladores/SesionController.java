@@ -1,8 +1,6 @@
 package com.ipartek.formacion.masajes.controladores;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +16,7 @@ import com.ipartek.formacion.masajes.modelos.Trabajador;
 
 @WebServlet("/sesion")
 public class SesionController extends HttpServlet {
+	private static final String SESION_JSP = "/WEB-INF/vistas/sesion.jsp";
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,23 +32,27 @@ public class SesionController extends HttpServlet {
 				request.setAttribute("sesion", sesion);
 			}
 
-			Iterable<Cliente> clientes = Globales.daoClientes.getAll();
-			Iterable<Trabajador> trabajadores = Globales.daoTrabajadores.getAll();
-			Iterable<Servicio> servicios = Globales.daoServicios.getAll();
+			contenidoDesplegables(request);
 
-			request.setAttribute("clientes", clientes);
-			request.setAttribute("trabajadores", trabajadores);
-			request.setAttribute("servicios", servicios);
-
-			request.getRequestDispatcher("/WEB-INF/vistas/sesion.jsp").forward(request, response);
+			request.getRequestDispatcher(SESION_JSP).forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("alertatexto", e.getMessage());
 			request.setAttribute("alertanivel", "danger");
 
 			e.printStackTrace();
 
-			request.getRequestDispatcher("/WEB-INF/vistas/sesion.jsp").forward(request, response);
+			request.getRequestDispatcher(SESION_JSP).forward(request, response);
 		}
+	}
+
+	private void contenidoDesplegables(HttpServletRequest request) {
+		Iterable<Cliente> clientes = Globales.daoClientes.getAll();
+		Iterable<Trabajador> trabajadores = Globales.daoTrabajadores.getAll();
+		Iterable<Servicio> servicios = Globales.daoServicios.getAll();
+
+		request.setAttribute("clientes", clientes);
+		request.setAttribute("trabajadores", trabajadores);
+		request.setAttribute("servicios", servicios);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -64,38 +67,31 @@ public class SesionController extends HttpServlet {
 		String resena = request.getParameter("resena");
 		String calificacion = request.getParameter("calificacion");
 
-		Cliente cliente;
-		Trabajador trabajador;
-		Servicio servicio;
 		Sesion sesion;
 
 		try {
-			// Partes
-			cliente = new Cliente(Integer.parseInt(idCliente), null, null, null);
+			sesion = new Sesion(id, idCliente, idTrabajador, idServicio,
+					fecha, resena, calificacion);
 
-			trabajador = new Trabajador(Integer.parseInt(idTrabajador), null, null, null);
+			if(!sesion.isCorrecto()) {
+				request.setAttribute("sesion", sesion);
+				
+				session.setAttribute("alertatexto", "Errores de validación en el formulario");
+				session.setAttribute("alertanivel", "danger");
 
-			servicio = new Servicio(Integer.parseInt(idServicio), null, null);
-
-			// Completo
-
-			sesion = new Sesion(null, cliente, trabajador, servicio,
-					new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(fecha), resena, calificacion);
-
+				contenidoDesplegables(request);
+				
+				request.getRequestDispatcher(SESION_JSP).forward(request, response);
+			}
+			
 			if (id == null || id.trim().length() == 0) {
 				Globales.daoSesion.insert(sesion);
 			} else {
-				sesion.setId(Integer.parseInt(id));
 				Globales.daoSesion.update(sesion);
 			}
 
 			response.sendRedirect(request.getContextPath() + "/");
 
-		} catch (NumberFormatException | ParseException e) {
-			session.setAttribute("alertatexto", "Formato de ids o fecha incorrectos");
-			session.setAttribute("alertanivel", "danger");
-
-			response.sendRedirect("#");
 		} catch (Exception e) {
 			session.setAttribute("alertatexto", e.getMessage());
 			session.setAttribute("alertanivel", "danger");

@@ -1,5 +1,7 @@
 package com.ipartek.formacion.masajes.modelos;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Sesion {
@@ -15,16 +17,74 @@ public class Sesion {
 	
 	private Date fecha;
 	private String resena, calificacion;
+	
+	private boolean correcto = true;
+	private String errorId, errorCliente, errorTrabajador, errorServicio, errorFecha;
+	
+	public Sesion(String id, String cliente, String trabajador, String servicio, String fecha, String resena,
+			String calificacion) {
+		setId(id);
+		setCliente(cliente);
+		setTrabajador(trabajador);
+		setServicio(servicio);
+		setFecha(fecha);
+		setResena(resena);
+		setCalificacion(calificacion);
+	}
+	
+	private void setFecha(String fecha) {
+		try {
+			setFecha(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(fecha));
+		} catch (ParseException e) {
+			setErrorFecha("El formato de la fecha es incorrecto");
+		}
+	}
+
+	private void setServicio(String servicio) {
+		try {
+			setServicio(new Servicio(Integer.parseInt(servicio), null, null));
+		} catch (NumberFormatException e) {
+			setErrorServicio("El id de servicio debe ser numérico");
+		}		
+	}
+
+	private void setTrabajador(String trabajador) {
+		try {
+			setTrabajador(new Trabajador(Integer.parseInt(trabajador), null, null, null));
+		} catch (NumberFormatException e) {
+			setErrorTrabajador("El id de trabajador debe ser numérico");
+		}	
+	}
+
+	private void setCliente(String cliente) {
+		try {
+			setCliente(new Cliente(Integer.parseInt(cliente), null, null, null));
+		} catch (NumberFormatException e) {
+			setErrorCliente("El id de cliente debe ser numérico");
+		}	
+	}
+
+	private void setId(String id) {
+		try {
+			if(id == null || id.trim().length() == 0) {
+				setId((Integer)null);
+			} else {
+				setId(Integer.parseInt(id));
+			}
+		} catch (NumberFormatException e) {
+			setErrorId("El id de sesión debe ser numérico");
+		}	
+	}
+
 	public Sesion(Integer id, Cliente cliente, Trabajador trabajador, Servicio servicio, Date fecha, String resena,
 			String calificacion) {
-		super();
-		this.id = id;
-		this.cliente = cliente;
-		this.trabajador = trabajador;
-		this.servicio = servicio;
-		this.fecha = fecha;
-		this.resena = resena;
-		this.calificacion = calificacion;
+		setId(id);
+		setCliente(cliente);
+		setTrabajador(trabajador);
+		setServicio(servicio);
+		setFecha(fecha);
+		setResena(resena);
+		setCalificacion(calificacion);
 	}
 	public Integer getId() {
 		return id;
@@ -67,6 +127,55 @@ public class Sesion {
 	}
 	public void setCalificacion(String calificacion) {
 		this.calificacion = calificacion;
+	}
+	public String getErrorFecha() {
+		return errorFecha;
+	}
+	public void setErrorFecha(String errorFecha) {
+		setCorrecto(false);
+		this.errorFecha = errorFecha;
+	}
+	public String getErrorId() {
+		return errorId;
+	}
+
+	public void setErrorId(String errorId) {
+		setCorrecto(false);
+		this.errorId = errorId;
+	}
+
+	public String getErrorCliente() {
+		return errorCliente;
+	}
+
+	public void setErrorCliente(String errorCliente) {
+		setCorrecto(false);
+		this.errorCliente = errorCliente;
+	}
+
+	public String getErrorTrabajador() {
+		return errorTrabajador;
+	}
+
+	public void setErrorTrabajador(String errorTrabajador) {
+		setCorrecto(false);
+		this.errorTrabajador = errorTrabajador;
+	}
+
+	public String getErrorServicio() {
+		return errorServicio;
+	}
+
+	public void setErrorServicio(String errorServicio) {
+		setCorrecto(false);
+		this.errorServicio = errorServicio;
+	}
+
+	public boolean isCorrecto() {
+		return correcto;
+	}
+	public void setCorrecto(boolean correcto) {
+		this.correcto = correcto;
 	}
 	@Override
 	public int hashCode() {
