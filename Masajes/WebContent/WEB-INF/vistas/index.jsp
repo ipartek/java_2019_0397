@@ -28,7 +28,13 @@
 						<td>${s.trabajador.nombre}${s.trabajador.apellidos}</td>
 						<td>${s.servicio.nombre}</td>
 						<td><fmt:formatDate value="${s.fecha}" pattern="dd-MM-yyyy HH:mm" /></td>
-						<td><a href="javascript:alert('${s.resena}')">${fn:substring(s.resena, 0, 20)}...</a></td>
+						<td>
+							<c:if test="${s.resena != '' }">
+								<a href="javascript:alert('${s.resena}')">${fn:substring(s.resena, 0, 20)}
+								${ fn:length(s.resena) > 20 ? '...' : '' }
+								</a>
+							</c:if>
+						</td>
 						<td>${s.calificacion}</td>
 						<td><a href="sesion?id=${s.id}"
 							class="btn btn-primary btn-sm">Editar</a> <a onclick="return confirm('¿Estás seguro?')" href="borrarsesion?id=${s.id}"
