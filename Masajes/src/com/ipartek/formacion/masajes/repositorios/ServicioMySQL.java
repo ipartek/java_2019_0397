@@ -70,11 +70,13 @@ public class ServicioMySQL implements Dao<Servicio> {
 			new com.mysql.cj.jdbc.Driver();
 			return DriverManager.getConnection(url, usuario, password);
 		} catch (SQLException e) {
+			System.err.println("IPARTEK: Error de conexión a la base de datos: " + url + ":" + usuario + ":" + password);
+			e.printStackTrace();
+			
 			throw new RepositoriosException(
-					"No se ha podido conectar a la base de datos " + url + ":" + usuario + ":" + password, e);
+					"No se ha podido conectar a la base de datos", e);
 		}
 	}
-
 	@Override
 	public Iterable<Servicio> getAll() {
 		try (Connection con = getConexion()) {
