@@ -114,7 +114,7 @@ public class TrabajadorMySQL implements Dao<Trabajador> {
 	}
 
 	@Override
-	public void insert(Trabajador objeto) {
+	public Integer insert(Trabajador objeto) {
 		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
 	}
 

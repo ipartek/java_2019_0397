@@ -1,17 +1,21 @@
 package com.ipartek.formacion.masajes.repositorios;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.ipartek.formacion.masajes.modelos.Cliente;
 
 public class ClienteMySQL implements Dao<Cliente> {
 
-	private static final String SQL_GET_ALL = "SELECT * FROM clientes";
+	private static final String SQL_GET_ALL = "CALL clientesGetAll()";
+
+	private static final String SQL_GET_BY_ID = "CALL clientesGetById(?)";
+
+	private static final String SQL_INSERT = "CALL clientesInsert(?,?,?,?)";
 		
 	private final String url, usuario, password;
 
@@ -82,8 +86,8 @@ public class ClienteMySQL implements Dao<Cliente> {
 	@Override
 	public Iterable<Cliente> getAll() {
 		try (Connection con = getConexion()) {
-			try (Statement s = con.createStatement()) {
-				try (ResultSet rs = s.executeQuery(SQL_GET_ALL)) {
+			try (CallableStatement s = con.prepareCall(SQL_GET_ALL)) {
+				try (ResultSet rs = s.executeQuery()) {
 					ArrayList<Cliente> clientes = new ArrayList<>();
 
 					Cliente cliente;
@@ -110,12 +114,53 @@ public class ClienteMySQL implements Dao<Cliente> {
 
 	@Override
 	public Cliente getById(Integer id) {
-		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
+		try (Connection con = getConexion()) {
+			try (CallableStatement s = con.prepareCall(SQL_GET_BY_ID)) {
+				s.setInt(1, id);
+				try (ResultSet rs = s.executeQuery()) {
+					Cliente cliente = null;
+					
+					if(rs.next()) {
+						cliente = new Cliente(rs.getInt("idclientes"), rs.getString("nombre"),
+								rs.getString("apellidos"), rs.getString("dni"));
+					}
+					
+					return cliente;
+				} catch (SQLException e) {
+					throw new RepositoriosException("Error al acceder a los registros", e);
+				}
+			} catch (SQLException e) {
+				throw new RepositoriosException("Error al crear la sentencia", e);
+			}
+		} catch (SQLException e) {
+			throw new RepositoriosException("Error al conectar", e);
+		}
 	}
 
 	@Override
-	public void insert(Cliente objeto) {
-		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
+	public Integer insert(Cliente cliente) {
+		try (Connection con = getConexion()) {
+			try (CallableStatement s = con.prepareCall(SQL_INSERT)) {
+				s.setString(1, cliente.getNombre());
+				s.setString(2, cliente.getApellidos());
+				s.setString(3, cliente.getDni());
+				
+				s.registerOutParameter(4, java.sql.Types.INTEGER);
+				
+				int numeroRegistrosModificados = s.executeUpdate();
+				
+				if(numeroRegistrosModificados != 1) {
+					throw new RepositoriosException("Número de registros modificados: " + numeroRegistrosModificados);
+				}
+				
+				return s.getInt(4);
+					
+			} catch (SQLException e) {
+				throw new RepositoriosException("Error al crear la sentencia", e);
+			}
+		} catch (SQLException e) {
+			throw new RepositoriosException("Error al conectar", e);
+		}
 	}
 
 	@Override

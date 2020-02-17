@@ -181,7 +181,7 @@ class SesionMySQL implements Dao<Sesion> {
 	}
 
 	@Override
-	public void insert(Sesion sesion) {
+	public Integer insert(Sesion sesion) {
 		try (Connection con = getConexion()) {
 			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
 
@@ -197,6 +197,8 @@ class SesionMySQL implements Dao<Sesion> {
 				if (numeroRegistrosModificados != 1) {
 					throw new RepositoriosException("Número de registros modificados: " + numeroRegistrosModificados);
 				}
+				
+				return null;
 			} catch (SQLException e) {
 				throw new RepositoriosException("Error al crear la sentencia", e);
 			}

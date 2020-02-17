@@ -111,7 +111,7 @@ public class ServicioMySQL implements Dao<Servicio> {
 	}
 
 	@Override
-	public void insert(Servicio objeto) {
+	public Integer insert(Servicio objeto) {
 		throw new UnsupportedOperationException("NO ESTA IMPLEMENTADO");
 	}
 
