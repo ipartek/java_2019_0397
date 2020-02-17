@@ -7,6 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import com.ipartek.formacion.masajes.modelos.Cliente;
 
 public class ClienteMySQL implements Dao<Cliente> {
@@ -16,8 +21,10 @@ public class ClienteMySQL implements Dao<Cliente> {
 	private static final String SQL_GET_BY_ID = "CALL clientesGetById(?)";
 
 	private static final String SQL_INSERT = "CALL clientesInsert(?,?,?,?)";
-		
+
 	private final String url, usuario, password;
+
+	private static DataSource pool;
 
 	// "SINGLETON"
 	private ClienteMySQL(String url, String usuario, String password) {
@@ -68,18 +75,47 @@ public class ClienteMySQL implements Dao<Cliente> {
 		// Si ya existe, se devuelve
 		return instancia;
 	}
+
+	/**
+	 * Usaremos un pool de conexiones determinado
+	 * 
+	 * @return devuelve la instancia del pool de conexiones
+	 */
+	public static ClienteMySQL getInstancia(String entorno) {
+		InitialContext initCtx;
+		try {
+			initCtx = new InitialContext();
+
+			Context envCtx = (Context) initCtx.lookup("java:comp/env");
+			DataSource dataSource = (DataSource) envCtx.lookup(entorno);
+
+			ClienteMySQL.pool = dataSource;
+
+			if(instancia == null) {
+				instancia = new ClienteMySQL(null, null, null);
+			}
+			
+			return instancia;
+		} catch (NamingException e) {
+			throw new RepositoriosException("No se ha podido conectar al Pool de conexiones " + entorno);
+		}
+	}
 	// FIN "SINGLETON"
 
 	private Connection getConexion() {
 		try {
-			new com.mysql.cj.jdbc.Driver();
-			return DriverManager.getConnection(url, usuario, password);
+			if (pool == null) {
+				new com.mysql.cj.jdbc.Driver();
+				return DriverManager.getConnection(url, usuario, password);
+			} else {
+				return pool.getConnection();
+			}
 		} catch (SQLException e) {
-			System.err.println("IPARTEK: Error de conexión a la base de datos: " + url + ":" + usuario + ":" + password);
+			System.err
+					.println("IPARTEK: Error de conexión a la base de datos: " + url + ":" + usuario + ":" + password);
 			e.printStackTrace();
-			
-			throw new RepositoriosException(
-					"No se ha podido conectar a la base de datos", e);
+
+			throw new RepositoriosException("No se ha podido conectar a la base de datos", e);
 		}
 	}
 
@@ -91,14 +127,14 @@ public class ClienteMySQL implements Dao<Cliente> {
 					ArrayList<Cliente> clientes = new ArrayList<>();
 
 					Cliente cliente;
-					
+
 					while (rs.next()) {
 						cliente = new Cliente(rs.getInt("idclientes"), rs.getString("nombre"),
 								rs.getString("apellidos"), rs.getString("dni"));
 
 						clientes.add(cliente);
 					}
-					
+
 					return clientes;
 				} catch (SQLException e) {
 					throw new RepositoriosException("Error al acceder a los registros", e);
@@ -111,7 +147,6 @@ public class ClienteMySQL implements Dao<Cliente> {
 		}
 	}
 
-
 	@Override
 	public Cliente getById(Integer id) {
 		try (Connection con = getConexion()) {
@@ -119,12 +154,12 @@ public class ClienteMySQL implements Dao<Cliente> {
 				s.setInt(1, id);
 				try (ResultSet rs = s.executeQuery()) {
 					Cliente cliente = null;
-					
-					if(rs.next()) {
+
+					if (rs.next()) {
 						cliente = new Cliente(rs.getInt("idclientes"), rs.getString("nombre"),
 								rs.getString("apellidos"), rs.getString("dni"));
 					}
-					
+
 					return cliente;
 				} catch (SQLException e) {
 					throw new RepositoriosException("Error al acceder a los registros", e);
@@ -144,17 +179,17 @@ public class ClienteMySQL implements Dao<Cliente> {
 				s.setString(1, cliente.getNombre());
 				s.setString(2, cliente.getApellidos());
 				s.setString(3, cliente.getDni());
-				
+
 				s.registerOutParameter(4, java.sql.Types.INTEGER);
-				
+
 				int numeroRegistrosModificados = s.executeUpdate();
-				
-				if(numeroRegistrosModificados != 1) {
+
+				if (numeroRegistrosModificados != 1) {
 					throw new RepositoriosException("Número de registros modificados: " + numeroRegistrosModificados);
 				}
-				
+
 				return s.getInt(4);
-					
+
 			} catch (SQLException e) {
 				throw new RepositoriosException("Error al crear la sentencia", e);
 			}
