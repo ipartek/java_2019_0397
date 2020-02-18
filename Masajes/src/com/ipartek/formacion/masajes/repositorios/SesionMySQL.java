@@ -8,13 +8,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.ipartek.formacion.masajes.modelos.Cliente;
 import com.ipartek.formacion.masajes.modelos.Servicio;
 import com.ipartek.formacion.masajes.modelos.Sesion;
 import com.ipartek.formacion.masajes.modelos.Trabajador;
 
-class SesionMySQL implements Dao<Sesion> {
+class SesionMySQL implements SesionDao {
 	private static final String SQL_GET_ALL = "SELECT * \r\n" + "FROM sesiones ses\r\n"
 			+ "JOIN clientes c ON c.idclientes = ses.clientes_idclientes\r\n"
 			+ "JOIN trabajadores t ON t.idtrabajadores = ses.trabajadores_idtrabajadores\r\n"
@@ -26,9 +27,9 @@ class SesionMySQL implements Dao<Sesion> {
 			+ "(clientes_idclientes, trabajadores_idtrabajadores, servicios_idservicios, "
 			+ "fecha, resena, calificacion) VALUES (?, ?, ?, ?, ?, ?)";
 
-	private static final String SQL_UPDATE = "UPDATE sesiones SET " +
-	"clientes_idclientes=?, trabajadores_idtrabajadores=?, servicios_idservicios=?, " +
-	"fecha=?, resena=?, calificacion=? WHERE id=?";
+	private static final String SQL_UPDATE = "UPDATE sesiones SET "
+			+ "clientes_idclientes=?, trabajadores_idtrabajadores=?, servicios_idservicios=?, "
+			+ "fecha=?, resena=?, calificacion=? WHERE id=?";
 
 	private static final String SQL_DELETE = "DELETE FROM sesiones WHERE id=?";
 
@@ -90,11 +91,11 @@ class SesionMySQL implements Dao<Sesion> {
 			new com.mysql.cj.jdbc.Driver();
 			return DriverManager.getConnection(url, usuario, password);
 		} catch (SQLException e) {
-			System.err.println("IPARTEK: Error de conexión a la base de datos: " + url + ":" + usuario + ":" + password);
+			System.err
+					.println("IPARTEK: Error de conexión a la base de datos: " + url + ":" + usuario + ":" + password);
 			e.printStackTrace();
-			
-			throw new RepositoriosException(
-					"No se ha podido conectar a la base de datos", e);
+
+			throw new RepositoriosException("No se ha podido conectar a la base de datos", e);
 		}
 	}
 
@@ -197,7 +198,7 @@ class SesionMySQL implements Dao<Sesion> {
 				if (numeroRegistrosModificados != 1) {
 					throw new RepositoriosException("Número de registros modificados: " + numeroRegistrosModificados);
 				}
-				
+
 				return null;
 			} catch (SQLException e) {
 				throw new RepositoriosException("Error al crear la sentencia", e);
@@ -219,7 +220,7 @@ class SesionMySQL implements Dao<Sesion> {
 				ps.setString(5, sesion.getResena());
 				ps.setString(6, sesion.getCalificacion());
 				ps.setInt(7, sesion.getId());
-				
+
 				int numeroRegistrosModificados = ps.executeUpdate();
 
 				if (numeroRegistrosModificados != 1) {
@@ -239,7 +240,7 @@ class SesionMySQL implements Dao<Sesion> {
 			try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
 
 				ps.setInt(1, id);
-				
+
 				int numeroRegistrosModificados = ps.executeUpdate();
 
 				if (numeroRegistrosModificados != 1) {
@@ -251,6 +252,51 @@ class SesionMySQL implements Dao<Sesion> {
 		} catch (SQLException e) {
 			throw new RepositoriosException("Error al conectar", e);
 		}
+	}
+
+	@Override
+	public void citaPeriodicaSemanal(Integer idCliente, Integer idTrabajador, Integer idServicio, Date fechaInicial,
+			int repeticiones) {
+		try (Connection con = getConexion()) {
+			con.setAutoCommit(false);
+			
+			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
+
+				ps.setInt(1, idCliente);
+				ps.setInt(2, idTrabajador);
+				ps.setInt(3, idServicio);
+				
+				ps.setString(5, null);
+				ps.setString(6, null);
+
+				for (int repeticion = 1; repeticion <= repeticiones; repeticion++) {
+					ps.setTimestamp(4, new Timestamp(fechaInicial.getTime()+1000L*60*60*24*7*(repeticion-1)));
+					
+					int numeroRegistrosModificados = ps.executeUpdate();
+
+					if (numeroRegistrosModificados != 1) {
+						throw new RepositoriosException(
+								"Número de registros modificados: " + numeroRegistrosModificados);
+					}
+					
+					//SIMULAMOS UN ERROR
+//					if(repeticion == 3) {
+//						throw new SQLException("LA INSERT HA 'FALLADO'");
+//					}
+				}
+				
+				con.commit();
+
+			} catch (SQLException e) {
+				con.rollback();
+				throw new RepositoriosException("Error al crear la sentencia", e);
+			} finally {
+				con.setAutoCommit(true);
+			}
+		} catch (SQLException e) {
+			throw new RepositoriosException("Error al conectar", e);
+		}
+
 	}
 
 }

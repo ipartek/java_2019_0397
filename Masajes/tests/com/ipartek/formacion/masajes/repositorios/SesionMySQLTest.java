@@ -1,6 +1,6 @@
 package com.ipartek.formacion.masajes.repositorios;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.Date;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -8,9 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.ipartek.formacion.masajes.modelos.Cliente;
-
-class ClienteMySQLTest {
+class SesionMySQLTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -28,14 +26,11 @@ class ClienteMySQLTest {
 	void tearDown() throws Exception {
 	}
 
+	
 	@Test
-	void insert() {
-		Dao<Cliente> dao = ClienteMySQL.getInstancia("jdbc:mysql://localhost:3306/masajes?serverTimezone=Europe/Madrid", "root", "admin");
-		Cliente cliente = new Cliente(null, "Nombre Cliente Nuevo","Apellidos Cliente Nuevo","12345678Z");
+	void citaPeriodica() {
+		SesionDao dao = SesionMySQL.getInstancia("jdbc:mysql://localhost:3306/masajes?serverTimezone=Europe/Madrid", "root", "admin");
 		
-		Integer primerId = dao.insert(cliente);
-		Integer segundoId = dao.insert(cliente);
-		
-		assertTrue(segundoId == primerId + 1);
+		dao.citaPeriodicaSemanal(2, 2, 2, new Date(), 5);
 	}
 }
