@@ -31,7 +31,7 @@ CREATE TABLE `clientes` (
   `dni` char(9) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
   `borrado` tinyint DEFAULT '0',
   PRIMARY KEY (`idclientes`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'CNombre1','CApellidos1','11111111A',0),(2,'Modificado','Modificadez','81726354a',1),(4,'Nuevo','Nuevez','12345678Z',0),(5,'Otro','Otrez','127364767',0),(6,'Prueba','Pruebez','12345678Z',0),(7,'Otro','más','123435',0),(8,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(9,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(10,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(11,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(12,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(13,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0);
+INSERT INTO `clientes` VALUES (1,'CNombre1','CApellidos1','11111111A',0),(2,'Modificado','Modificadez','81726354a',1),(4,'Nuevo','Nuevez','12345678Z',0),(5,'Otro','Otrez','127364767',0),(6,'Prueba','Pruebez','12345678Z',0),(7,'Otro','más','123435',0),(8,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(9,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(10,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(11,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(12,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(13,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(14,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(15,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(16,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(17,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(18,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(19,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(20,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(21,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(22,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(23,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(24,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(25,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(26,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(27,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(28,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(29,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(30,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(31,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(32,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(33,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(34,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(35,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(36,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(37,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0),(38,'Nombre Cliente Nuevo','Apellidos Cliente Nuevo','12345678Z',0);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -91,7 +91,7 @@ CREATE TABLE `logs` (
   `tabla` varchar(45) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `operacion` varchar(45) COLLATE utf8mb4_spanish2_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +100,7 @@ CREATE TABLE `logs` (
 
 LOCK TABLES `logs` WRITE;
 /*!40000 ALTER TABLE `logs` DISABLE KEYS */;
-INSERT INTO `logs` VALUES (1,'2020-02-17 09:35:25','clientes','antes de insertar'),(2,'2020-02-17 10:03:53','clientes','antes de insertar'),(3,'2020-02-17 10:04:12','clientes','antes de insertar'),(4,'2020-02-17 10:07:35','clientes','antes de insertar'),(5,'2020-02-17 10:07:35','clientes','antes de insertar'),(6,'2020-02-17 10:07:39','clientes','antes de insertar'),(7,'2020-02-17 10:07:39','clientes','antes de insertar');
+INSERT INTO `logs` VALUES (2,'2020-02-18 08:58:53','transaccion','transaccion1'),(3,'2020-02-18 08:58:53','transaccion','transaccion2'),(4,'2020-02-18 08:59:54','transaccion','transaccion1'),(5,'2020-02-18 08:59:54','transaccion','transaccion2'),(6,'2020-02-18 09:25:08','clientes','antes de insertar'),(7,'2020-02-18 09:25:08','clientes','antes de insertar'),(8,'2020-02-18 09:26:04','clientes','antes de insertar'),(9,'2020-02-18 09:26:04','clientes','antes de insertar'),(10,'2020-02-18 09:27:53','clientes','antes de insertar'),(11,'2020-02-18 09:27:53','clientes','antes de insertar'),(12,'2020-02-18 09:29:51','clientes','antes de insertar'),(13,'2020-02-18 09:29:51','clientes','antes de insertar'),(25,'2020-02-21 09:59:39','asdf','sdfg'),(27,'2020-02-21 09:58:51','prueba','pruebaza'),(28,'2020-02-21 09:59:03','asdf','sdfg'),(29,'2020-02-21 09:59:49','asdf','asdf');
 /*!40000 ALTER TABLE `logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +116,7 @@ CREATE TABLE `servicios` (
   `nombre` varchar(45) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `precio` decimal(6,3) NOT NULL,
   PRIMARY KEY (`idservicios`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,9 +125,28 @@ CREATE TABLE `servicios` (
 
 LOCK TABLES `servicios` WRITE;
 /*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
-INSERT INTO `servicios` VALUES (1,'Servicio1',11.110),(2,'Servicio2',22.220);
+INSERT INTO `servicios` VALUES (1,'Servicio1',11.110),(2,'Servicio2',22.220),(3,'Servicio3',23.230),(4,'Servicio4',4.330),(5,'Servicio5',5.000),(7,'Servicio6',6.000);
 /*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `servicios_BEFORE_INSERT` BEFORE INSERT ON `servicios` FOR EACH ROW BEGIN
+	IF NEW.precio > 30 THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se admiten precios mayores de 30';
+	END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `sesiones`
@@ -152,7 +171,7 @@ CREATE TABLE `sesiones` (
   CONSTRAINT `fk_actuaciones_clientes` FOREIGN KEY (`clientes_idclientes`) REFERENCES `clientes` (`idclientes`),
   CONSTRAINT `fk_actuaciones_servicios1` FOREIGN KEY (`servicios_idservicios`) REFERENCES `servicios` (`idservicios`),
   CONSTRAINT `fk_actuaciones_trabajadores1` FOREIGN KEY (`trabajadores_idtrabajadores`) REFERENCES `trabajadores` (`idtrabajadores`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +180,7 @@ CREATE TABLE `sesiones` (
 
 LOCK TABLES `sesiones` WRITE;
 /*!40000 ALTER TABLE `sesiones` DISABLE KEYS */;
-INSERT INTO `sesiones` VALUES (3,1,1,1,'2020-02-13 10:00:00','Prueba de texto','No recomendable'),(4,2,2,2,'2020-02-18 12:12:00','Cliente2, Trabajador2, Servicio2, 14/02/2020 09:34, Para repetir','Para repetir'),(5,1,1,1,'1121-12-12 12:12:00','',''),(6,1,1,1,'2020-12-12 12:12:00','',''),(7,1,1,1,'2020-02-24 12:12:00','',''),(8,2,1,1,'1234-12-23 12:12:00','',''),(9,1,1,2,'2020-02-21 23:23:00','',''),(10,1,1,1,'2001-01-01 01:01:00','','');
+INSERT INTO `sesiones` VALUES (3,1,1,1,'2020-02-13 10:00:00','Prueba de texto','No recomendable'),(4,2,2,2,'2020-02-18 12:12:00','Cliente2, Trabajador2, Servicio2, 14/02/2020 09:34, Para repetir','Para repetir'),(46,2,2,2,'2020-02-18 09:49:53',NULL,NULL),(47,2,2,2,'2020-02-25 09:49:53',NULL,NULL),(48,2,2,2,'2020-03-03 09:49:53',NULL,NULL),(49,2,2,2,'2020-03-10 09:49:53',NULL,NULL),(50,2,2,2,'2020-03-17 09:49:53',NULL,NULL);
 /*!40000 ALTER TABLE `sesiones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,6 +334,64 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `comparaServicios` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `comparaServicios`()
+BEGIN
+
+DECLARE contador INT DEFAULT 0;
+
+DECLARE _id INT;
+DECLARE _nombre VARCHAR(45);
+DECLARE _precio DECIMAL(6,3) DEFAULT 0;
+
+DECLARE _id_anterior INT;
+DECLARE _nombre_anterior VARCHAR(45);
+DECLARE _precio_anterior DECIMAL(6,3);
+
+DECLARE terminado INT DEFAULT FALSE;
+DECLARE fila CURSOR FOR SELECT idservicios, nombre, precio FROM servicios;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET terminado = TRUE;
+
+OPEN fila;
+
+bucle: LOOP
+	FETCH fila INTO _id, _nombre, _precio;
+    
+    IF terminado THEN
+		LEAVE bucle;
+    END IF;
+    
+    SET contador = contador + 1;
+    
+    -- SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error provocado desde procedimiento almacenado';
+    
+    IF _precio < _precio_anterior THEN
+		SELECT contador, _id, _nombre, _precio, _id_anterior, _nombre_anterior, _precio_anterior;
+        LEAVE bucle;
+	END IF;
+    
+    SET _id_anterior = _id;
+    SET _nombre_anterior = _nombre;
+    SET _precio_anterior = _precio;
+END LOOP;
+
+CLOSE fila;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `ejemplo_basico` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -363,4 +440,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-17 10:31:31
+-- Dump completed on 2020-02-26  9:14:28

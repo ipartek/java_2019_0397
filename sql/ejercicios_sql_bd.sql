@@ -18,6 +18,24 @@ USE `ejerciciossql`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `departamento`
+--
+
+DROP TABLE IF EXISTS `departamento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `departamento` (
+  `codDepto` varchar(4) NOT NULL,
+  `nombreDpto` varchar(20) NOT NULL,
+  `ciudad` varchar(15) DEFAULT NULL,
+  `codDirector` varchar(12) DEFAULT NULL,
+  PRIMARY KEY (`codDepto`),
+  KEY `FK_EmpDir` (`codDirector`),
+  CONSTRAINT `FK_EmpDir` FOREIGN KEY (`codDirector`) REFERENCES `empleado` (`nDIEmp`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `departamento`
 --
 
@@ -26,6 +44,33 @@ LOCK TABLES `departamento` WRITE;
 INSERT INTO `departamento` VALUES ('1000','GERENCIA','CALI','31.840.269'),('1500','PRODUCCIÓN','CALI','16.211.383'),('2000','VENTAS','CALI','31.178.144'),('2100','VENTAS','POPAYAN',NULL),('2200','VENTAS','BUGA','768.782'),('2300','VENTAS','CARTAGO','737.689'),('3000','INVESTIGACIÓN','CALI','16.759.060'),('3500','MERCADEO','CALI','22.222.222'),('4000','MANTENIMIENTO','CALI','333.333.333'),('4100','MANTENIMIENTO','POPAYAN','888.888'),('4200','MANTENIMIENTO','BUGA','11.111.111'),('4300','MANTENIMIENTO','CARTAGO','444.444'),('6000','TRANSPORTE','CALI',NULL),('7000','COMPRAS','CALI',NULL);
 /*!40000 ALTER TABLE `departamento` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `empleado`
+--
+
+DROP TABLE IF EXISTS `empleado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `empleado` (
+  `nDIEmp` varchar(12) NOT NULL,
+  `nomEmp` varchar(30) NOT NULL,
+  `sexEmp` char(1) NOT NULL,
+  `fecNac` date NOT NULL,
+  `fecIncorporacion` date NOT NULL,
+  `salEmp` float NOT NULL,
+  `comisionE` float NOT NULL,
+  `cargoE` varchar(15) NOT NULL,
+  `jefeID` varchar(12) DEFAULT NULL,
+  `codDepto` varchar(4) NOT NULL,
+  PRIMARY KEY (`nDIEmp`),
+  KEY `FK_Empl_idx` (`jefeID`),
+  KEY `FK_Dpto_idx` (`codDepto`),
+  CONSTRAINT `FK_Dpto` FOREIGN KEY (`codDepto`) REFERENCES `departamento` (`codDepto`),
+  CONSTRAINT `FK_Empl` FOREIGN KEY (`jefeID`) REFERENCES `empleado` (`nDIEmp`),
+  CONSTRAINT `empleado_chk_1` CHECK ((`sexEmp` in (_utf8mb4'F',_utf8mb4'M')))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `empleado`
@@ -38,12 +83,73 @@ INSERT INTO `empleado` VALUES ('1.130.222','José Giraldo','M','1985-01-20','200
 UNLOCK TABLES;
 
 --
+-- Temporary view structure for view `sumsalar`
+--
+
+DROP TABLE IF EXISTS `sumsalar`;
+/*!50001 DROP VIEW IF EXISTS `sumsalar`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `sumsalar` AS SELECT 
+ 1 AS `codDepto`,
+ 1 AS `sumS`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `sumsalar2`
+--
+
+DROP TABLE IF EXISTS `sumsalar2`;
+/*!50001 DROP VIEW IF EXISTS `sumsalar2`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `sumsalar2` AS SELECT 
+ 1 AS `sSalD`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Dumping events for database 'ejerciciossql'
 --
 
 --
 -- Dumping routines for database 'ejerciciossql'
 --
+
+--
+-- Final view structure for view `sumsalar`
+--
+
+/*!50001 DROP VIEW IF EXISTS `sumsalar`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `sumsalar` AS select `empleado`.`codDepto` AS `codDepto`,sum(`empleado`.`salEmp`) AS `sumS` from `empleado` group by `empleado`.`codDepto` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `sumsalar2`
+--
+
+/*!50001 DROP VIEW IF EXISTS `sumsalar2`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `sumsalar2` AS select max(`sumsalar`.`sumS`) AS `sSalD` from `sumsalar` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -54,4 +160,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-25 13:52:30
+-- Dump completed on 2020-02-26  9:13:16
