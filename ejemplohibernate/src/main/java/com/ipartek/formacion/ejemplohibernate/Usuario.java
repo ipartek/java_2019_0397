@@ -1,10 +1,13 @@
 package com.ipartek.formacion.ejemplohibernate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "usuarios")
@@ -12,9 +15,16 @@ public class Usuario {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     // @Column(updatable = false, nullable = false)
-	public Long id;
-	public String email, password;
-	public String nombre;
+	private Long id;
+	@NotNull(message = "No se puede dejar nulo")
+	private String email, password;
+	
+	@Size(min = 2, max = 14, message = "El tamaño sólo puede ser de 2 a 14 caracteres")
+	@Column(length = 14)
+	private String nombre;
+	
+	@Column(columnDefinition = "CHAR(9)")
+	private String nif;
 	
 	public Usuario(Long id, String email, String password, String nombre) {
 		setId(id);
@@ -61,6 +71,14 @@ public class Usuario {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getNif() {
+		return nif;
+	}
+
+	public void setNif(String nif) {
+		this.nif = nif;
 	}
 
 	@Override
