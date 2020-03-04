@@ -33,11 +33,16 @@ public class App
     	
     	em.getTransaction().commit();
     	
+    	em.clear();
+    	
     	em.getTransaction().begin();
     	
-    	List<Usuario> usuarios = em.createQuery("from Usuario", Usuario.class).getResultList();
+    	List<Usuario> usuarios = em.createQuery("select u from Usuario u inner join fetch u.rol", Usuario.class).getResultList();
     	
     	for(Usuario usuario: usuarios) {
+    		if(usuario.getId() == 2) {
+    			System.out.println(usuario.getRol());
+    		}
     		System.out.println(usuario);
     	}
     	

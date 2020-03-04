@@ -2,6 +2,7 @@ package com.ipartek.formacion.ejemplohibernate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Usuario {
 	@Column(columnDefinition = "CHAR(9)")
 	private String nif;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Rol rol;
 	
 	public Usuario(Long id, String email, String password, String nombre, String nif, Rol rol) {
@@ -157,7 +158,7 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", email=" + email + ", password=" + password + ", nombre=" + nombre + ", nif="
-				+ nif + ", rol=" + rol + "]";
+				+ nif; //+ ", rol=" + rol + "]";
 	}
 	
 	
