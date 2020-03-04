@@ -1,9 +1,12 @@
 package com.ipartek.formacion.ejemplohibernate;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +17,17 @@ public class Rol {
 	private Long id;
 	private String nombre;
 	
+	@OneToMany(mappedBy = "rol")
+	private List<Usuario> usuarios;
+	
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
 	public Rol(Long id, String nombre) {
 		setId(id);
 		setNombre(nombre);
@@ -49,6 +63,7 @@ public class Rol {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((usuarios == null) ? 0 : usuarios.hashCode());
 		return result;
 	}
 
@@ -70,6 +85,11 @@ public class Rol {
 			if (other.nombre != null)
 				return false;
 		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (usuarios == null) {
+			if (other.usuarios != null)
+				return false;
+		} else if (!usuarios.equals(other.usuarios))
 			return false;
 		return true;
 	}

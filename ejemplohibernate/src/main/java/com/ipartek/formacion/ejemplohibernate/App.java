@@ -30,6 +30,7 @@ public class App
     	
     	em.persist(new Usuario("javier@email.net", "contra", admin));
     	em.persist(new Usuario("pepe@email.net", "perez", user));
+    	em.persist(new Usuario("juan@email.net", "juanes", user));
     	
     	em.getTransaction().commit();
     	
@@ -40,10 +41,13 @@ public class App
     	List<Usuario> usuarios = em.createQuery("select u from Usuario u inner join fetch u.rol", Usuario.class).getResultList();
     	
     	for(Usuario usuario: usuarios) {
-    		if(usuario.getId() == 2) {
-    			System.out.println(usuario.getRol());
-    		}
     		System.out.println(usuario);
+    		
+    		if(usuario.getId() == 2) {
+    			System.out.println("\tEl usuario tiene este rol");
+    			System.out.println("\t" + usuario.getRol());
+    			System.out.println("\t" + usuario.getRol().getUsuarios());
+    		}
     	}
     	
     	em.getTransaction().commit();
