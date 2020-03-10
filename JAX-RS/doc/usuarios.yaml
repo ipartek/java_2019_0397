@@ -1,0 +1,127 @@
+openapi: 3.0.1
+info:
+  title: Ejemplo UsuarioREST
+  description: Ejemplo de API con Swagger
+  contact:
+    email: javier@email.net
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080/JAX-RS/api/'
+paths:
+  /usuarios:
+    get:
+      tags:
+        - usuarios
+      summary: Obtener todos los usuarios
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+    post:
+      tags:
+        - usuarios
+      summary: Dar de alta un usuario nuevo
+      requestBody:
+        description: Usuario a añadir
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+        required: true
+      responses:
+        '201':
+          description: Usuario creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+  '/usuarios/{usuarioId}':
+    get:
+      tags:
+        - usuarios
+      summary: Obtener usuario por id
+      parameters:
+        - name: usuarioId
+          in: path
+          description: ID del usuario pedido
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        '404':
+          description: No se ha encontrado el usuario
+    put:
+      tags:
+        - usuarios
+      summary: Modificar un usuario existente
+      parameters:
+        - name: usuarioId
+          in: path
+          description: Id del usuario a modificar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Usuario a modificar
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+        required: true
+      responses:
+        '200':
+          description: Usuario modificado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        '400':
+          description: No concuerdan los ids
+        '404':
+          description: No se ha encontrado el heroe
+        
+    delete:
+      tags:
+        - usuarios
+      summary: Borrar un usuario por su Id
+      parameters:
+        - name: usuarioId
+          in: path
+          description: ID del usuario a borrar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Usuario borrado
+        '404':
+          description: No se ha encontrado el usuario
+components:
+  schemas:
+    Usuario:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        email:
+          type: string
+        password:
+          type: string
